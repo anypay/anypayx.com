@@ -4,6 +4,8 @@ import { styled } from '@mui/material/styles';
 import Layout from '../layouts';
 // components
 import Page from '../components/Page';
+
+import { useRouter } from 'next/router'
 // sections
 import {
   HomeHero,
@@ -35,11 +37,16 @@ HomePage.getLayout = function getLayout(page: React.ReactElement) {
   return <Layout variant="main">{page}</Layout>;
 };
 
+
 // ----------------------------------------------------------------------
 
 export default function HomePage() {
+  const router = useRouter();
+
+  router.push('/dashboard')
+
   return (
-    <Page title="The starting point for your next project">
+    <Page title="Anypay Professional Bitcoin Payments">
       <RootStyle>
         <HomeHero />
         <ContentStyle>

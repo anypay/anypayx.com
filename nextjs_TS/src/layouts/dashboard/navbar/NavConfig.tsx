@@ -4,6 +4,8 @@ import { PATH_DASHBOARD } from '../../../routes/paths';
 import Label from '../../../components/Label';
 import SvgIconStyle from '../../../components/SvgIconStyle';
 
+var isDeveloper = process.env.DEVELOPER_MODE === "true"
+
 // ----------------------------------------------------------------------
 
 const getIcon = (name: string) => (
@@ -11,6 +13,7 @@ const getIcon = (name: string) => (
 );
 
 const ICONS = {
+  webhooks: getIcon('ic_blog'),
   blog: getIcon('ic_blog'),
   cart: getIcon('ic_cart'),
   chat: getIcon('ic_chat'),
@@ -25,10 +28,40 @@ const ICONS = {
   booking: getIcon('ic_booking'),
 };
 
-const navConfig = [
-  // GENERAL
+var navConfig = [
+  // MERCHANT
   // ----------------------------------------------------------------------
   {
+    subheader: 'merchant',
+    items: [
+      { title: 'quick checkout', path: PATH_DASHBOARD.merchant.checkout, icon: ICONS.ecommerce },
+      { title: 'payments received', path: PATH_DASHBOARD.merchant.payments, icon: ICONS.analytics },
+      { title: 'send invoices', path: PATH_DASHBOARD.merchant.invoices, icon: ICONS.mail }
+    ],
+  },
+  // DEVELOPER
+  // ----------------------------------------------------------------------
+  {
+    subheader: 'developer',
+    items: [
+      { title: 'api keys', path: PATH_DASHBOARD.developer.apikeys, icon: ICONS.dashboard },
+      { title: 'webhooks', path: PATH_DASHBOARD.developer.webhooks, icon: ICONS.mail }
+    ],
+  },
+  {
+    subheader: 'management',
+    items: [
+      // MANAGEMENT : ACCOUNT
+
+      { title: 'account settings', path: PATH_DASHBOARD.account.settings, icon: ICONS.user },
+      { title: 'wallet addresses', path: PATH_DASHBOARD.account.wallets, icon: ICONS.banking },
+    ]
+
+  },
+]
+
+if (isDeveloper) {
+  navConfig.push({
     subheader: 'general',
     items: [
       {
@@ -41,11 +74,9 @@ const navConfig = [
       { title: 'banking', path: PATH_DASHBOARD.general.banking, icon: ICONS.banking },
       { title: 'booking', path: PATH_DASHBOARD.general.booking, icon: ICONS.booking },
     ],
-  },
+  })
 
-  // MANAGEMENT
-  // ----------------------------------------------------------------------
-  {
+  navConfig.push({
     subheader: 'management',
     items: [
       // MANAGEMENT : USER
@@ -63,7 +94,7 @@ const navConfig = [
         ],
       },
 
-      // MANAGEMENT : E-COMMERCE
+
       {
         title: 'e-commerce',
         path: PATH_DASHBOARD.eCommerce.root,
@@ -79,7 +110,7 @@ const navConfig = [
         ],
       },
 
-      // MANAGEMENT : BLOG
+
       {
         title: 'blog',
         path: PATH_DASHBOARD.blog.root,
@@ -91,11 +122,10 @@ const navConfig = [
         ],
       },
     ],
-  },
+  })
 
-  // APP
-  // ----------------------------------------------------------------------
-  {
+
+  navConfig.push({
     subheader: 'app',
     items: [
       {
@@ -116,7 +146,7 @@ const navConfig = [
         icon: ICONS.kanban,
       },
     ],
-  },
-];
+  })
+}
 
 export default navConfig;

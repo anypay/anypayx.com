@@ -34,6 +34,19 @@ export const PATH_PAGE = {
 
 export const PATH_DASHBOARD = {
   root: ROOTS_DASHBOARD,
+  merchant: {
+    payments: path(ROOTS_DASHBOARD, '/merchant/payments'),
+    checkout: path(ROOTS_DASHBOARD, '/merchant/checkout'),
+    invoices: path(ROOTS_DASHBOARD, '/merchant/invoices'),
+  },
+  developer: {
+    apikeys: path(ROOTS_DASHBOARD, '/developer/api-keys'),
+    webhooks: path(ROOTS_DASHBOARD, '/developer/webhooks'),
+  },
+  account: {
+    settings: path(ROOTS_DASHBOARD, '/account/settings'),
+    wallets: path(ROOTS_DASHBOARD, '/account/wallets'),
+  },
   general: {
     app: path(ROOTS_DASHBOARD, '/app'),
     ecommerce: path(ROOTS_DASHBOARD, '/ecommerce'),
@@ -81,4 +94,4 @@ export const PATH_DASHBOARD = {
   }
 };
 
-export const PATH_DOCS = 'https://docs-minimals.vercel.app/introduction';
+export const PATH_DOCS = 'https://anypay.dev';

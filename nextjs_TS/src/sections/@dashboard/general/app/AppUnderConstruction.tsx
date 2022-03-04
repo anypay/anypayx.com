@@ -2,6 +2,11 @@
 import { styled } from '@mui/material/styles';
 import { Typography, Button, Card, CardContent, CardProps } from '@mui/material';
 import { SeoIllustration } from '../../../../assets';
+import { PATH_DASHBOARD } from '../../../../routes/paths';
+
+
+// @next
+import NextLink from 'next/link';
 
 
 // ----------------------------------------------------------------------
@@ -9,7 +14,7 @@ import { SeoIllustration } from '../../../../assets';
 const RootStyle = styled(Card)(({ theme }) => ({
   boxShadow: 'none',
   textAlign: 'center',
-  backgroundColor: theme.palette.primary.lighter,
+  backgroundColor: theme.palette.error.lighter,
   [theme.breakpoints.up('md')]: {
     height: '100%',
     display: 'flex',
@@ -21,11 +26,11 @@ const RootStyle = styled(Card)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-interface AppWelcomeProps extends CardProps {
-  displayName?: string;
+interface AppUnderConstructionProps extends CardProps {
+  message?: string;
 }
 
-export default function AppWelcome({ displayName }: AppWelcomeProps) {
+export default function AppUnderConstruction({ message }: AppUnderConstructionProps) {
   return (
     <RootStyle>
       <CardContent
@@ -36,15 +41,18 @@ export default function AppWelcome({ displayName }: AppWelcomeProps) {
         }}
       >
         <Typography gutterBottom variant="h4">
-          Welcome back,
-          <br /> {!displayName ? '...' : displayName}!
+          Feature Under Construction
         </Typography>
 
         <Typography variant="body2" sx={{ pb: { xs: 3, xl: 5 }, maxWidth: 480, mx: 'auto' }}>
-          If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything
+          If you would like to make this happen more quickly send us some coins.
         </Typography>
 
-        <Button variant="contained">Go Now</Button>
+        <NextLink href={PATH_DASHBOARD.merchant.checkout} passHref>
+
+          <Button variant="contained">Go To Checkout</Button>
+
+        </NextLink>
       </CardContent>
 
       <SeoIllustration

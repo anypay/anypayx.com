@@ -66,7 +66,7 @@ export default function RegisterForm() {
       reset();
 
       if (isMountedRef.current) {
-        setError('afterSubmit', { ...error, message: error.message });
+        setError('afterSubmit', { ...error, message: error.error });
       }
     }
   };

@@ -88,6 +88,7 @@
     "slick-carousel": "^1.8.1",
     "stylis": "^4.0.13",
     "stylis-plugin-rtl": "^2.1.1",
+    "swr": "^1.2.2",
     "worker-loader": "^3.0.8",
     "yup": "^0.32.11"
   },
