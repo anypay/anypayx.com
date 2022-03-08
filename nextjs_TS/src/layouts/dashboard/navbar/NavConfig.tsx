@@ -59,7 +59,7 @@ var navConfig = [
 
   },
 ]
-
+/*
 if (isDeveloper) {
   navConfig.push({
     subheader: 'general',
@@ -147,6 +147,6 @@ if (isDeveloper) {
       },
     ],
   })
-}
+}*/
 
 export default navConfig;

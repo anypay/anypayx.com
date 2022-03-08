@@ -83,11 +83,7 @@ export default function WebhooksList() {
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const fetcher = async (params) => {
-    return axios(params)
-      .then(() => response.json());
-  }
-  const { data, error } = useSWR('https://anypayx.com/v1/api/webhooks', fetcher)
+  const { data, error } = useSWR('https://anypayx.com/v1/api/webhooks', axios)
 
   if (error) {
 

@@ -43,10 +43,7 @@ import Scrollbar from '../../../components/Scrollbar';
 import SearchNotFound from '../../../components/SearchNotFound';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 
-import {
-    AppUnderContruction,
-    AppWelcome
-  } from '../../../sections/@dashboard/general/app';
+
 // sections
 import {
   UserListHead,
@@ -89,11 +86,7 @@ export default function WebhooksList() {
 
   const { user } = useAuth();
 
-  const fetcher = async (params) => {
-    return axios(params)
-      .then(() => response.json());
-  }
-  const { data, error } = useSWR('https://anypayx.com/v1/api/access-keys', fetcher)
+  const { data, error } = useSWR('https://anypayx.com/v1/api/access-keys', axios)
 
   if (error) {
 

@@ -27,7 +27,7 @@ import useSettings from '../../../hooks/useSettings';
 // @types
 import { UserManager } from '../../../@types/user';
 // _mock_
-import { _userList } from '../../../_mock';
+import { _paymentsList } from '../../../_mock';
 // api data
 import useAuth from '../../../hooks/useAuth';
 import useSWR from 'swr';
@@ -42,15 +42,14 @@ import Iconify from '../../../components/Iconify';
 import Scrollbar from '../../../components/Scrollbar';
 import SearchNotFound from '../../../components/SearchNotFound';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
+import PaymentsList from '../../../components/payments/PaymentsList'
 
-import {
-    AppUnderContruction,
-    AppWelcome
-  } from '../../../sections/@dashboard/general/app';
+import { useListPayments } from '../../../api/payments';
+
 // sections
 import {
-  UserListHead,
-  UserListToolbar,
+  PaymentsListHead,
+  PaymentsListToolbar,
   UserMoreMenu,
 } from '../../../sections/@dashboard/user/list';
 import AppUnderConstruction from 'src/sections/@dashboard/general/app/AppUnderConstruction';
@@ -76,91 +75,11 @@ WebhooksList.getLayout = function getLayout(page: React.ReactElement) {
 
 export default function WebhooksList() {
   const { enqueueSnackbar } = useSnackbar();
-  const theme = useTheme();
+
+
+
   const { themeStretch } = useSettings();
 
-  const [userList, setUserList] = useState(_userList);
-  const [page, setPage] = useState(0);
-  const [order, setOrder] = useState<'asc' | 'desc'>('asc');
-  const [selected, setSelected] = useState<string[]>([]);
-  const [orderBy, setOrderBy] = useState('name');
-  const [filterName, setFilterName] = useState('');
-  const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  const { user } = useAuth();
-
-  const fetcher = async (params) => {
-    return axios(params)
-      .then(() => response.json());
-  }
-  const { data, error } = useSWR('https://anypayx.com/v1/api/access-keys', fetcher)
-
-  if (error) {
-
-    enqueueSnackbar('Error Loading API Keys', { variant: 'warning' })
-
-  }
-
-  const handleRequestSort = (property: string) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
-  };
-
-  const handleSelectAllClick = (checked: boolean) => {
-    if (checked) {
-      const newSelecteds = userList.map((n) => n.name);
-      setSelected(newSelecteds);
-      return;
-    }
-    setSelected([]);
-  };
-
-  const handleClick = (name: string) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected: string[] = [];
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
-    setSelected(newSelected);
-  };
-
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
-  const handleFilterByName = (filterName: string) => {
-    setFilterName(filterName);
-    setPage(0);
-  };
-
-  const handleDeleteUser = (userId: string) => {
-    const deleteUser = userList.filter((user) => user.id !== userId);
-    setSelected([]);
-    setUserList(deleteUser);
-  };
-
-  const handleDeleteMultiUser = (selected: string[]) => {
-    const deleteUsers = userList.filter((user) => !selected.includes(user.name));
-    setSelected([]);
-    setUserList(deleteUsers);
-  };
-
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - userList.length) : 0;
-
-  const filteredUsers = applySortFilter(userList, getComparator(order, orderBy), filterName);
-
-  const isNotFound = !filteredUsers.length && Boolean(filterName);
 
   return (
     <Page title="Payments: List">
@@ -175,12 +94,12 @@ export default function WebhooksList() {
           action={
             <NextLink href={PATH_DASHBOARD.user.newUser} passHref>
               <Button variant="contained" startIcon={<Iconify icon={'eva:plus-fill'} />}>
-                New API Key
+                Checkout
               </Button>
             </NextLink>
           }
         />
-        <AppUnderConstruction />
+        <PaymentsList/>
 
       </Container>
     </Page>
