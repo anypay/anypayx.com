@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 import { useTheme } from '@mui/material/styles';
 
+import moment from 'moment'
+
 import { sentenceCase } from 'change-case';
 
 import {
@@ -197,6 +199,8 @@ export default function PaymentsList() {
                     .map((row: any) => {
                       const { currency, amount, txid, outputs, createdAt, invoice } = row;
 
+                      const date = moment(createdAt).format('MMM DD, YYYY - hh:mma')
+
                       return (
                         <TableRow
                           hover
@@ -204,7 +208,7 @@ export default function PaymentsList() {
                         >
 
                           <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
-                            <Avatar alt={currency} src={''} sx={{ mr: 2 }} />
+                            <Avatar alt={currency} src={`/icons/coins/${currency}.png`} sx={{ mr: 2 }} />
                             <Typography variant="subtitle2" noWrap>
                                 {currency}
                             </Typography>
@@ -212,7 +216,7 @@ export default function PaymentsList() {
                           <TableCell align="left">
                               {invoice.amount} {invoice.currency}
                           </TableCell>
-                          <TableCell align="left">{createdAt}</TableCell>
+                          <TableCell align="left">{date}</TableCell>
                           <TableCell align="right">
                             <PaymentsMoreMenu onSendWebhook={() => {
                                 enqueueSnackbar("manual webhook disabled", { variant: 'warning'})
