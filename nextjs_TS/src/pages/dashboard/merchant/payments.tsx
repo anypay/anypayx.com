@@ -26,8 +26,6 @@ import { PATH_DASHBOARD } from '../../../routes/paths';
 import useSettings from '../../../hooks/useSettings';
 // @types
 import { UserManager } from '../../../@types/user';
-// _mock_
-import { _paymentsList } from '../../../_mock';
 // api data
 import useAuth from '../../../hooks/useAuth';
 import useSWR from 'swr';
@@ -47,12 +45,6 @@ import PaymentsList from '../../../components/payments/PaymentsList'
 import { useListPayments } from '../../../api/payments';
 
 // sections
-import {
-  PaymentsListHead,
-  PaymentsListToolbar,
-  UserMoreMenu,
-} from '../../../sections/@dashboard/user/list';
-import AppUnderConstruction from 'src/sections/@dashboard/general/app/AppUnderConstruction';
 
 // ----------------------------------------------------------------------
 

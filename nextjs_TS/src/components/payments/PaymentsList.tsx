@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 
 import { useTheme } from '@mui/material/styles';
 
-import FormatCurrency from 'react-format-currency';
-
 import { sentenceCase } from 'change-case';
 
 import {
@@ -66,19 +64,13 @@ type Props = {
   orderBy: string;
   rowCount: number;
   headLabel: any[];
-  numSelected: number;
-  onRequestSort: (id: string) => void;
-  onSelectAllClick: (checked: boolean) => void;
 };
 
 function PaymentsListHead({
   order,
   orderBy,
   rowCount,
-  headLabel,
-  numSelected,
-  onRequestSort,
-  onSelectAllClick,
+  headLabel
 }: Props) {
   return (
     <TableHead>
@@ -125,10 +117,7 @@ export default function PaymentsList() {
 
     const { enqueueSnackbar } = useSnackbar();
 
-    let { payments, error, loading, refresh } = useListPayments();
-
-
-    console.log('USE LIST PAYMENTS', payments)
+    const { payments, error, loading, refresh } = useListPayments();
 
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - payments.length) : 0;
 
@@ -188,8 +177,6 @@ export default function PaymentsList() {
         return <div>Failed to Load Payments</div>
     }
 
-    window.payments = payments
-
     return (
 
         <Card>
@@ -207,14 +194,13 @@ export default function PaymentsList() {
                 <TableBody>
                   {payments
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row) => {
+                    .map((row: any) => {
                       const { currency, amount, txid, outputs, createdAt, invoice } = row;
-                      const isItemSelected = selected.indexOf(name) !== -1;
 
                       return (
                         <TableRow
                           hover
-
+                          key={txid}
                         >
 
                           <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
@@ -228,7 +214,9 @@ export default function PaymentsList() {
                           </TableCell>
                           <TableCell align="left">{createdAt}</TableCell>
                           <TableCell align="right">
-                            <PaymentsMoreMenu onDelete={() => handleDeleteUser(id)} userName={name} />
+                            <PaymentsMoreMenu onSendWebhook={() => {
+                                enqueueSnackbar("manual webhook disabled", { variant: 'warning'})
+                            }} />
                           </TableCell>
                         </TableRow>
                       );

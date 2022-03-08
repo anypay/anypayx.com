@@ -1,14 +1,23 @@
 import * as React from 'react'
 
+import { useSnackbar } from 'notistack';
+
 import { useListInvoices } from '../../api/invoices';
 
 export default function InvoicesList() {
 
-    let { invoices, error, isValidating, mutate } = useListInvoices();
+    const { invoices, error, loading, refresh } = useListInvoices();
 
-    
+    const { enqueueSnackbar } = useSnackbar();
 
-    if (!invoices && isValidating) {
+
+    if (error) {
+
+        enqueueSnackbar('Error Loading Payments', { variant: 'warning' })
+
+    }
+
+    if (!invoices && loading) {
         return <div>Loading...</div>
     }
 
@@ -16,12 +25,8 @@ export default function InvoicesList() {
         <div>
             <h2>invoices</h2>
             <table>
-                <thead>
-
-                </thead>
-                <tbody>
-
-                </tbody>
+                <thead/>
+                <tbody/>
             </table>
         </div>
     )

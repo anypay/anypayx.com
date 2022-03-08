@@ -14,10 +14,9 @@ import MenuPopover from '../../../../components/MenuPopover';
 
 type Props = {
   onSendWebhook: VoidFunction;
-  userName: string;
 };
 
-export default function PaymentsMoreMenu({ onSendWebhook, userName }: Props) {
+export default function PaymentsMoreMenu({ onSendWebhook }: Props) {
   const [open, setOpen] = useState<HTMLElement | null>(null);
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -58,7 +57,7 @@ export default function PaymentsMoreMenu({ onSendWebhook, userName }: Props) {
           Send Webhook
         </MenuItem>
 
-        <NextLink href={`${PATH_DASHBOARD.user.root}/${paramCase(userName)}/edit`}>
+        <NextLink href={`${PATH_DASHBOARD.merchant.payments}`}>
           <MenuItem>
             <Iconify icon={'eva:checkmark-circle-2-outline'} sx={{ mr: 2, width: 24, height: 24 }} />
             View Blockchain

@@ -1,24 +1,12 @@
-import { sentenceCase } from 'change-case';
 import { useState } from 'react';
 import { useSnackbar } from 'notistack';
 // next
 import NextLink from 'next/link';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Grid } from '@mui/material';
 import {
-  Card,
-  Table,
-  Avatar,
   Button,
-  Checkbox,
-  TableRow,
-  TableBody,
-  TableCell,
-  Container,
-  Typography,
-  TableContainer,
-  TablePagination,
+  Container
 } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
@@ -36,20 +24,11 @@ import axios from '../../../utils/axios';
 import Layout from '../../../layouts';
 // components
 import Page from '../../../components/Page';
-import LoadingScreen from '../../../components/LoadingScreen';
-import Label from '../../../components/Label';
 import Iconify from '../../../components/Iconify';
-import Scrollbar from '../../../components/Scrollbar';
-import SearchNotFound from '../../../components/SearchNotFound';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 
 
 // sections
-import {
-  UserListHead,
-  UserListToolbar,
-  UserMoreMenu,
-} from '../../../sections/@dashboard/user/list';
 import AppUnderConstruction from 'src/sections/@dashboard/general/app/AppUnderConstruction';
 
 // ----------------------------------------------------------------------
@@ -73,7 +52,6 @@ WebhooksList.getLayout = function getLayout(page: React.ReactElement) {
 
 export default function WebhooksList() {
   const { enqueueSnackbar } = useSnackbar();
-  const theme = useTheme();
   const { themeStretch } = useSettings();
 
   const [userList, setUserList] = useState(_userList);
@@ -83,8 +61,6 @@ export default function WebhooksList() {
   const [orderBy, setOrderBy] = useState('name');
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  const { user } = useAuth();
 
   const { data, error } = useSWR('https://anypayx.com/v1/api/access-keys', axios)
 

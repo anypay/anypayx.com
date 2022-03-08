@@ -60,7 +60,6 @@ import ThemeColorPresets from '../components/ThemeColorPresets';
 import NotistackProvider from '../components/NotistackProvider';
 import ThemeLocalization from '../components/ThemeLocalization';
 import MotionLazyContainer from '../components/animate/MotionLazyContainer';
-import { IntlProvider} from 'react-intl';
 
 // Check our docs
 // https://docs-minimals.vercel.app/authentication/ts-version
@@ -98,24 +97,22 @@ export default function MyApp(props: MyAppProps) {
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <CollapseDrawerProvider>
                 <SettingsProvider defaultSettings={settings}>
-                  <IntlProvider>
-                    <ThemeProvider>
-                      <NotistackProvider>
-                        <MotionLazyContainer>
-                          <ThemeColorPresets>
-                            <ThemeLocalization>
-                              <RtlLayout>
-                                <ChartStyle />
-                                <Settings />
-                                <ProgressBar />
-                                {getLayout(<Component {...pageProps} />)}
-                              </RtlLayout>
-                            </ThemeLocalization>
-                          </ThemeColorPresets>
-                        </MotionLazyContainer>
-                      </NotistackProvider>
-                    </ThemeProvider>
-                  </IntlProvider>
+                  <ThemeProvider>
+                    <NotistackProvider>
+                      <MotionLazyContainer>
+                        <ThemeColorPresets>
+                          <ThemeLocalization>
+                            <RtlLayout>
+                              <ChartStyle />
+                              <Settings />
+                              <ProgressBar />
+                              {getLayout(<Component {...pageProps} />)}
+                            </RtlLayout>
+                          </ThemeLocalization>
+                        </ThemeColorPresets>
+                      </MotionLazyContainer>
+                    </NotistackProvider>
+                  </ThemeProvider>
                 </SettingsProvider>
               </CollapseDrawerProvider>
             </LocalizationProvider>
