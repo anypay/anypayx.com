@@ -29,5 +29,5 @@ jobs:
 
       - run:
           name: Deploy to Webserver
-          command: scp -r nextjs_TS/_static/* ubuntu@next.anypayx.com:/opt/next.anypayx.com
+          command: scp -o StrictHostKeyChecking=no -r nextjs_TS/_static/* ubuntu@next.anypayx.com:/opt/next.anypayx.com
 
