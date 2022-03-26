@@ -63,6 +63,16 @@ export default function NotificationsPopover() {
         </Badge>
       </IconButtonAnimate>
 
+      <IconButtonAnimate
+        color={open ? 'primary' : 'default'}
+        onClick={handleOpen}
+        sx={{ width: 40, height: 40 }}
+      >
+        <Badge badgeContent={totalUnRead} color="error">
+          <Iconify icon="eva:bell-fill" width={20} height={20} />
+        </Badge>
+      </IconButtonAnimate>
+
       <MenuPopover
         open={Boolean(open)}
         anchorEl={open}

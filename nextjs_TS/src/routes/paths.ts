@@ -42,6 +42,7 @@ export const PATH_DASHBOARD = {
   developer: {
     apikeys: path(ROOTS_DASHBOARD, '/developer/api-keys'),
     webhooks: path(ROOTS_DASHBOARD, '/developer/webhooks'),
+    logs: path(ROOTS_DASHBOARD, '/developer/logs'),
   },
   account: {
     settings: path(ROOTS_DASHBOARD, '/account/settings'),

@@ -1,3 +1,4 @@
+
 import { sentenceCase } from 'change-case';
 import { useState } from 'react';
 import { useSnackbar } from 'notistack';
@@ -26,26 +27,12 @@ import { PATH_DASHBOARD } from '../../../routes/paths';
 import useSettings from '../../../hooks/useSettings';
 // @types
 import { UserManager } from '../../../@types/user';
-// api data
-import useAuth from '../../../hooks/useAuth';
-import useSWR from 'swr';
-import axios from '../../../utils/axios';
 // layouts
 import Layout from '../../../layouts';
 // components
 import Page from '../../../components/Page';
-import LoadingScreen from '../../../components/LoadingScreen';
-import Label from '../../../components/Label';
-import Iconify from '../../../components/Iconify';
-import Scrollbar from '../../../components/Scrollbar';
-import SearchNotFound from '../../../components/SearchNotFound';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
-import PaymentsList from '../../../components/payments/PaymentsList'
-
-import { useListPayments } from '../../../api/payments';
-
-import useWebSocket, { ReadyState } from 'react-use-websocket';
-
+import AccountLogs from '../../../components/logs/AccountLogs'
 import useWebsocket from '../../../hooks/useWebsocket';
 
 
@@ -64,13 +51,13 @@ const TABLE_HEAD = [
 
 // ----------------------------------------------------------------------
 
-WebhooksList.getLayout = function getLayout(page: React.ReactElement) {
+LogsList.getLayout = function getLayout(page: React.ReactElement) {
   return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
-export default function WebhooksList() {
+export default function LogsList() {
   
   const { enqueueSnackbar } = useSnackbar();
 
@@ -84,31 +71,19 @@ export default function WebhooksList() {
 
   const { themeStretch } = useSettings();
 
-  const { user } = useAuth();
-
-  const checkoutURL = `https://anypayx.com/app/#/pay/${user.id}`
-
   return (
     <Page title="Payments: List">
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <HeaderBreadcrumbs
-          heading="My Payments Received"
+          heading="Account Log Entries"
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
-            { name: 'Merchant' },
-            { name: 'Payments Received' }
+            { name: 'Developer' },
+            { name: 'Account Logs' }
           ]}
-          action={
-
-            <a target="_blank" href={checkoutURL} rel="noopener noreferrer">
-                <Button variant="contained" startIcon={<Iconify icon={'eva:plus-fill'} />}>
-                Quick Checkout
-              </Button>
-            </a>
-
-          }
         />
-        <PaymentsList/>
+        <AccountLogs/>
+
 
       </Container>
     </Page>

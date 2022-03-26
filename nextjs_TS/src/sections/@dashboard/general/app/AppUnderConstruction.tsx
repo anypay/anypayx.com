@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import { Typography, Button, Card, CardContent, CardProps } from '@mui/material';
 import { SeoIllustration } from '../../../../assets';
 import { PATH_DASHBOARD } from '../../../../routes/paths';
+import useAuth from '../../../../hooks/useAuth';
 
 
 // @next
@@ -31,6 +32,11 @@ interface AppUnderConstructionProps extends CardProps {
 }
 
 export default function AppUnderConstruction({ message }: AppUnderConstructionProps) {
+
+  let { user } = useAuth();
+
+  const checkoutURL = `https://anypayx.com/app/#/pay/${user.id}`
+
   return (
     <RootStyle>
       <CardContent
@@ -48,11 +54,9 @@ export default function AppUnderConstruction({ message }: AppUnderConstructionPr
           If you would like to make this happen more quickly send us some coins.
         </Typography>
 
-        <NextLink href={PATH_DASHBOARD.merchant.checkout} passHref>
-
+        <a target="_blank" href={checkoutURL} rel="noopener noreferrer">
           <Button variant="contained">Go To Checkout</Button>
-
-        </NextLink>
+        </a>
       </CardContent>
 
       <SeoIllustration

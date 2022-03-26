@@ -21,9 +21,9 @@ import { IconButtonAnimate } from '../../../components/animate';
 const MENU_OPTIONS = [
   {
     label: 'Home',
-    linkTo: '/',
+    linkTo: '/dashboard',
   },
-  {
+  /*{
     label: 'Profile',
     linkTo: PATH_DASHBOARD.user.profile,
   },
@@ -31,6 +31,7 @@ const MENU_OPTIONS = [
     label: 'Settings',
     linkTo: PATH_DASHBOARD.user.account,
   },
+  */
 ];
 
 // ----------------------------------------------------------------------

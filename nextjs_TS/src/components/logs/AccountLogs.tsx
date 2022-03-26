@@ -20,21 +20,25 @@ import { useSnackbar } from 'notistack';
 
 import PaymentsMoreMenu from '../../sections/@dashboard/payments/list/PaymentsMoreMenu'
 
-import Scrollbar from '../../components/Scrollbar';
+import Scrollbar from '../Scrollbar';
 
 import { UserManager } from '../../@types/user';
 
 import { useListPayments } from '../../api/payments';
+import { useAccountLogs } from '../../api/logs';
+
 import useWebsocket from '../../hooks/useWebsocket';
 
+
 const TABLE_HEAD = [
-    { id: 'coin', label: 'Coin', alignRight: false },
-    { id: 'amount', label: 'Amount', alignRight: false },
     { id: 'date', label: 'Date', alignRight: false },
+    { id: 'type', label: 'Event Type', alignRight: false },
+    { id: 'payload', label: 'Event Payload', alignRight: false },    
     { id: '' }
   ];
   // @mui
 import { Box, TableHead, TableSortLabel } from '@mui/material';
+import { ComingSoonIllustration } from 'src/assets';
 
 // ----------------------------------------------------------------------
 
@@ -94,7 +98,7 @@ function PaymentsListHead({
 }
 
 
-export default function PaymentsList() {
+export default function AccountLog2() {
 
   const { events } = useWebsocket();
 
@@ -106,11 +110,14 @@ export default function PaymentsList() {
     const [order, setOrder] = useState<'asc' | 'desc'>('asc');
     const [orderBy, setOrderBy] = useState('date');
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [rowsPerPage, setRowsPerPage] = useState(8);
 
     const { enqueueSnackbar } = useSnackbar();
 
     const { payments, error, loading, refresh } = useListPayments();
+    const { entries } = useAccountLogs();
+
+    console.log({ entries });
 
     events.on('payment', (payload) => {
 
@@ -180,6 +187,10 @@ export default function PaymentsList() {
         return <div>Failed to Load Payments</div>
     }
 
+    if (!payments && !entires) {
+        return <div>Still Loading Entries</div>
+    }
+
     return (
 
         <Card>
@@ -195,29 +206,29 @@ export default function PaymentsList() {
                   rowCount={payments.length}
                 />
                 <TableBody>
-                  {payments
+                  {entries
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row: any) => {
-                      const { currency, amount, txid, outputs, createdAt, invoice } = row;
+                    .map((entry: any, index: number) => {
 
-                      const date = moment(createdAt).format('MMM DD, YYYY - hh:mma')
+                      const date = moment(entry.createdAt).format('MMM DD, YYYY - hh:mma')
+
+                      const payload = JSON.stringify(entry.payload);
 
                       return (
                         <TableRow
                           hover
-                          key={txid}
+                          key={entry.id}
                         >
+                          <TableCell align="left">{date}</TableCell>
 
                           <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
-                            <Avatar alt={currency} src={`/icons/coins/${currency}.png`} sx={{ mr: 2 }} />
                             <Typography variant="subtitle2" noWrap>
-                                {currency}
+                                {entry.type}
                             </Typography>
                           </TableCell>
-                          <TableCell align="left">
-                              {invoice.amount} {invoice.currency}
+                          <TableCell sx={{ maxWidth: 400 }} align="left">
+                              {payload}
                           </TableCell>
-                          <TableCell align="left">{date}</TableCell>
                           <TableCell align="right">
                             <PaymentsMoreMenu onSendWebhook={() => {
                                 enqueueSnackbar("manual webhook disabled", { variant: 'warning'})
