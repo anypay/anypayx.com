@@ -15,24 +15,28 @@ workflows:
 jobs:
   build:
     docker:
-      - image: circleci/node:12
+      - image: circleci/node:14
     steps:
       - checkout
-      - setup_remote_docker
       - run:
-          name: Build App into Docker
-          command: docker build -t anypay/next:$CIRCLE_BRANCH .
-      - add_ssh_keys
+          name: Install Dependencies
+          command: cd nextjs_TS && npm install
+
       - run:
-          name: Deploy to webserver
-          command: |
-            docker login --username $DOCKER_USER --password $DOCKER_PASSWORD
-            docker push anypay/next:$CIRCLE_BRANCH
+          name: Build Static App
+          command: cd nextjs_TS && npm run export
+
+      - run:
+          name: Run Tests
+          command:  echo "no tests"
+
   deploy:
     machine:
-      image: ubuntu-1604:202007-01
+      image: ubuntu-18
     steps:
+      - checkout
+      - add_ssh_keys
       - run:
           name: Update Live Container
-          command: ssh ubuntu@next.anypayx.com "sudo chef-client -o recipe[anypayx.com::next]"
+          command: cde nextjs_TS && ./deploy.sh
 
