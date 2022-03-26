@@ -1,0 +1,38 @@
+version: 2.1
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build App into Docker
+          command: docker build -t anypay/next:$CIRCLE_BRANCH .
+      - add_ssh_keys
+      - run:
+          name: Deploy to webserver
+          command: |
+            docker login --username $DOCKER_USER --password $DOCKER_PASSWORD
+            docker push anypay/next:$CIRCLE_BRANCH
+  deploy:
+    machine:
+      image: ubuntu-1604:202007-01
+    steps:
+      - run:
+          name: Update Live Container
+          command: ssh ubuntu@next.anypayx.com "sudo chef-client -o recipe[anypayx.com::next]"
+
