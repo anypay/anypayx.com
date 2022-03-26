@@ -13,7 +13,7 @@
     "start": "next start",
     "build": "next build",
     "build-netlify": "next build && cp -r .next _next && mv _next .next/",
-    "export": "yarn build && next export -o _static",
+    "export": "npm run build && next export -o _static",
     "clear-all": "rm -rf .next node_modules",
     "re-start": "rm -rf .next node_modules && yarn install && yarn dev",
     "re-build": "rm -rf .next node_modules && yarn install && yarn build"
