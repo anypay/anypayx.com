@@ -4,16 +4,13 @@ workflows:
   version: 2
   build-deploy:
     jobs:
-      - build
-      - deploy:
-          requires:
-            - build
+      - build_and_deploy:
           filters:
             branches:
               only: master
 
 jobs:
-  build:
+  build_and_deploy:
     docker:
       - image: circleci/node:14
     steps:
@@ -30,21 +27,7 @@ jobs:
           name: Run Tests
           command:  echo "no tests"
 
-  deploy:
-    machine:
-      image: ubuntu-1604:202007-01
-    steps:
-      - checkout
-      - add_ssh_keys
-      - run:
-          name: Install Dependencies
-          command: cd nextjs_TS && npm install
-
-      - run:
-          name: Build Static App
-          command: cd nextjs_TS && npm run export
-
       - run:
           name: Deploy to Webserver
-          command: cd nextjs_TS && ./deploy.sh
+          command: scp -r nextjs_TS/_static/* ubuntu@next.anypayx.com:/opt/next.anypayx.com
 
