@@ -32,7 +32,7 @@ const useWebsocket = () => {
         }
       })
     },
-    onError: (error: Error) => {
+    onError: (error: any) => {
 
         console.error('ws.error', error);
 

@@ -35,7 +35,7 @@ export default function AppUnderConstruction({ message }: AppUnderConstructionPr
 
   let { user } = useAuth();
 
-  const checkoutURL = `https://anypayx.com/app/#/pay/${user.id}`
+  const checkoutURL = `https://anypayx.com/app/#/pay/${user?.id}`
 
   return (
     <RootStyle>

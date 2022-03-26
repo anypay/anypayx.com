@@ -86,7 +86,7 @@ export default function WebhooksList() {
 
   const { user } = useAuth();
 
-  const checkoutURL = `https://anypayx.com/app/#/pay/${user.id}`
+  const checkoutURL = `https://anypayx.com/app/#/pay/${user?.id}`
 
   return (
     <Page title="Payments: List">
