@@ -32,11 +32,19 @@ jobs:
 
   deploy:
     machine:
-      image: ubuntu-18
+      image: ubuntu-1604:202007-01
     steps:
       - checkout
       - add_ssh_keys
       - run:
-          name: Update Live Container
-          command: cde nextjs_TS && ./deploy.sh
+          name: Install Dependencies
+          command: cd nextjs_TS && npm install
+
+      - run:
+          name: Build Static App
+          command: cd nextjs_TS && npm run export
+
+      - run:
+          name: Deploy to Webserver
+          command: cd nextjs_TS && ./deploy.sh
 
