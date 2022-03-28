@@ -8,7 +8,7 @@ export function useListInvoices() {
     return { invoices, error, refresh, loading }
 }
 
-export function useInvoice(uid: any) {
+export function useInvoice(uid) {
 
     let { data: invoice, error, loading, refresh } = useAPI(`/account/invoices/${uid}`);
 

@@ -12,7 +12,7 @@ const useWebsocket = () => {
 
     const { enqueueSnackbar } = useSnackbar();
 
-    const [socketUrl, setSocketUrl] = useState('ws://api.anypayinc.com');
+    const [socketUrl, setSocketUrl] = useState('wss://api.anypayinc.com');
     const [messageHistory, setMessageHistory] = useState([]);
 
   const events = new EventEmitter()
