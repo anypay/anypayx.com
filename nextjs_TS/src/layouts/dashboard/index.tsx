@@ -14,6 +14,7 @@ import NavbarVertical from './navbar/NavbarVertical';
 import NavbarHorizontal from './navbar/NavbarHorizontal';
 
 import useWebsocket from '../../hooks/useWebsocket';
+import { useSnackbar } from 'notistack';
 
 // ----------------------------------------------------------------------
 
@@ -60,6 +61,8 @@ export default function DashboardLayout({ children }: Props) {
   const verticalLayout = themeLayout === 'vertical';
 
   const { events } = useWebsocket();
+
+  const { enqueueSnackbar } = useSnackbar();
   
   events.on('authenticated', (payload) => {
 
