@@ -13,6 +13,8 @@ import DashboardHeader from './header';
 import NavbarVertical from './navbar/NavbarVertical';
 import NavbarHorizontal from './navbar/NavbarHorizontal';
 
+import useWebsocket from '../../hooks/useWebsocket';
+
 // ----------------------------------------------------------------------
 
 type MainStyleProps = {
@@ -56,6 +58,14 @@ export default function DashboardLayout({ children }: Props) {
   const [open, setOpen] = useState(false);
 
   const verticalLayout = themeLayout === 'vertical';
+
+  const { events } = useWebsocket();
+  
+  events.on('authenticated', (payload) => {
+
+    enqueueSnackbar('Websocket Authenticated');
+    
+  })
 
   if (verticalLayout) {
     return (

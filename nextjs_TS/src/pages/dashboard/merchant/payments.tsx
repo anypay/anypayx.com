@@ -75,12 +75,6 @@ export default function WebhooksList() {
   const { enqueueSnackbar } = useSnackbar();
 
   const { events } = useWebsocket();
-  
-  events.on('authenticated', (payload) => {
-
-    enqueueSnackbar('Websocket Authenticated');
-    
-  })
 
   const { themeStretch } = useSettings();
 
