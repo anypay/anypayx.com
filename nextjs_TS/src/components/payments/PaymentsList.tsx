@@ -116,11 +116,22 @@ export default function PaymentsList() {
 
       console.log('ON PAYMENT', payload)
 
+      enqueueSnackbar(`${payload.currency} Payment Received`);
+  
+      refresh();
+        
+    })
+    /*
+    events.on('payment.completed', (payload) => {
+
+      console.log('ON PAYMENT COMPLETED', payload)
+
       enqueueSnackbar(`New Payment ${payload.invoice.amount} ${payload.invoice.currency}`);
   
       refresh();
         
     })
+    */
 
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - payments.length) : 0;
 
