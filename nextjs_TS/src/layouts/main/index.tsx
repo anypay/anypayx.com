@@ -43,8 +43,7 @@ export default function MainLayout({ children }: Props) {
 
             <Typography variant="caption" component="p">
               © All rights reserved
-              <br /> made by &nbsp;
-              <Link href="https://minimals.cc/">minimals.cc</Link>
+              <br /> Anypay Inc &nbsp;
             </Typography>
           </Container>
         </Box>

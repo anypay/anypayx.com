@@ -1,10 +1,14 @@
 import { m } from 'framer-motion';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Button, Box, Container, Typography } from '@mui/material';
+import { Button, Box, Container, Typography, Link } from '@mui/material';
 // components
 import Image from '../../components/Image';
 import { MotionViewport, varFade } from '../../components/animate';
+
+import NextLink from 'next/link';
+
+import { PATH_AUTH } from '../../routes/paths';
 
 // ----------------------------------------------------------------------
 
@@ -57,17 +61,18 @@ export default function HomeAdvertisement() {
         >
           <Box component={m.div} variants={varFade().inDown} sx={{ color: 'common.white', mb: 5 }}>
             <Typography variant="h2">
-              Get started with
-              <br /> minimal kit today
+              Get Started Earning
+              <br /> Bitcoins Today
             </Typography>
           </Box>
           <m.div variants={varFade().inDown}>
+          <NextLink href={PATH_AUTH.register} passHref>
+            <Link variant="subtitle2">
             <Button
               size="large"
               variant="contained"
-              target="_blank"
               rel="noopener"
-              href="https://material-ui.com/store/items/minimal-dashboard/"
+              href="#"
               sx={{
                 whiteSpace: 'nowrap',
                 boxShadow: (theme) => theme.customShadows.z8,
@@ -76,8 +81,12 @@ export default function HomeAdvertisement() {
                 '&:hover': { bgcolor: 'grey.300' },
               }}
             >
-              Purchase Now
+              Launch Now
             </Button>
+
+            </Link>
+          </NextLink>
+
           </m.div>
         </Box>
       </ContentStyle>
