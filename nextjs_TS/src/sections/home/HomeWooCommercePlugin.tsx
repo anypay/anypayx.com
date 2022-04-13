@@ -79,6 +79,12 @@ export default function HomeHugePackElements() {
   const screenCenterAnimate = variantScreenCenter;
   const screenRightAnimate = variantScreenRight;
 
+  const screenshots = [
+    'https://doge.bitcoinfiles.org/dfb327cf917f31341c7b5d7ec7a9b7e28e280825544953d6b6307b0cbe27f3c4',
+    'https://doge.bitcoinfiles.org/922cdfec0072a587997db76502f681c270b0d2f1541799a77749dc1b6a61aa0b',
+    'https://doge.bitcoinfiles.org/19232eb073041b3d9d10e97e084fc28f315e13720a3d07ac87ab2832d38531b0'
+  ]
+
   return (
     <RootStyle>
       <Container component={MotionViewport}>
@@ -150,7 +156,7 @@ Our plugin makes it easy for e-commerce merchants to accept Bitcoin & Dash payme
                 justifyContent: 'center',
               }}
             >
-              {[...Array(3)].map((_, index) => (
+              {screenshots.map((src, index) => (
                 <ScreenStyle
                   key={index}
                   variants={{
@@ -179,7 +185,7 @@ Our plugin makes it easy for e-commerce merchants to accept Bitcoin & Dash payme
                   <Image
                     disabledEffect
                     alt={`screen ${index + 1}`}
-                    src={`https://doge.bitcoinfiles.org/dfb327cf917f31341c7b5d7ec7a9b7e28e280825544953d6b6307b0cbe27f3c4`}
+                    src={src}
                   />
                 </ScreenStyle>
               ))}

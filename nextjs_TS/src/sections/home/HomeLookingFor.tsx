@@ -95,10 +95,18 @@ It is powered by our whitelabel Anypay Enterprise Payment Platform (AEPP) servic
               variants={varFade().inUp}
               sx={{
                 mb: { xs: 3, md: 0 },
-
+                marginTop: "0em"
               }}
             >
-              <ReactPlayer width={'400px'} playing={true} loop={true} url='https://doge.bitcoinfiles.org/9d79a2f0f9e6618b3f6a88b1c9e898cf3a428945a235b13c4bf235bc3fcbd255' />
+              <ReactPlayer
+                width='250px'
+                height='30%'
+                playing={true}
+                loop={true}
+                playsinline={true}
+                muted={true}
+                volume={0}
+                url='https://anypayinc.s3.amazonaws.com/videos/ssstwitter_1649878088.mp4' />
 
             </Box>
           </Grid>
