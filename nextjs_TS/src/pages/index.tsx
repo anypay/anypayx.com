@@ -53,12 +53,11 @@ export default function HomePage() {
       <RootStyle>
         <ContentStyle>
 
-          <HomeEnterprisePaymentsPlatform />
-
           <HomeWooCommercePlugin />
 
-          <HomeLookingFor />
+          <HomeEnterprisePaymentsPlatform />
 
+          <HomeLookingFor />
 
           <HomeAdvertisement />
 

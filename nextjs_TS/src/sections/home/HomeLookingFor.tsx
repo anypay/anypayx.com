@@ -42,7 +42,7 @@ export default function HomeLookingFor() {
 
             <m.div variants={varFade().inDown}>
               <Typography variant="h2" sx={{ mt: 2, mb: 5 }}>
-                Anypay Cash Register
+                Anypay for Retail
               </Typography>
             </m.div>
 
