@@ -18,13 +18,13 @@ const Logo = forwardRef<any, Props>(({ disabledLink = false, sx }, ref) => {
   const PRIMARY_DARK = theme.palette.primary.dark;
 
   const logo = (
-    <Box ref={ref} sx={{ width: 40, height: 40, cursor: 'pointer', ...sx }}>
+    <Box ref={ref} sx={{ height: 50, width: 180, cursor: 'pointer', ...sx }}>
                   <>
                     <Image
                       disabledEffect
                       alt="Anypay Logo"
-                      src={`https://doge.bitcoinfiles.org/bfcae220cb1cc0ce4322b463092d9216cd6caad42eb078f6e113857751a61753`}
-                      sx={{ width: 32, height: 32 }}
+                      src={`https://doge.bitcoinfiles.org/4f913a35258626de7e07571b0ef8de39e9e77908570a4a4ae2af6072bb34a59d`}
+                      sx={{ width: 180 , height: 50 }}
                     />
                   </>
     </Box>

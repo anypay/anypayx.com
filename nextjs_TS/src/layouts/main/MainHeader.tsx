@@ -81,10 +81,6 @@ export default function MainHeader() {
         >
           <Logo />
 
-          <Label color="info" sx={{ ml: 1 }}>
-            Anypay
-          </Label>
-
           <Box sx={{ flexGrow: 1 }} />
 
           <NextLink href={PATH_AUTH.register} passHref>
