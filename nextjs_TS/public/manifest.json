@@ -1,6 +1,6 @@
 {
-  "name": "React Material Minimal UI",
-  "short_name": "Minimal-UI",
+  "name": "Anypay Enterprise Payments Platform",
+  "short_name": "Anypay",
   "display": "standalone",
   "start_url": "/",
   "theme_color": "#000000",

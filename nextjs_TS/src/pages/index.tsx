@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 // sections
 import {
   HomeHero,
+  HomeHeroAnypay,
   HomeMinimal,
   HomeDarkMode,
   HomeLookingFor,
@@ -17,6 +18,8 @@ import {
   HomeAdvertisement,
   HomeCleanInterfaces,
   HomeHugePackElements,
+  HomeWooCommercePlugin,
+  HomeEnterprisePaymentsPlatform,
 } from '../sections/home';
 
 // ----------------------------------------------------------------------
@@ -41,15 +44,26 @@ HomePage.getLayout = function getLayout(page: React.ReactElement) {
 // ----------------------------------------------------------------------
 
 export default function HomePage() {
-  const router = useRouter();
+  //const router = useRouter();
 
-  router.push('/dashboard')
+  //router.push('/dashboard')
 
   return (
-    <Page title="Anypay Professional Bitcoin Payments">
+    <Page title="Enterprise Bitcoin Payments">
       <RootStyle>
-        <HomeHero />
         <ContentStyle>
+
+          <HomeEnterprisePaymentsPlatform />
+
+          <HomeWooCommercePlugin />
+
+          <HomeLookingFor />
+
+
+          <HomeAdvertisement />
+
+          {/*
+
           <HomeMinimal />
 
           <HomeHugePackElements />
@@ -60,11 +74,12 @@ export default function HomePage() {
 
           <HomeCleanInterfaces />
 
-          <HomePricingPlans />
+          <HomePricingPlans />*
+          
+        */}
 
-          <HomeLookingFor />
+          
 
-          <HomeAdvertisement />
         </ContentStyle>
       </RootStyle>
     </Page>
