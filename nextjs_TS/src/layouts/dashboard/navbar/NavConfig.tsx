@@ -49,16 +49,16 @@ var navConfig = [
       //{ title: 'webhooks', path: PATH_DASHBOARD.developer.webhooks, icon: ICONS.mail }
     ],
   },
-  /*{
+  {
     subheader: 'management',
     items: [
       // MANAGEMENT : ACCOUNT
 
-      { title: 'account settings', path: PATH_DASHBOARD.account.settings, icon: ICONS.user },
-      { title: 'wallet addresses', path: PATH_DASHBOARD.account.wallets, icon: ICONS.banking },
+      //{ title: 'account settings', path: PATH_DASHBOARD.account.settings, icon: ICONS.user },
+      { title: 'coin addresses', path: PATH_DASHBOARD.account.wallets, icon: ICONS.banking },
     ]
 
-  },*/
+  },
 ]
 /*
 if (isDeveloper) {
