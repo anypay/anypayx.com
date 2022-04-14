@@ -69,7 +69,7 @@ export default function WalletAddresses() {
 
   console.log('coins data', data)
 
-  const coins = data?.data.addresses.filter(coin => coin.enabled)
+  const coins = data?.data.addresses.filter((coin: any) => coin.enabled)
 
   console.log({ coins })
 
@@ -101,7 +101,7 @@ export default function WalletAddresses() {
           ]}
         />
         <Stack spacing={2}>
-          {coins.map(coin => {
+          {coins.map((coin: any) => {
             return <SetAddressCard coin={coin}/>
           })}
         </Stack>
