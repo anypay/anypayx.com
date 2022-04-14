@@ -10,7 +10,9 @@ import Image from './Image';
 
 // ----------------------------------------------------------------------
 
-export default function SetAddressCard({coin}) {
+export default function SetAddressCard(params: any) {
+
+  const coin = params.coin;
 
   const ContentStyle = styled(Card)(({ theme }) => ({
     marginTop: -120,
