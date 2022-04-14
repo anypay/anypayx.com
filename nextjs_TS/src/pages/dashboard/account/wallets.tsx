@@ -101,9 +101,13 @@ export default function WalletAddresses() {
           ]}
         />
         <Stack spacing={2}>
-          {coins.map((coin: any) => {
-            return <SetAddressCard coin={coin}/>
-          })}
+ 
+            {coins.map((coin: any, key: any) => {
+              <span key={coin.code}>
+                return <SetAddressCard coin={coin}/>
+              </span>
+            })}
+
         </Stack>
       </Container>
     </Page>
