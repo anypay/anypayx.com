@@ -12,6 +12,8 @@ import useWebsocket from '../../hooks/useWebsocket';
 import PaymentsMoreMenu from '../../sections/@dashboard/payments/list/PaymentsMoreMenu';
 import Scrollbar from '../Scrollbar';
 
+import LoadingScreen from '../../components/LoadingScreen';
+
 const TABLE_HEAD = [
     { id: 'date', label: 'Date', alignRight: false },
     { id: 'type', label: 'Event Type', alignRight: false },
@@ -111,7 +113,7 @@ export default function AccountLog2() {
     
 
     if (!entries && loading) {
-        return <div>Loading...</div>
+        return <LoadingScreen />
     }
 
     if (error) {

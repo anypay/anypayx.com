@@ -44,6 +44,9 @@ export const PATH_DASHBOARD = {
     webhooks: path(ROOTS_DASHBOARD, '/developer/webhooks'),
     logs: path(ROOTS_DASHBOARD, '/developer/logs'),
   },
+  exchanges: {
+    kraken: path(ROOTS_DASHBOARD, '/exchanges/kraken')
+  },
   account: {
     settings: path(ROOTS_DASHBOARD, '/account/settings'),
     wallets: path(ROOTS_DASHBOARD, '/account/wallets'),

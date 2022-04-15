@@ -59,6 +59,16 @@ var navConfig = [
     ]
 
   },
+  {
+    subheader: 'exchanges',
+    items: [
+      // MANAGEMENT : ACCOUNT
+
+      //{ title: 'account settings', path: PATH_DASHBOARD.account.settings, icon: ICONS.user },
+      { title: 'kraken', path: PATH_DASHBOARD.exchanges.kraken, icon: ICONS.banking },
+    ]
+
+  },
 ]
 /*
 if (isDeveloper) {
@@ -94,8 +104,6 @@ if (isDeveloper) {
           { title: 'account', path: PATH_DASHBOARD.user.account },
         ],
       },
-
-
       {
         title: 'e-commerce',
         path: PATH_DASHBOARD.eCommerce.root,

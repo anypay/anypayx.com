@@ -24,6 +24,8 @@ import Scrollbar from '../Scrollbar';
 import { useListPayments } from '../../api/payments';
 import useWebsocket from '../../hooks/useWebsocket';
 
+import LoadingScreen from '../../components/LoadingScreen';
+
 const TABLE_HEAD = [
     { id: 'coin', label: 'Coin', alignRight: false },
     { id: 'amount', label: 'Amount', alignRight: false },
@@ -137,7 +139,7 @@ export default function PaymentsList() {
     
 
     if (!payments && loading) {
-        return <div>Loading...</div>
+        return <LoadingScreen />
     }
 
     if (error) {
@@ -230,6 +232,3 @@ export default function PaymentsList() {
 }
 
 type Anonymous = Record<string | number, string>;
-
-
-

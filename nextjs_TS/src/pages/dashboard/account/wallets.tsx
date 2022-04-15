@@ -23,6 +23,8 @@ import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 // sections
 
 import SetAddressCard from '../../../components/SetAddressCard'
+import LoadingScreen from '../../../components/LoadingScreen';
+
 
 // ----------------------------------------------------------------------
 
@@ -57,8 +59,8 @@ export default function WalletAddresses() {
   }
 
   if (!data) {
-
-      return (<div>Loading Coins...</div>)
+      return <LoadingScreen/>
+      
   }
 
   const coins = data?.data.addresses.filter((coin: any) => coin.enabled)

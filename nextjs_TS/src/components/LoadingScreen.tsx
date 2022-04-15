@@ -3,7 +3,7 @@ import { m } from 'framer-motion';
 import { alpha, styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
 //
-import Logo from './Logo';
+import MarkLogo from './MarkLogo';
 
 // ----------------------------------------------------------------------
 
@@ -35,7 +35,7 @@ export default function LoadingScreen() {
           repeat: Infinity,
         }}
       >
-        <Logo disabledLink sx={{ width: 64, height: 64 }} />
+        <MarkLogo disabledLink sx={{ width: 64, height: 64 }} />
       </m.div>
 
       <Box
