@@ -55,7 +55,7 @@ var navConfig = [
       // MANAGEMENT : ACCOUNT
 
       //{ title: 'account settings', path: PATH_DASHBOARD.account.settings, icon: ICONS.user },
-      { title: 'coin addresses', path: PATH_DASHBOARD.account.wallets, icon: ICONS.banking },
+      { title: 'wallet addresses', path: PATH_DASHBOARD.account.wallets, icon: ICONS.banking },
     ]
 
   },

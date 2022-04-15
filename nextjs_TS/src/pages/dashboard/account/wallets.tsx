@@ -1,11 +1,7 @@
-import { useState } from 'react';
 import { useSnackbar } from 'notistack';
 // next
-import NextLink from 'next/link';
 // @mui
-import { useTheme } from '@mui/material/styles';
 import {
-  Button,
   Container,
   Stack
 } from '@mui/material';
@@ -14,8 +10,6 @@ import { PATH_DASHBOARD } from '../../../routes/paths';
 // hooks
 import useSettings from '../../../hooks/useSettings';
 
-// _mock_
-import { _userList } from '../../../_mock';
 // api data
 import useSWR from 'swr';
 import axios from '../../../utils/axios';
@@ -53,7 +47,7 @@ export default function WalletAddresses() {
   const { enqueueSnackbar } = useSnackbar();
   const { themeStretch } = useSettings();
 
-  const { data, error } = useSWR('https://api.anypayx.com/v1/api/account/addresses', axios)
+  const { data, error, mutate } = useSWR('https://api.anypayx.com/v1/api/account/addresses', axios)
 
 
   if (error) {
@@ -67,28 +61,8 @@ export default function WalletAddresses() {
       return (<div>Loading Coins...</div>)
   }
 
-  console.log('coins data', data)
-
   const coins = data?.data.addresses.filter((coin: any) => coin.enabled)
-
-  console.log({ coins })
-
-  /*const coins = [{
-    code: 'DASH',
-    name: 'DASH',
-    color: '#008de4',
-    icon: 'https://anypayinc.s3.amazonaws.com/icons/dash.png',
-    price: 102.82305
-  }, { 
-    code: 'BCH',
-    name: 'Bitcoin Cash',
-    color: '#8dc251',
-    icon: 'https://anypayinc.s3.amazonaws.com/icons/bch.png',
-    address: 'mybchaddress',
-    price: 334.89255
-  }]*/
-
-
+  
   return (
     <Page title="Wallets: Setup">
       <Container maxWidth={themeStretch ? false : 'lg'}>
@@ -103,8 +77,11 @@ export default function WalletAddresses() {
         <Stack spacing={2}>
  
             {coins.map((coin: any, key: any) => {
-              <span key={coin.code}>
-                return <SetAddressCard coin={coin}/>
+              return <span key={coin.code}>
+                <SetAddressCard coin={coin} onUpdate={() => {
+
+                  mutate();
+                }} />
               </span>
             })}
 

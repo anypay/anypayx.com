@@ -94,7 +94,7 @@ export default function WebhooksList() {
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
             { name: 'Merchant' },
-            { name: 'Coin Addresses' }
+            { name: 'Wallet Addresses' }
           ]}
         />
         <PaymentsList/>

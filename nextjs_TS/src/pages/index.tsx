@@ -57,9 +57,9 @@ export default function HomePage() {
 
           <HomeEnterprisePaymentsPlatform />
 
-          <HomeLookingFor />
-
           <HomeAdvertisement />
+
+          <HomeLookingFor />
 
           {/*
 
