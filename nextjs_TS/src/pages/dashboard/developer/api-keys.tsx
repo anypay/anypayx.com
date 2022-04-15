@@ -81,7 +81,7 @@ export default function WebhooksList() {
 
   console.log('USER', user)
 
-  const { data, error } = useSWR('http://localhost:8000/v1/api/account/access-keys', axios)
+  const { data, error } = useSWR('https://api.anypayx.com/v1/api/account/access-keys', axios)
 
   if (error) {
 
