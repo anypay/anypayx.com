@@ -33,7 +33,7 @@ export default function NavbarAccount({ isCollapse }: Props) {
   const { user } = useAuth();
 
   return (
-    <NextLink href={PATH_DASHBOARD.account.settings} passHref>
+    <NextLink href={PATH_DASHBOARD.merchant.payments} passHref>
       <Link underline="none" color="inherit">
         <RootStyle
           sx={{

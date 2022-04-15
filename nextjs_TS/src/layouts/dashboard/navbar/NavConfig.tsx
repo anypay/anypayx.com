@@ -36,6 +36,7 @@ var navConfig = [
     items: [
       //{ title: 'quick checkout', path: PATH_DASHBOARD.merchant.checkout, icon: ICONS.ecommerce },
       { title: 'payments', path: PATH_DASHBOARD.merchant.payments, icon: ICONS.analytics },
+      { title: 'wallet addresses', path: PATH_DASHBOARD.account.wallets, icon: ICONS.banking },
       //{ title: 'send invoices', path: PATH_DASHBOARD.merchant.invoices, icon: ICONS.mail }
     ],
   },
@@ -48,16 +49,6 @@ var navConfig = [
       { title: 'audit logs', path: PATH_DASHBOARD.developer.logs, icon: ICONS.banking },
       //{ title: 'webhooks', path: PATH_DASHBOARD.developer.webhooks, icon: ICONS.mail }
     ],
-  },
-  {
-    subheader: 'management',
-    items: [
-      // MANAGEMENT : ACCOUNT
-
-      //{ title: 'account settings', path: PATH_DASHBOARD.account.settings, icon: ICONS.user },
-      { title: 'wallet addresses', path: PATH_DASHBOARD.account.wallets, icon: ICONS.banking },
-    ]
-
   },
   {
     subheader: 'exchanges',

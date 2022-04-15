@@ -147,7 +147,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     });
     const { accessToken, user } = response.data;
 
-    window.localStorage.setItem('accessToken', accessToken);
+    setSession(accessToken);
     dispatch({
       type: Types.Register,
       payload: {
