@@ -7,6 +7,9 @@ import Image from './Image';
 import { useSnackbar } from 'notistack'
 import axios from '../utils/axios';
 
+import { useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
 // ----------------------------------------------------------------------
 
 
@@ -35,6 +38,10 @@ export default function SetAddressCard(params: any) {
   const { onUpdate, coin } = params
 
   const { enqueueSnackbar } = useSnackbar();
+
+  const theme = useTheme();
+
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   let address: string;
 
@@ -74,7 +81,8 @@ export default function SetAddressCard(params: any) {
         </Stack>
 
         {coin.address == null ?
-          <Stack direction="row" spacing={1} alignItems="center" justifyContent="space-between">
+          <Stack direction={isMobile ? "column" : "row"} spacing={1} alignItems="center" justifyContent="space-between">
+
 
           <OutlinedInput
             size="small"
@@ -115,7 +123,7 @@ export default function SetAddressCard(params: any) {
           </Button>
         </Stack>
         :
-        <Stack direction="row" spacing={1} alignItems="center" justifyContent="space-between">
+        <Stack direction={isMobile ? "column" : "row"} spacing={1} alignItems="center" justifyContent="space-between">
 
         <Typography variant="body2" sx={{ mt: 2, mb: 3 }}>
           {coin.address}
