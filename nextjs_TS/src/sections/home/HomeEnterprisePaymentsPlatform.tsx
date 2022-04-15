@@ -46,7 +46,7 @@ export default function HomeEnterprisePaymentsPlatform() {
           </m.div>
           <m.div variants={varFade().inDown}>
             <Typography variant="h2" sx={{ mb: 3 }}>
-              Enterprise Payment Platform
+              Anypay for Developers
             </Typography>
           </m.div>
           <m.div variants={varFade().inDown}>
@@ -55,11 +55,11 @@ export default function HomeEnterprisePaymentsPlatform() {
                 color: isLight ? 'text.secondary' : 'text.primary',
               }}
             >
-              
-AEPP powers everything we do and it is available for every business worldwide to build the most advanced payment applications.<br/><br/>
 
-We love developers and our aim is to save developers time, so they can make beautiful solutions without the business worrying about in-app or back-end security as your business will never touch your clients money. We’ve created a state-of-the-art non-custodial payment solution that can power unlimited demands with an SLA uptime hovering at 100%.<br/><br/>
+Add complex crypto payments to your applications in seconds with our simple developer platform. We abstract away all the bitcoin stuff so your team can get building quickly.
 
+Well-documented code with lots of examples makes Anypay easy!<br/><br/>
+            
 Your business can finally let your developers build solutions that your clients need and we’ll make sure that 100% of all payments are built, verified, broadcasted and executed correctly.<br/><br/>
 
 We offer the best pricing model in the industry at 0.1% per transaction and lower!
@@ -76,7 +76,7 @@ We offer the best pricing model in the industry at 0.1% per transaction and lowe
                       fontWeight: 'bold'
                     }}
                   >
-                  I’d like to learn more about AEPP
+                  I’d like to learn more about the Anypay API
                   </Typography>
                 </Link>
             </m.div>

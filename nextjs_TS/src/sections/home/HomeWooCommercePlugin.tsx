@@ -103,7 +103,7 @@ export default function HomeHugePackElements() {
 
               <m.div variants={varFade().inUp}>
                 <Typography variant="h2" sx={{ mb: 3 }}>
-                Anypay WooCommerce Plugin
+                E-Commerce
                 </Typography>
               </m.div>
 
@@ -114,9 +114,9 @@ export default function HomeHugePackElements() {
                     color: isLight ? 'text.secondary' : 'common.white',
                   }}
                 >
-                  WordPress powers 35% of the internet & WooCommerce runs on a quarter of the worlds top 1 million websites.<br/><br/>
+                
+                Get paid in Bitcoin today. Add Dogecoin, Litecoin, Bitcoin Cash, and BitcoinSV alongside other payment methods.
 
-Our plugin makes it easy for e-commerce merchants to accept Bitcoin & Dash payments within a couple of minutes.
 
 
                 </Typography>

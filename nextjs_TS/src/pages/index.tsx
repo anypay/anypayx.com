@@ -55,11 +55,12 @@ export default function HomePage() {
 
           <HomeWooCommercePlugin />
 
+          <HomeLookingFor />
+
           <HomeEnterprisePaymentsPlatform />
 
           <HomeAdvertisement />
 
-          <HomeLookingFor />
 
           {/*
 

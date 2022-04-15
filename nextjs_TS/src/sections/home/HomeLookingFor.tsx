@@ -42,7 +42,7 @@ export default function HomeLookingFor() {
 
             <m.div variants={varFade().inDown}>
               <Typography variant="h2" sx={{ mt: 2, mb: 5 }}>
-                Anypay for Retail
+                Crypto for Retail
               </Typography>
             </m.div>
 
@@ -54,9 +54,9 @@ export default function HomeLookingFor() {
                     color: isLight ? 'text.secondary' : 'common.white',
                   }}
                 >
-                 Anypay’s flagship product Anypay Cash Register is the fastest point of sale app for accepting Bitcoin & Dash for merchants.<br/><br/>
+Accept crypto at your store today. There’s no hardware to buy, and we track all your payments for easy accounting. Start to finish in under 30 minutes.
 
-It is powered by our whitelabel Anypay Enterprise Payment Platform (AEPP) service for businesses at any scale.
+
                 </Typography>
               </m.div>
 
