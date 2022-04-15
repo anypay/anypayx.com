@@ -8,17 +8,11 @@ import { useTheme } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 import {
   Card,
-  Table,
-  Avatar,
+  CardHeader,
+  Stack,
   Button,
-  Checkbox,
-  TableRow,
-  TableBody,
-  TableCell,
   Container,
-  Typography,
-  TableContainer,
-  TablePagination,
+  Typography
 } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
@@ -85,13 +79,18 @@ export default function WebhooksList() {
 
   const { user } = useAuth();
 
+  console.log('USER', user)
 
-  const { data, error } = useSWR('https://anypayx.com/v1/api/access-keys', axios)
+  const { data, error } = useSWR('http://localhost:8000/v1/api/account/access-keys', axios)
 
   if (error) {
 
     enqueueSnackbar('Error Loading API Keys', { variant: 'warning' })
 
+  }
+
+  if (data) {
+    console.log('apikeys.response.data', data)
   }
 
   const handleRequestSort = (property: string) => {
@@ -165,15 +164,16 @@ export default function WebhooksList() {
             { name: 'Developer' },
             { name: 'API Keys' }
           ]}
-          action={
-            <NextLink href={PATH_DASHBOARD.user.newUser} passHref>
-              <Button variant="contained" startIcon={<Iconify icon={'eva:plus-fill'} />}>
-                New API Key
-              </Button>
-            </NextLink>
-          }
+
         />
-        <AppUnderConstruction />
+        <Card>
+          <CardHeader title="API Key" />
+
+          <Stack spacing={2} sx={{ p: 3 }}>
+            <Typography variant="body2">{data?.data?.v0}</Typography>
+
+          </Stack>
+        </Card>
 
       </Container>
     </Page>

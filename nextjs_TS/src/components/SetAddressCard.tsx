@@ -4,15 +4,39 @@ import { Card, Stack, Typography, Button, OutlinedInput } from '@mui/material';
 // components
 import Image from './Image';
 
+import { useSnackbar } from 'notistack'
+import axios from '../utils/axios';
+
 // ----------------------------------------------------------------------
 
 
 
 // ----------------------------------------------------------------------
+
+async function setAddress(currency: string, value: string) {
+  const response = await axios.post('https://api.anypayx.com/v1/api/account/addresses', {
+    currency,
+    value
+  })
+
+  if (response.status !== 200 && response.status !== 201) {
+    throw new Error('set address error')
+  }
+
+  return response
+}
+
+async function removeAddress(currency: string) {
+  return axios.delete(`https://api.anypayx.com/v1/api/account/addresses/${currency}`)
+}
 
 export default function SetAddressCard(params: any) {
 
-  const coin = params.coin;
+  const { onUpdate, coin } = params
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  let address: string;
 
   const ContentStyle = styled(Card)(({ theme }) => ({
     marginTop: -120,
@@ -65,8 +89,28 @@ export default function SetAddressCard(params: any) {
               },
               '& fieldset': { display: 'none' },
             }}
+            onChange={(event) => {
+              address = event.target.value;
+            }}
           />
-          <Button color="warning" variant="contained">
+          <Button color="warning" variant="contained" onClick={() => {
+            
+            enqueueSnackbar(`Activating ${coin.code} address ${address}`);
+
+            setAddress(coin.code, address).then((result) => {
+              
+              enqueueSnackbar(`Success setting ${coin.name} address to ${address}`, { variant: 'success'});
+
+              onUpdate();
+
+            }).catch((error) => {
+
+              console.error('address.set.error', error)
+
+              enqueueSnackbar(`Error setting ${coin.name} address to ${address}`, { variant: 'error'});
+
+            })
+          }}>
             Activate
           </Button>
         </Stack>
@@ -75,11 +119,39 @@ export default function SetAddressCard(params: any) {
 
         <Typography variant="body2" sx={{ mt: 2, mb: 3 }}>
           {coin.address}
+          {!!coin.paymail &&
+            <span className='paymail'><br/><i>{coin.paymail}</i></span>
+          }
         </Typography>
-        <Button color="warning" variant="contained">
+
+        <Button color="warning" variant="contained" onClick={() => {
+            enqueueSnackbar(`Removing ${coin.code} address ${coin.address}`);
+
+            removeAddress(coin.code).then((result) => {
+
+              console.log('address.remove.result', result)
+
+              enqueueSnackbar(`${coin.name} address ${coin.address} removed`, { variant: 'success'});
+
+              onUpdate();
+
+            }).catch((error) => {
+
+              // the logger should log system logs over the a websocket connection to some
+              // system monitoring server.
+
+              console.log('address.remove.error', error)
+
+              alert('caught error')
+
+              enqueueSnackbar(`Error removing ${coin.code} address`, { variant: 'warning'});
+
+            })
+        }}>
           Remove
         </Button>
       </Stack>
+
         }
 
 
