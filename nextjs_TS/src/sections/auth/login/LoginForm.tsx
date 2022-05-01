@@ -60,12 +60,26 @@ export default function LoginForm() {
     try {
       await login(data.email, data.password);
     } catch (error) {
-      console.error(error);
+
 
       reset();
 
+
       if (isMountedRef.current) {
-        setError('afterSubmit', { ...error, message: error.message });
+
+        if (error.error) {
+          setError('afterSubmit', { ...error, message: error.error });
+          return
+        }
+        
+        if (error.statusCode === 401) {
+
+          setError('afterSubmit', { ...error, message: 'Invalid email address or password' });
+
+        } else if (error.statusCode === 500) {
+
+          setError('afterSubmit', { ...error, message: error.message });
+        }
       }
     }
   };

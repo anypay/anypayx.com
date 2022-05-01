@@ -22,6 +22,7 @@ import PaymentsMoreMenu from '../../sections/@dashboard/payments/list/PaymentsMo
 import Scrollbar from '../Scrollbar';
 
 import { useListPayments } from '../../api/payments';
+import { sendWebhook } from '../../api/webhooks';
 import useWebsocket from '../../hooks/useWebsocket';
 
 import LoadingScreen from '../../components/LoadingScreen';
@@ -91,6 +92,11 @@ function PaymentsListHead({
   );
 }
 
+/*function sendWebhook(invoice_uid: string) {
+
+  console.log(`manual webhook for ${invoice_uid} disabled`, { variant: 'warning'})
+
+}*/
 
 export default function PaymentsList() {
 
@@ -200,7 +206,7 @@ export default function PaymentsList() {
                           <TableCell align="left">{date}</TableCell>
                           <TableCell align="right">
                             <PaymentsMoreMenu onSendWebhook={() => {
-                                enqueueSnackbar("manual webhook disabled", { variant: 'warning'})
+                                sendWebhook(invoice.uid)
                             }} />
                           </TableCell>
                         </TableRow>
