@@ -15,12 +15,13 @@ import axios from '../../../utils/axios';
 // ----------------------------------------------------------------------
 
 type FormValuesProps = {
-  email: string;
+  password: string;
 };
 
 type Props = {
   onSent: VoidFunction;
   onGetEmail: (value: string) => void;
+  token: string | string[] | undefined;
 };
 
 export default function SubmitNewPasswordForm({ onSent, onGetEmail, token }: Props) {
@@ -32,7 +33,7 @@ export default function SubmitNewPasswordForm({ onSent, onGetEmail, token }: Pro
 
   const methods = useForm<FormValuesProps>({
     resolver: yupResolver(ResetPasswordSchema),
-    defaultValues: { email: '' },
+    defaultValues: { password: '' },
   });
 
   const {
@@ -47,7 +48,7 @@ export default function SubmitNewPasswordForm({ onSent, onGetEmail, token }: Pro
       });
       if (isMountedRef.current) {
         onSent();
-        onGetEmail(data.email);
+        //onGetEmail(data.email);
       }
     } catch (error) {
       console.error(error);
