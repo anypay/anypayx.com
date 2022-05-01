@@ -5,15 +5,15 @@ import NextLink from 'next/link';
 import { styled } from '@mui/material/styles';
 import { Box, Button, Container, Typography } from '@mui/material';
 // routes
-import { PATH_AUTH } from '../../routes/paths';
+import { PATH_AUTH } from '../../../routes/paths';
 // layouts
-import Layout from '../../layouts';
+import Layout from '../../../layouts';
 // components
-import Page from '../../components/Page';
+import Page from '../../../components/Page';
 // sections
-import { ResetPasswordForm } from '../../sections/auth/reset-password';
+import { ResetPasswordForm } from '../../../sections/auth/reset-password';
 // assets
-import { SentIcon } from '../../assets';
+import { SentIcon } from '../../../assets';
 
 // ----------------------------------------------------------------------
 
