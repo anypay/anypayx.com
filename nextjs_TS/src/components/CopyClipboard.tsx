@@ -36,9 +36,7 @@ export default function CopyClipboard({ value, ...other }: Props) {
       onChange={handleChange}
       InputProps={{
         endAdornment: (
-          <InputAdornment position="end">
-
-          </InputAdornment>
+          <InputAdornment position="end" />
         ),
       }}
       {...other}
