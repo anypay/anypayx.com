@@ -70,7 +70,7 @@ export const cookiesKey = {
 };
 
 export const defaultSettings: SettingsValueProps = {
-  themeMode: 'light',
+  themeMode: 'dark',
   themeDirection: 'ltr',
   themeColorPresets: 'default',
   themeLayout: 'horizontal',

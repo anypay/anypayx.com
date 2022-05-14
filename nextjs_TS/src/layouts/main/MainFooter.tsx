@@ -103,7 +103,7 @@ export default function MainFooter() {
             textAlign: { xs: 'center', md: 'left' },
           }}
         >
-          © 2021. All rights reserved
+          © 2022 Anypay Inc. All rights reserved
         </Typography>
       </Container>
     </RootStyle>

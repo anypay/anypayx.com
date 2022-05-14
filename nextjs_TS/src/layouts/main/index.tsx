@@ -27,6 +27,8 @@ export default function MainLayout({ children }: Props) {
 
       <Box sx={{ flexGrow: 1 }} />
 
+      <MainFooter />
+      {/*
       {!isHome ? (
         <MainFooter />
       ) : (
@@ -47,7 +49,7 @@ export default function MainLayout({ children }: Props) {
             </Typography>
           </Container>
         </Box>
-      )}
+        )}*/}
     </Stack>
   );
 }
