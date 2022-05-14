@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useSnackbar } from 'notistack';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 // @mui
 import { useTheme, hexToRgb, styled } from '@mui/material/styles';
 import { Box, Card, Stack, Tooltip, Container, Typography, IconButton } from '@mui/material';
@@ -136,20 +135,7 @@ type ColorCardProps = {
 function ColorCard({ hexColor, variation, onCopy }: ColorCardProps) {
   return (
     <Card sx={{ p: 1 }}>
-      <CopyToClipboard text={hexColor} onCopy={onCopy}>
-        <Tooltip title="Copy">
-          <IconButton
-            sx={{
-              top: 8,
-              right: 8,
-              position: 'absolute',
-              color: (theme) => theme.palette.getContrastText(hexColor),
-            }}
-          >
-            <Iconify icon={'eva:copy-fill'} width={20} height={20} />
-          </IconButton>
-        </Tooltip>
-      </CopyToClipboard>
+
 
       <Box
         sx={{

@@ -6,7 +6,7 @@ import Layout from '../layouts';
 // components
 import Page from '../components/Page';
 // sections
-import { FaqsHero, FaqsCategory, FaqsList, FaqsForm } from '../sections/faqs';
+import { FaqsHero, FaqsCategory, FaqsList1, FaqsList2, FaqsForm } from '../sections/faqs';
 
 // ----------------------------------------------------------------------
 
@@ -32,7 +32,7 @@ export default function Faqs() {
         <FaqsHero />
 
         <Container sx={{ mt: 15, mb: 10 }}>
-          <FaqsCategory />
+          {/*<FaqsCategory />*/}
 
           <Typography variant="h3" sx={{ mb: 5 }}>
             Frequently asked questions
@@ -40,11 +40,14 @@ export default function Faqs() {
 
           <Grid container spacing={10}>
             <Grid item xs={12} md={6}>
-              <FaqsList />
+              <FaqsList1 />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FaqsForm />
+              <FaqsList2 />
             </Grid>
+            {/*<Grid item xs={12} md={6}>
+              <FaqsForm />
+  </Grid>*/}
           </Grid>
         </Container>
       </RootStyle>

@@ -47,7 +47,7 @@ export default function FaqsHero() {
             </Box>
           </div>
 
-          <m.div variants={varFade().inUp}>
+          {/*<m.div variants={varFade().inUp}>
             <InputStyle
               stretchStart={280}
               placeholder="Search support"
@@ -68,6 +68,7 @@ export default function FaqsHero() {
               }}
             />
           </m.div>
+            */}
         </ContentStyle>
       </Container>
     </RootStyle>

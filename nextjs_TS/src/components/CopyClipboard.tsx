@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useSnackbar } from 'notistack';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 // @mui
 import { Tooltip, TextField, IconButton, InputAdornment } from '@mui/material';
 //
@@ -38,13 +37,7 @@ export default function CopyClipboard({ value, ...other }: Props) {
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            <CopyToClipboard text={state.value} onCopy={onCopy}>
-              <Tooltip title="Copy">
-                <IconButton>
-                  <Iconify icon={'eva:copy-fill'} width={24} height={24} />
-                </IconButton>
-              </Tooltip>
-            </CopyToClipboard>
+
           </InputAdornment>
         ),
       }}
