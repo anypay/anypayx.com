@@ -38,6 +38,7 @@ export const PATH_DASHBOARD = {
     payments: path(ROOTS_DASHBOARD, '/merchant/payments'),
     checkout: path(ROOTS_DASHBOARD, '/merchant/checkout'),
     invoices: path(ROOTS_DASHBOARD, '/merchant/invoices'),
+    invoice: path(ROOTS_DASHBOARD, '/merchant/invoices/:invoice_uid'),
   },
   developer: {
     apikeys: path(ROOTS_DASHBOARD, '/developer/api-keys'),
