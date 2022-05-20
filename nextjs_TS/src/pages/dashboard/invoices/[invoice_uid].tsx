@@ -105,9 +105,9 @@ export default function ShowInvoice() {
 
   console.log('__data', data)
 
-  var { invoice, payment } = data?.data;
+  const { invoice, payment } = data?.data;
 
-  invoice = Object.assign(invoice, { uid: query.invoice_uid })
+  invoice['uid'] = query.invoice_uid
 
   const checkoutURL = `https://anypayx.com/app/#/pay/${user?.id}`
 
@@ -249,7 +249,6 @@ function InvoiceEvents({ invoice }: { invoice: Invoice }) {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell></TableCell>
                                 <TableCell>Event</TableCell>
                                 <TableCell>Payload</TableCell>
                                 <TableCell>Date</TableCell>
@@ -257,7 +256,7 @@ function InvoiceEvents({ invoice }: { invoice: Invoice }) {
                         </TableHead>
                         <TableBody>
                             {events.map((event) => (
-                                <TableRow>
+                                <TableRow key={event.createdAt}>
                                     <TableCell>{event.name}</TableCell>
                                     <TableCell>{event.payload}</TableCell>
                                     <TableCell>{event.createdAt}</TableCell>
