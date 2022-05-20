@@ -73,6 +73,8 @@ export default function DashboardLayout({ children }: Props) {
   if (verticalLayout) {
     return (
       <>
+            <div id="anypay-widget"></div>
+
         <DashboardHeader onOpenSidebar={() => setOpen(true)} verticalLayout={verticalLayout} />
 
         {isDesktop ? (

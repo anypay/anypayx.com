@@ -19,6 +19,10 @@ import LanguagePopover from './LanguagePopover';
 import ContactsPopover from './ContactsPopover';
 import NotificationsPopover from './NotificationsPopover';
 
+import NewPaymentDialog from '../../../components/payments/NewPaymentDialog'
+
+import useAuth from '../../../hooks/useAuth'
+
 // ----------------------------------------------------------------------
 
 type RootStyleProps = {
@@ -72,6 +76,14 @@ export default function DashboardHeader({
 
   const isDesktop = useResponsive('up', 'lg');
 
+  const { user } = useAuth();
+  console.log('user', user)
+
+  const account = {
+    id: user?.id,
+    denomination: user?.denomination
+  }
+
   return (
     <RootStyle isCollapse={isCollapse} isOffset={isOffset} verticalLayout={verticalLayout}>
       <Toolbar
@@ -93,6 +105,7 @@ export default function DashboardHeader({
 
         <Stack direction="row" alignItems="center" spacing={{ xs: 0.5, sm: 1.5 }}>
           <LanguagePopover />
+          <NewPaymentDialog account={account} />
           {/* <NotificationsPopover />*/}
           {/* <ContactsPopover />*/}
           <AccountPopover />

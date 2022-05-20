@@ -1,6 +1,10 @@
 
 import { useAPI } from './useAPI';
 
+import axios from '../utils/axios'
+
+const BASE = 'https://api.anypayx.com/v1/api';
+
 export function useListInvoices() {
 
     let { data: invoices, error, loading, refresh } = useAPI('/account/invoices');
@@ -15,3 +19,18 @@ export function useInvoice(uid: any) {
     return { invoice, error, refresh, loading }
     
 }
+
+interface NewInvoice {
+    amount: number;
+}
+
+export async function createInvoice({ amount }: NewInvoice) {
+
+    let { data } = await axios.post(`${BASE}/invoices`, {
+        amount
+    })
+
+    return data.invoice
+    
+}
+

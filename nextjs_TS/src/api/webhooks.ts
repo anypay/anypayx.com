@@ -1,4 +1,4 @@
-const BASE = 'https://api.anypayinc.com/v1/api';
+const BASE = 'https://api.anypayx.com/v1/api';
 
 import axios from '../utils/axios'
 

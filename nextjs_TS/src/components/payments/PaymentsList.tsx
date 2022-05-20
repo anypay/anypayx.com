@@ -220,7 +220,7 @@ export default function PaymentsList() {
                           </TableCell>
                           <TableCell align="left">{date}</TableCell>
                           <TableCell align="right">
-                            <PaymentsMoreMenu onSendWebhook={() => {
+                            <PaymentsMoreMenu invoice={invoice} onSendWebhook={() => {
                                 sendWebhook(invoice.uid)
                             }} />
                           </TableCell>

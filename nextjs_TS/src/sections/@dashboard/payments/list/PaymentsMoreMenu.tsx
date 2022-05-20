@@ -10,18 +10,36 @@ import { PATH_DASHBOARD } from '../../../../routes/paths';
 import Iconify from '../../../../components/Iconify';
 import MenuPopover from '../../../../components/MenuPopover';
 
+import { useRouter } from 'next/router'
+
 // ----------------------------------------------------------------------
 
 type Props = {
   onSendWebhook: VoidFunction;
+  invoice?: any;
 };
 
-export default function PaymentsMoreMenu({ onSendWebhook }: Props) {
+export default function PaymentsMoreMenu({ onSendWebhook, invoice }: Props) {
   const [open, setOpen] = useState<HTMLElement | null>(null);
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
     setOpen(event.currentTarget);
   };
+
+
+
+  console.log('INVOICE', invoice)
+
+  const shareInvoiceUrl = `https://anypay.sv/invoices/${invoice.uid}`
+
+  function onShareReceipt(opts: any) {
+    console.log('share receipt clicked', shareInvoiceUrl)
+    window.open(shareInvoiceUrl, '_blank')
+  }
+
+  function onViewBlockchain(opts: any) {
+    console.log('share blockchain clicked', invoice)
+  }
 
   const handleClose = () => {
     setOpen(null);
@@ -52,17 +70,21 @@ export default function PaymentsMoreMenu({ onSendWebhook }: Props) {
           '& .MuiMenuItem-root': { px: 1, typography: 'body2', borderRadius: 0.75 },
         }}
       >
+
+        <MenuItem onClick={onShareReceipt} sx={{ color: '' }}>
+          <Iconify icon={'eva:paper-plane-outline'} sx={{ ...ICON }} />
+          Share Receipt
+        </MenuItem>
+
         <MenuItem onClick={onSendWebhook} sx={{ color: '' }}>
           <Iconify icon={'eva:log-in-outline'} sx={{ ...ICON }} />
           Send Webhook
         </MenuItem>
 
-        <NextLink href={`${PATH_DASHBOARD.merchant.payments}`}>
-          <MenuItem>
-            <Iconify icon={'eva:checkmark-circle-2-outline'} sx={{ mr: 2, width: 24, height: 24 }} />
-            View Blockchain
-          </MenuItem>
-        </NextLink>
+        <MenuItem onClick={onViewBlockchain}>
+          <Iconify icon={'eva:checkmark-square-outline'} sx={{ mr: 2, width: 24, height: 24 }} />
+          See Explorer
+        </MenuItem>
       </MenuPopover>
     </>
   );
