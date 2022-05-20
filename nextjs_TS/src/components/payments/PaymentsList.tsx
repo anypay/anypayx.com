@@ -62,8 +62,8 @@ type Props = {
   headLabel: any[];
 };
 
-function handleRowClicked(params) {
-  console.log('handle row clicked', params)
+function handleRowClicked() {
+  console.log('handle row clicked')
 }
 
 function PaymentsListHead({

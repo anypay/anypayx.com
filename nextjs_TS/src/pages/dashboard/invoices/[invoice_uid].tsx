@@ -105,7 +105,7 @@ export default function ShowInvoice() {
 
   console.log('__data', data)
 
-  var { invoice, payment } = data.data;
+  var { invoice, payment } = data?.data;
 
   invoice = Object.assign(invoice, { uid: query.invoice_uid })
 
@@ -142,7 +142,22 @@ export default function ShowInvoice() {
   );
 }
 
-function InvoiceDetails({ invoice, payment }) {
+interface Invoice {
+    uid: string;
+    amount: number;
+    currency: string;
+    createdAt: Date;
+}
+
+interface Payment {
+    invoice_uid: string;
+    currency: string;
+    txid: string;
+    txhex: string;
+    createdAt: Date;
+}
+
+function InvoiceDetails({ invoice, payment }: {invoice: Invoice, payment: Payment}) {
     return (
     <Box
         sx={{
@@ -198,7 +213,7 @@ function InvoiceDetails({ invoice, payment }) {
     )
 }
 
-function InvoiceEvents({ invoice }) {
+function InvoiceEvents({ invoice }: { invoice: Invoice }) {
 
     const { data, error } = useSWR(`https://api.anypayx.com/v1/api/invoices/${invoice.uid}/events`, axios)
 
@@ -221,7 +236,7 @@ function InvoiceEvents({ invoice }) {
 
     console.log('invoice.events', data);
 
-    const events = []
+    const events: any[] = [];
 
     const hasEvents = events.length > 0
 
