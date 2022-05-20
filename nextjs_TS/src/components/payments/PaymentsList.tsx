@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 import moment from 'moment'
 
+import Link from 'next/link'
+
 import {
     Avatar,
     Card,
@@ -14,6 +16,9 @@ import {
     TablePagination,
     Box, TableHead, TableSortLabel
   } from '@mui/material';
+
+  import { CardContent } from '@mui/material';
+
 
 import { useSnackbar } from 'notistack';
 
@@ -30,6 +35,7 @@ import LoadingScreen from '../../components/LoadingScreen';
 const TABLE_HEAD = [
     { id: 'coin', label: 'Coin', alignRight: false },
     { id: 'amount', label: 'Amount', alignRight: false },
+    { id: 'uid', label: 'Uid', alignRight: false },
     { id: 'date', label: 'Date', alignRight: false },
     { id: '' }
   ];
@@ -56,6 +62,10 @@ type Props = {
   headLabel: any[];
 };
 
+function handleRowClicked(params) {
+  console.log('handle row clicked', params)
+}
+
 function PaymentsListHead({
   order,
   orderBy,
@@ -64,7 +74,7 @@ function PaymentsListHead({
 }: Props) {
   return (
     <TableHead>
-      <TableRow>
+      <TableRow onClick={handleRowClicked}>
 
         {headLabel.map((headCell) => (
           <TableCell
@@ -194,7 +204,7 @@ export default function PaymentsList() {
                           key={txid}
                         >
 
-                          <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
+                          <TableCell size="small" sx={{ display: 'flex', alignItems: 'center' }}>
                             <Avatar alt={currency} src={`/icons/coins/${currency}.png`} sx={{ mr: 2 }} />
                             <Typography variant="subtitle2" noWrap>
                                 {currency}
@@ -202,6 +212,11 @@ export default function PaymentsList() {
                           </TableCell>
                           <TableCell align="left">
                               {invoice.amount} {invoice.currency}
+                          </TableCell>
+                          <TableCell align="left">
+                            <Link href={`/dashboard/invoices/${invoice.uid}`}>
+                              <span style={{color: 'white', textDecoration: 'underline' }}>{invoice.uid}</span>
+                            </Link>
                           </TableCell>
                           <TableCell align="left">{date}</TableCell>
                           <TableCell align="right">

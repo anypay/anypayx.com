@@ -64,13 +64,13 @@ const TABLE_HEAD = [
 
 // ----------------------------------------------------------------------
 
-WebhooksList.getLayout = function getLayout(page: React.ReactElement) {
+ShowInvoice.getLayout = function getLayout(page: React.ReactElement) {
   return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
-export default function WebhooksList() {
+export default function ShowInvoice() {
   
   const { enqueueSnackbar } = useSnackbar();
 
