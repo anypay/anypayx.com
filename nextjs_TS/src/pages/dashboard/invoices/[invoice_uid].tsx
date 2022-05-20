@@ -123,7 +123,7 @@ export default function ShowInvoice() {
           heading={heading}
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
-            { name: 'Invoices' },
+            { name: 'Invoices', href: '/dashboard/merchant/payments' },
             { name: 'Payment Details' }
           ]}
           action={
