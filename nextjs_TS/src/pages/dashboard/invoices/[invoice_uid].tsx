@@ -255,7 +255,7 @@ function InvoiceEvents({ invoice }: { invoice: Invoice }) {
 
     const { data, error } = useSWR(`https://api.anypayx.com/v1/api/invoices/${invoice.uid}/events`, axios)
 
-    /*if (error) {
+    if (error) {
         return (
             <Card>
 
@@ -270,36 +270,39 @@ function InvoiceEvents({ invoice }: { invoice: Invoice }) {
                 <p>loading...</p>
             </Card>
         )
-    }*/
+    }
 
-    console.log('invoice.events', data);
+    console.log('invoice.events', data?.data?.events);
 
-    const events: any[] = [];
+    const events: any[] =  data?.data?.events;
 
     const hasEvents = events.length > 0
 
     return (
         <>
+                  <br/>
         {hasEvents && (
+
             <Card>
+
             <Scrollbar>
                 <TableContainer sx={{ minWidth: 400 }}>
                     <Table>
                         <TableHead>
                             <TableRow>
+                                <TableCell>Date</TableCell>
                                 <TableCell>Event</TableCell>
                                 <TableCell>Payload</TableCell>
-                                <TableCell>Date</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {events.map((event) => (
-                                <TableRow key={event.createdAt}>
-                                    <TableCell>{event.name}</TableCell>
-                                    <TableCell>{event.payload}</TableCell>
-                                    <TableCell>{event.createdAt}</TableCell>
-                                </TableRow>
-                            ))}
+                        {events.map((event) => (
+                              <TableRow key={event.id}>
+                                  <TableCell>{event.createdAt}</TableCell>
+                                  <TableCell>{event.type}</TableCell>
+                                  <TableCell>{JSON.stringify(event.payload)}</TableCell>
+                              </TableRow>
+                          ))}
                         </TableBody>
                     </Table>
                 </TableContainer>
