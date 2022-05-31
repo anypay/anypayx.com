@@ -1,5 +1,3 @@
-import { useSnackbar } from 'notistack';
-
 import { Box } from '@mui/system';
 
 import Moment from 'moment';
@@ -21,7 +19,6 @@ import { PATH_DASHBOARD } from '../../../routes/paths';
 import useSettings from '../../../hooks/useSettings';
 
 // api data
-import useAuth from '../../../hooks/useAuth';
 import useSWR from 'swr';
 import axios from '../../../utils/axios';
 // layouts
@@ -33,22 +30,7 @@ import Iconify from '../../../components/Iconify';
 import Scrollbar from '../../../components/Scrollbar';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 
-import useWebsocket from '../../../hooks/useWebsocket';
-
 import { useRouter } from "next/router";
-
-// sections
-
-// ----------------------------------------------------------------------
-
-const TABLE_HEAD = [
-  { id: 'date', label: 'Date', alignRight: false },
-  { id: 'invoice', label: 'Invoice', alignRight: false },
-  { id: 'url', label: 'URL', alignRight: false },
-  { id: 'attempts', label: 'Attempts', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
-  { id: '' }
-];
 
 // ----------------------------------------------------------------------
 
@@ -62,8 +44,6 @@ export default function ShowInvoice() {
 
   const { query } = useRouter();
     
-  const { enqueueSnackbar } = useSnackbar();
-
   const { themeStretch } = useSettings();
 
   const { data, error } = useSWR(`https://api.anypayx.com/v1/api/invoices/${query.invoice_uid}`, axios)
@@ -247,25 +227,21 @@ function InvoiceEvents({ invoice }: { invoice: Invoice }) {
         )
     }
 
-    console.log('invoice.events', data?.data?.events);
-
     let events: any[] =  data?.data?.events;
 
     const hasEvents = events.length > 0
 
-    events = events.map(event => {
-      return Object.assign(event, {
+    events = events.map((event) => (
+      Object.assign(event, {
         createdAt: Moment(new Date(event.createdAt)).format('MMM Do, YYYY hh:MMa')
       })
-    })
+    ))
 
     return (
         <>
-                  <br/>
         {hasEvents && (
 
-            <Box
-            sx={{
+            <Box sx={{
               bgcolor: 'background.paper',
               boxShadow: 1,
               borderRadius: 2,
@@ -316,11 +292,11 @@ function KrakenDeposits({ deposits }: { deposits: any[] }) {
 
   const hasDeposits = deposits.length > 0
 
-  deposits = deposits.map(deposit => {
-    return Object.assign(deposit, {
+  deposits = deposits.map((deposit) => (
+    Object.assign(deposit, {
       date: Moment(new Date(deposit.createdAt)).format('MMM Do, YYYY hh:MMa')
     })
-  })
+  ))
 
   //TODO: Link to Kraken Status Explanation -> https://support.kraken.com/hc/en-us/articles/360000382543-What-does-the-status-of-my-deposit-or-withdrawal-mean-
   return (

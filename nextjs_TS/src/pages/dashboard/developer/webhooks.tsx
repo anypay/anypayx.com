@@ -34,7 +34,6 @@ import axios from '../../../utils/axios';
 import Layout from '../../../layouts';
 // components
 import Page from '../../../components/Page';
-import LoadingScreen from '../../../components/LoadingScreen';
 import Label from '../../../components/Label';
 import Iconify from '../../../components/Iconify';
 import Scrollbar from '../../../components/Scrollbar';
@@ -83,7 +82,7 @@ export default function WebhooksList() {
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const { data, error } = useSWR('https://anypayx.com/v1/api/webhooks', axios)
+  const { error } = useSWR('https://anypayx.com/v1/api/webhooks', axios)
 
   if (error) {
 

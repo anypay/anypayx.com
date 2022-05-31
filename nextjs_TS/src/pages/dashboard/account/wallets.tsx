@@ -28,17 +28,6 @@ import LoadingScreen from '../../../components/LoadingScreen';
 
 // ----------------------------------------------------------------------
 
-const TABLE_HEAD = [
-  { id: 'date', label: 'Date', alignRight: false },
-  { id: 'invoice', label: 'Invoice', alignRight: false },
-  { id: 'url', label: 'URL', alignRight: false },
-  { id: 'attempts', label: 'Attempts', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
-  { id: '' }
-];
-
-// ----------------------------------------------------------------------
-
 WalletAddresses.getLayout = function getLayout(page: React.ReactElement) {
   return <Layout>{page}</Layout>;
 };
@@ -78,14 +67,14 @@ export default function WalletAddresses() {
         />
         <Stack spacing={2}>
  
-            {coins.map((coin: any, key: any) => {
-              return <span key={coin.code}>
+            {coins.map((coin: any, key: any) => (
+              <span key={coin.code}>
                 <SetAddressCard coin={coin} onUpdate={() => {
 
                   mutate();
                 }} />
               </span>
-            })}
+            ))}
 
         </Stack>
       </Container>

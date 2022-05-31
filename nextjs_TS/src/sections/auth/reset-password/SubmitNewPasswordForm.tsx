@@ -20,11 +20,10 @@ type FormValuesProps = {
 
 type Props = {
   onSent: VoidFunction;
-  onGetEmail: (value: string) => void;
   token: string | string[] | undefined;
 };
 
-export default function SubmitNewPasswordForm({ onSent, onGetEmail, token }: Props) {
+export default function SubmitNewPasswordForm({ onSent, token }: Props) {
   const isMountedRef = useIsMountedRef();
 
   const ResetPasswordSchema = Yup.object().shape({
@@ -48,7 +47,6 @@ export default function SubmitNewPasswordForm({ onSent, onGetEmail, token }: Pro
       });
       if (isMountedRef.current) {
         onSent();
-        //onGetEmail(data.email);
       }
     } catch (error) {
       console.error(error);

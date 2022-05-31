@@ -36,7 +36,6 @@ ResetPassword.getLayout = function getLayout(page: React.ReactElement) {
 // ----------------------------------------------------------------------
 
 export default function ResetPassword() {
-  const [_, setEmail] = useState('');
   const [sent, setSent] = useState(false);
   const router = useRouter()
   const [token] = useState(router.query.resetToken);
@@ -57,7 +56,6 @@ export default function ResetPassword() {
 
                 <SubmitNewPasswordForm
                   onSent={() => setSent(true)}
-                  onGetEmail={(value) => setEmail(value)}
                   token={token}
                 />
 

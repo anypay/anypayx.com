@@ -7,8 +7,6 @@ import {
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // hooks
 import useSettings from '../../../hooks/useSettings';
-// @types
-import { UserManager } from '../../../@types/user';
 // api data
 import useAuth from '../../../hooks/useAuth';
 // layouts
@@ -19,15 +17,6 @@ import Iconify from '../../../components/Iconify';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 import PaymentsList from '../../../components/payments/PaymentsList'
 
-import useWebsocket from '../../../hooks/useWebsocket';
-
-
-// sections
-
-// ----------------------------------------------------------------------
-
-
-// ----------------------------------------------------------------------
 
 ShowInvoice.getLayout = function getLayout(page: React.ReactElement) {
   return <Layout>{page}</Layout>;
@@ -68,18 +57,4 @@ export default function ShowInvoice() {
       </Container>
     </Page>
   );
-}
-
-// ----------------------------------------------------------------------
-
-type Anonymous = Record<string | number, string>;
-
-function descendingComparator(a: Anonymous, b: Anonymous, orderBy: string) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
 }
