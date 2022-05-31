@@ -17,9 +17,6 @@ import {
     Box, TableHead, TableSortLabel
   } from '@mui/material';
 
-  import { CardContent } from '@mui/material';
-
-
 import { useSnackbar } from 'notistack';
 
 import PaymentsMoreMenu from '../../sections/@dashboard/payments/list/PaymentsMoreMenu'
@@ -30,7 +27,7 @@ import { useListPayments } from '../../api/payments';
 import { sendWebhook } from '../../api/webhooks';
 import useWebsocket from '../../hooks/useWebsocket';
 
-import LoadingScreen from '../../components/LoadingScreen';
+import LoadingScreen from '../LoadingScreen';
 
 const TABLE_HEAD = [
     { id: 'coin', label: 'Coin', alignRight: false },
@@ -39,9 +36,6 @@ const TABLE_HEAD = [
     { id: 'date', label: 'Date', alignRight: false },
     { id: '' }
   ];
-  // @mui
-
-// ----------------------------------------------------------------------
 
 const visuallyHidden = {
   border: 0,
@@ -214,7 +208,7 @@ export default function PaymentsList() {
                               {invoice.amount} {invoice.currency}
                           </TableCell>
                           <TableCell align="left">
-                            <Link href={`/dashboard/invoices/${invoice.uid}`}>
+                            <Link href={`/dashboard/invoices/${invoice.uid}`} passHref>
                               <span style={{color: 'white', textDecoration: 'underline' }}>{invoice.uid}</span>
                             </Link>
                           </TableCell>
@@ -251,5 +245,3 @@ export default function PaymentsList() {
     )
     
 }
-
-type Anonymous = Record<string | number, string>;

@@ -1,14 +1,11 @@
 // @mui
-import { styled, alpha } from '@mui/material/styles';
-import { Card, Stack, Typography, Button, OutlinedInput } from '@mui/material';
+import { styled, alpha, useTheme } from '@mui/material/styles';
+import { Card, Stack, Typography, Button, OutlinedInput, useMediaQuery } from '@mui/material';
 // components
 import Image from './Image';
 
 import { useSnackbar } from 'notistack'
 import axios from '../utils/axios';
-
-import { useMediaQuery } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
 

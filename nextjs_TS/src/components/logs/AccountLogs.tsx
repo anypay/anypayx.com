@@ -2,17 +2,15 @@ import {
   Box, Card, Table,
   TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TableSortLabel, Typography
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import moment from 'moment';
 import { useSnackbar } from 'notistack';
 import React, { useState } from 'react';
-import { UserManager } from '../../@types/user';
 import { useAccountLogs } from '../../api/logs';
 import useWebsocket from '../../hooks/useWebsocket';
 import PaymentsMoreMenu from '../../sections/@dashboard/payments/list/PaymentsMoreMenu';
 import Scrollbar from '../Scrollbar';
 
-import LoadingScreen from '../../components/LoadingScreen';
+import LoadingScreen from '../LoadingScreen';
 
 const TABLE_HEAD = [
     { id: 'date', label: 'Date', alignRight: false },
@@ -203,16 +201,4 @@ export default function AccountLog2() {
         </Card>
     )
     
-}
-
-type Anonymous = Record<string | number, string>;
-
-function descendingComparator(a: Anonymous, b: Anonymous, orderBy: string) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
 }

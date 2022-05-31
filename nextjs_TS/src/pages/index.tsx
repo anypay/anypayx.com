@@ -4,20 +4,10 @@ import { styled } from '@mui/material/styles';
 import Layout from '../layouts';
 // components
 import Page from '../components/Page';
-
-import { useRouter } from 'next/router'
 // sections
 import {
-  HomeHero,
-  HomeHeroAnypay,
-  HomeMinimal,
-  HomeDarkMode,
   HomeLookingFor,
-  HomeColorPresets,
-  HomePricingPlans,
   HomeAdvertisement,
-  HomeCleanInterfaces,
-  HomeHugePackElements,
   HomeWooCommercePlugin,
   HomeEnterprisePaymentsPlatform,
 } from '../sections/home';

@@ -5,7 +5,6 @@ import {
   import moment from 'moment';
   import { useSnackbar } from 'notistack';
   import React, { useState } from 'react';
-  import useWebsocket from '../../hooks/useWebsocket';
   import Scrollbar from '../Scrollbar';
   import LoadingScreen from '../LoadingScreen';
 
@@ -187,7 +186,6 @@ import {
       )
       
   }
-  
-  type Anonymous = Record<string | number, string>;
+
 
   

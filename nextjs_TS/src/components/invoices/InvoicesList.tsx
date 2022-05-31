@@ -6,7 +6,7 @@ import { useListInvoices } from '../../api/invoices';
 
 export default function InvoicesList() {
 
-    const { invoices, error, loading, refresh } = useListInvoices();
+    const { invoices, error, loading } = useListInvoices();
 
     const { enqueueSnackbar } = useSnackbar();
 

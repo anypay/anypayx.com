@@ -13,9 +13,9 @@ interface Props extends BoxProps {
 
 const Logo = forwardRef<any, Props>(({ disabledLink = false, sx }, ref) => {
   const theme = useTheme();
-  const PRIMARY_LIGHT = theme.palette.primary.light;
-  const PRIMARY_MAIN = theme.palette.primary.main;
-  const PRIMARY_DARK = theme.palette.primary.dark;
+  //const PRIMARY_LIGHT = theme.palette.primary.light;
+  //const PRIMARY_MAIN = theme.palette.primary.main;
+  //const PRIMARY_DARK = theme.palette.primary.dark;
   const isLight = theme.palette.mode === 'light';
 
   const logo = (

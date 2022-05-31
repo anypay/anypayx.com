@@ -6,7 +6,7 @@ import Layout from '../layouts';
 // components
 import Page from '../components/Page';
 // sections
-import { FaqsHero, FaqsCategory, FaqsList1, FaqsList2, FaqsForm } from '../sections/faqs';
+import { FaqsHero, FaqsList1, FaqsList2 } from '../sections/faqs';
 
 // ----------------------------------------------------------------------
 

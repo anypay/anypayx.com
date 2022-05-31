@@ -1,7 +1,6 @@
 import { forwardRef } from 'react';
 import NextLink from 'next/link';
 // @mui
-import { useTheme } from '@mui/material/styles';
 import { Box, BoxProps } from '@mui/material';
 import Image from './Image';
 
@@ -12,11 +11,11 @@ interface Props extends BoxProps {
 }
 
 const MarkLogo = forwardRef<any, Props>(({ disabledLink = false, sx }, ref) => {
-  const theme = useTheme();
-  const PRIMARY_LIGHT = theme.palette.primary.light;
-  const PRIMARY_MAIN = theme.palette.primary.main;
-  const PRIMARY_DARK = theme.palette.primary.dark;
-  const isLight = theme.palette.mode === 'light';
+  //const theme = useTheme();
+  //const PRIMARY_LIGHT = theme.palette.primary.light;
+  //const PRIMARY_MAIN = theme.palette.primary.main;
+  //const PRIMARY_DARK = theme.palette.primary.dark;
+  //const isLight = theme.palette.mode === 'light';
 
   const logo = (
     <Box ref={ref} sx={{ height: 64, width: 64, cursor: 'pointer', ...sx }}>

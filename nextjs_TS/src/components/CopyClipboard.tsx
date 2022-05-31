@@ -1,10 +1,6 @@
 import { useState } from 'react';
-import { useSnackbar } from 'notistack';
 // @mui
-import { Tooltip, TextField, IconButton, InputAdornment } from '@mui/material';
-//
-import Iconify from './Iconify';
-
+import { TextField, InputAdornment } from '@mui/material';
 // ----------------------------------------------------------------------
 
 type Props = {
@@ -12,7 +8,6 @@ type Props = {
 };
 
 export default function CopyClipboard({ value, ...other }: Props) {
-  const { enqueueSnackbar } = useSnackbar();
   const [state, setState] = useState({
     value,
     copied: false,
@@ -20,13 +15,6 @@ export default function CopyClipboard({ value, ...other }: Props) {
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setState({ value: event.target.value, copied: false });
-  };
-
-  const onCopy = () => {
-    setState({ ...state, copied: true });
-    if (state.value) {
-      enqueueSnackbar('Copied!');
-    }
   };
 
   return (

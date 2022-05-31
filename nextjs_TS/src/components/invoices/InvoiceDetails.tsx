@@ -8,7 +8,7 @@ export default function InvoiceDetails() {
 
     const { enqueueSnackbar } = useSnackbar();    
 
-    const { invoice, error, loading, refresh } = useInvoice('12345');
+    const { invoice, error, loading } = useInvoice('12345');
 
     if (!invoice && loading) {
         return <div>Loading...</div>

@@ -13,7 +13,7 @@ import Layout from '../../../layouts';
 // components
 import Page from '../../../components/Page';
 // sections
-import { ResetPasswordForm, SubmitNewPasswordForm } from '../../../sections/auth/reset-password';
+import { SubmitNewPasswordForm } from '../../../sections/auth/reset-password';
 // assets
 import { SentIcon } from '../../../assets';
 
@@ -36,7 +36,7 @@ ResetPassword.getLayout = function getLayout(page: React.ReactElement) {
 // ----------------------------------------------------------------------
 
 export default function ResetPassword() {
-  const [email, setEmail] = useState('');
+  const [_, setEmail] = useState('');
   const [sent, setSent] = useState(false);
   const router = useRouter()
   const [token] = useState(router.query.resetToken);

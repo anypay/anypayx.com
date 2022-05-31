@@ -249,7 +249,7 @@ function InvoiceEvents({ invoice }: { invoice: Invoice }) {
 
     console.log('invoice.events', data?.data?.events);
 
-    var events: any[] =  data?.data?.events;
+    let events: any[] =  data?.data?.events;
 
     const hasEvents = events.length > 0
 
