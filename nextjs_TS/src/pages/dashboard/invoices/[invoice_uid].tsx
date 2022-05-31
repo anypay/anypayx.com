@@ -1,38 +1,25 @@
-import { sentenceCase } from 'change-case';
-import { useState } from 'react';
 import { useSnackbar } from 'notistack';
 
 import { Box } from '@mui/system';
-// next
-import NextLink from 'next/link';
-// @mui
-import { useTheme } from '@mui/material/styles';
-import { Grid } from '@mui/material';
 
 import Moment from 'moment';
 import Script from 'next/script'
 import {
   Card,
-  CardContent,
   Table,
-  Avatar,
   Button,
-  Checkbox,
   TableRow,
   TableHead,
   TableBody,
   TableCell,
   Container,
-  Typography,
   TableContainer,
-  TablePagination,
 } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // hooks
 import useSettings from '../../../hooks/useSettings';
-// @types
-import { UserManager } from '../../../@types/user';
+
 // api data
 import useAuth from '../../../hooks/useAuth';
 import useSWR from 'swr';
@@ -42,23 +29,13 @@ import Layout from '../../../layouts';
 // components
 import Page from '../../../components/Page';
 import LoadingScreen from '../../../components/LoadingScreen';
-import Label from '../../../components/Label';
 import Iconify from '../../../components/Iconify';
 import Scrollbar from '../../../components/Scrollbar';
-import SearchNotFound from '../../../components/SearchNotFound';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
-import PaymentsList from '../../../components/payments/PaymentsList'
-import NewPaymentDialog from '../../../components/payments/NewPaymentDialog'
-
-import { useListPayments } from '../../../api/payments';
-
-import useWebSocket, { ReadyState } from 'react-use-websocket';
 
 import useWebsocket from '../../../hooks/useWebsocket';
 
 import { useRouter } from "next/router";
-import { isDataView } from 'util/types';
-
 
 // sections
 
@@ -87,11 +64,7 @@ export default function ShowInvoice() {
     
   const { enqueueSnackbar } = useSnackbar();
 
-  const { events } = useWebsocket();
-
   const { themeStretch } = useSettings();
-
-  const { user } = useAuth();
 
   const { data, error } = useSWR(`https://api.anypayx.com/v1/api/invoices/${query.invoice_uid}`, axios)
 
@@ -102,8 +75,6 @@ export default function ShowInvoice() {
   if (error) {
       return <p>Error: {error.message}</p>
   }
-
-  console.log('__data', data)
 
   const { invoice, payment, kraken_deposits } = data?.data;
 
@@ -449,19 +420,4 @@ function KrakenDeposits({ deposits }: { deposits: any[] }) {
   )
 
 
-}
-
-
-// ----------------------------------------------------------------------
-
-type Anonymous = Record<string | number, string>;
-
-function descendingComparator(a: Anonymous, b: Anonymous, orderBy: string) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
 }
