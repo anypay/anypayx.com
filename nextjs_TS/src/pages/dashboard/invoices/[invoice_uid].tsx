@@ -9,6 +9,7 @@ import NextLink from 'next/link';
 import { useTheme } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 
+import Moment from 'moment';
 import Script from 'next/script'
 import {
   Card,
@@ -92,11 +93,7 @@ export default function ShowInvoice() {
 
   const { user } = useAuth();
 
-
-  console.log('query', query)
-
   const { data, error } = useSWR(`https://api.anypayx.com/v1/api/invoices/${query.invoice_uid}`, axios)
-
 
   if (!data && !error) {
     return <LoadingScreen />;
@@ -108,7 +105,7 @@ export default function ShowInvoice() {
 
   console.log('__data', data)
 
-  const { invoice, payment } = data?.data;
+  const { invoice, payment, kraken_deposits } = data?.data;
 
   invoice['uid'] = query.invoice_uid
 
@@ -139,7 +136,7 @@ export default function ShowInvoice() {
 
 
         <InvoiceDetails invoice={invoice} payment={payment}/>
-
+        <KrakenDeposits deposits={kraken_deposits} />
         <InvoiceEvents invoice={invoice} />
 
       </Container>
@@ -266,24 +263,47 @@ function InvoiceEvents({ invoice }: { invoice: Invoice }) {
 
     if (!data) {
         return (
-            <Card>
-                <p>loading...</p>
-            </Card>
+          <Box
+          sx={{
+            bgcolor: 'background.paper',
+            boxShadow: 1,
+            borderRadius: 2,
+            p: 2,
+            minWidth: 300,
+          }}>
+            <p>loading...</p>
+          </Box>
         )
     }
 
     console.log('invoice.events', data?.data?.events);
 
-    const events: any[] =  data?.data?.events;
+    var events: any[] =  data?.data?.events;
 
     const hasEvents = events.length > 0
+
+    events = events.map(event => {
+      return Object.assign(event, {
+        createdAt: Moment(new Date(event.createdAt)).format('MMM Do, YYYY hh:MMa')
+      })
+    })
 
     return (
         <>
                   <br/>
         {hasEvents && (
 
-            <Card>
+            <Box
+            sx={{
+              bgcolor: 'background.paper',
+              boxShadow: 1,
+              borderRadius: 2,
+              p: 2,
+              minWidth: 300,
+            }}>
+
+              <Box sx={{p: 1}}> <h2>Event Log</h2></Box>
+
 
             <Scrollbar>
                 <TableContainer sx={{ minWidth: 400 }}>
@@ -307,7 +327,7 @@ function InvoiceEvents({ invoice }: { invoice: Invoice }) {
                     </Table>
                 </TableContainer>
             </Scrollbar>
-        </Card>
+        </Box>
         )}
         </>
 
@@ -316,6 +336,121 @@ function InvoiceEvents({ invoice }: { invoice: Invoice }) {
 
 
 }
+
+function KrakenDeposits({ deposits }: { deposits: any[] }) {
+
+  if (!deposits || deposits.length === 0) {
+    return <></>
+  }
+
+  const hasDeposits = deposits.length > 0
+
+  deposits = deposits.map(deposit => {
+    return Object.assign(deposit, {
+      date: Moment(new Date(deposit.createdAt)).format('MMM Do, YYYY hh:MMa')
+    })
+  })
+
+  //TODO: Link to Kraken Status Explanation -> https://support.kraken.com/hc/en-us/articles/360000382543-What-does-the-status-of-my-deposit-or-withdrawal-mean-
+  return (
+      <>
+                <br/>
+      {hasDeposits && (
+
+          <Box
+          sx={{
+            bgcolor: 'background.paper',
+            boxShadow: 1,
+            borderRadius: 2,
+            p: 2,
+            minWidth: 300,
+          }}>            
+            <Box sx={{p: 1}}> <h2>Kraken Deposit</h2></Box>
+           
+
+          <Scrollbar>
+              <TableContainer sx={{ minWidth: 400 }}>
+                  <Table>
+                      <TableHead>
+                          <TableRow>
+                              <TableCell>Time</TableCell>
+                              <TableCell>Asset</TableCell>
+                              <TableCell>Amount</TableCell>
+                              <TableCell>Fee</TableCell>
+                              <TableCell>ID</TableCell>
+
+                              <TableCell>Status</TableCell>
+                          </TableRow>
+                      </TableHead>
+                      <TableBody>
+                      {deposits.map((deposit) => (
+                            <TableRow key={deposit.refid}>
+                                <TableCell>{deposit.date}</TableCell>
+                                <TableCell>{deposit.asset}</TableCell>
+                                <TableCell>{deposit.amount}</TableCell>
+                                <TableCell>{deposit.fee}</TableCell>
+                                <TableCell>{deposit.refid}</TableCell>
+                                {deposit.status === 'Settled' && (
+                                  <TableCell>
+                                    <Box
+                                      sx={{
+                                      color: 'warning.dark',
+                                      display: 'inline',
+                                      fontWeight: 'bold',
+                                      mx: 0.5,
+                                      fontSize: 14,
+                                      }}
+                                    >
+                                        {deposit.status}
+                                    </Box>
+                                  </TableCell>
+                                )}
+                                {deposit.status === 'Success' && (
+                                  <TableCell>
+                                    <Box
+                                      sx={{
+                                      color: 'success.dark',
+                                      display: 'inline',
+                                      fontWeight: 'bold',
+                                      mx: 0.5,
+                                      fontSize: 14,
+                                      }}
+                                    >
+                                      {deposit.status}
+                                    </Box>
+                                  </TableCell>
+                                )}
+                                {deposit.status === 'Failure' && (
+                                  <TableCell>
+                                    <Box
+                                      sx={{
+                                      color: 'error.dark',
+                                      display: 'inline',
+                                      fontWeight: 'bold',
+                                      mx: 0.5,
+                                      fontSize: 14,
+                                      }}
+                                    >
+                                      {deposit.status}
+                                    </Box>
+                                  </TableCell>
+                                )}
+                            </TableRow>
+                        ))}
+                      </TableBody>
+                  </Table>
+              </TableContainer>
+          </Scrollbar>
+      </Box>
+      )}
+      </>
+
+
+  )
+
+
+}
+
 
 // ----------------------------------------------------------------------
 
