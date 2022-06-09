@@ -2,11 +2,18 @@ import { useState } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
 import { Input, Slide, Button, InputAdornment, ClickAwayListener } from '@mui/material';
+
+import { useRouter } from 'next/router';
+
 // utils
 import cssStyles from '../../../utils/cssStyles';
 // components
 import Iconify from '../../../components/Iconify';
 import { IconButtonAnimate } from '../../../components/animate';
+
+import { searchAccount } from '../../../api/search';
+
+import { useSnackbar } from 'notistack';
 
 // ----------------------------------------------------------------------
 
@@ -34,13 +41,48 @@ const SearchbarStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function Searchbar() {
+  const { enqueueSnackbar } = useSnackbar();
   const [isOpen, setOpen] = useState(false);
+  const [query, setSearch] = useState('');
+  const { push } = useRouter();
 
   const handleOpen = () => {
     setOpen((prev) => !prev);
   };
 
   const handleClose = () => {
+    setOpen(false);
+  };
+
+  const onChange = (ev) => {
+    console.log(ev.target.value)
+
+    setSearch(ev.target.value)
+  }
+
+  const search = async () => {
+    // set loading
+    // issue search query
+    // redirect to result
+
+    let { result } = await searchAccount(query)
+
+    console.log('search.result', result)
+
+    let invoice = result[0]
+
+    if (!invoice) {
+      enqueueSnackbar('No Results Found', { variant: 'warning' })
+    }
+
+    if (result.length > 0) {
+      enqueueSnackbar('Invoice Found, Redirecting...', { variant: 'success' })
+      //push(PATH_DASHBOARD.merchant.invoice, { invoice_uid: invoice.uid });
+      push(`/dashboard/invoices/${invoice.value.uid}`)
+    }
+
+    setSearch(null);
+
     setOpen(false);
   };
 
@@ -69,8 +111,16 @@ export default function Searchbar() {
                 </InputAdornment>
               }
               sx={{ mr: 1, fontWeight: 'fontWeightBold' }}
+              onKeyPress={(ev) => {
+                console.log(`Pressed keyCode ${ev.key}`);
+                if (ev.key === 'Enter') {
+                  ev.preventDefault();
+                  search();
+                }
+              }}
+              onChange={onChange}
             />
-            <Button variant="contained" onClick={handleClose}>
+            <Button variant="contained" onClick={search}>
               Search
             </Button>
           </SearchbarStyle>
