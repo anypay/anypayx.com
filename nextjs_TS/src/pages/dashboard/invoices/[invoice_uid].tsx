@@ -100,6 +100,7 @@ interface Invoice {
     amount: number;
     currency: string;
     createdAt: Date;
+    external_id?: string;
 }
 
 interface Payment {

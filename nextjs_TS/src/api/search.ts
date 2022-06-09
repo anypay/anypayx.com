@@ -6,6 +6,6 @@ export async function searchAccount(search: string): Promise<any[]> {
 
     let { data } = await axios.post(`${BASE}/search`, { search })
 
-    return data
+    return data.result
     
 }

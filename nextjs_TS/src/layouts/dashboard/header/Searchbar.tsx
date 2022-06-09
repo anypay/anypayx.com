@@ -54,7 +54,7 @@ export default function Searchbar() {
     setOpen(false);
   };
 
-  const onChange = (ev) => {
+  const onChange = (ev: any) => {
     console.log(ev.target.value)
 
     setSearch(ev.target.value)
@@ -65,7 +65,7 @@ export default function Searchbar() {
     // issue search query
     // redirect to result
 
-    let { result } = await searchAccount(query)
+    let result = await searchAccount(query)
 
     console.log('search.result', result)
 
@@ -81,7 +81,7 @@ export default function Searchbar() {
       push(`/dashboard/invoices/${invoice.value.uid}`)
     }
 
-    setSearch(null);
+    setSearch('');
 
     setOpen(false);
   };
