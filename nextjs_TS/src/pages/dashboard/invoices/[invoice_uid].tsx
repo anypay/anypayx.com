@@ -130,6 +130,7 @@ const loadModal = ({ uid }: { uid: any }) => {
 }
 
 function InvoiceDetails({ invoice, payment }: {invoice: Invoice, payment: Payment}) {
+    console.log('invoice', invoice)
     return (
       <>
         <Script
@@ -172,6 +173,13 @@ function InvoiceDetails({ invoice, payment }: {invoice: Invoice, payment: Paymen
                   {payment.txid}
               </Box>
               </>
+          )}
+          {invoice.external_id && (
+            <>
+              <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 14 }}>
+                  External ID: {invoice.external_id}
+              </Box>
+            </>
           )}
           {!payment && (
               <>

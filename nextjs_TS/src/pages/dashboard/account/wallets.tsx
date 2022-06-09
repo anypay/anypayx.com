@@ -52,7 +52,7 @@ export default function WalletAddresses() {
       
   }
 
-  const coins = data?.data.addresses.filter((coin: any) => coin.enabled)
+  const coins = data?.data.addresses.filter((coin: any) => !!coin.price)
   
   return (
     <Page title="Wallets: Setup">
