@@ -1,5 +1,7 @@
 import { Box } from '@mui/system';
 
+import { useState } from 'react'
+
 import Moment from 'moment';
 import Script from 'next/script'
 import {
@@ -31,6 +33,7 @@ import Scrollbar from '../../../components/Scrollbar';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 
 import { useRouter } from "next/router";
+import { useEffect } from 'react';
 
 // ----------------------------------------------------------------------
 
@@ -76,17 +79,20 @@ export default function ShowInvoice() {
           ]}
           action={
 
+            <>
             <a target="_blank" href={shareInvoiceUrl} rel="noopener noreferrer">
               <Button variant="contained" startIcon={<Iconify icon={'eva:paper-plane-outline'} />}>
                 Share Invoice
               </Button>
             </a>            
+            </>
 
           }
         />
 
 
         <InvoiceDetails invoice={invoice} payment={payment}/>
+        <RefundAddress invoice={invoice}/>
         <KrakenDeposits deposits={kraken_deposits} />
         <InvoiceEvents invoice={invoice} />
 
@@ -182,6 +188,8 @@ function InvoiceDetails({ invoice, payment }: {invoice: Invoice, payment: Paymen
               </Box>
             </>
           )}
+          <br/>
+
           {!payment && (
               <>
               <Box
@@ -206,6 +214,57 @@ function InvoiceDetails({ invoice, payment }: {invoice: Invoice, payment: Paymen
         </Box>
       </>
     )
+}
+
+function RefundAddress({ invoice }: { invoice: any }) {
+  console.log('refund address invoice', invoice)
+
+  const [refund, setRefund] = useState<any> ();
+
+  //let { data, error } = useSWR(`https://api.anypayx.com/v1/api/invoices/${invoice.uid}/refund`)
+
+  const url = `https://api.anypayx.com/v1/api/account/invoices/${invoice.uid}/refund`
+
+  console.log({ url })
+
+  let data;
+
+  useEffect(() => {
+
+    axios.get(url).then(response => {
+
+      data = response.data;
+
+      console.log('refund.response.data', data)
+  
+      setRefund(data);
+    })
+
+  }, [])
+
+  if (!refund) {
+    return <></>
+  }
+
+  console.log('refund address', refund)
+
+  return(
+    <>
+    <br/>
+    <Box    sx={{
+            bgcolor: 'background.paper',
+            boxShadow: 1,
+            borderRadius: 2,
+            p: 2,
+            minWidth: 300,
+          }}>  
+        <h3>Refund Address</h3>
+        <p>{refund.refund?.address}</p>
+      </Box>
+      <br/>
+
+    </>
+  )
 }
 
 function InvoiceEvents({ invoice }: { invoice: Invoice }) {
