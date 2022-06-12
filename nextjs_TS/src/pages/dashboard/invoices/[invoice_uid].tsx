@@ -219,8 +219,6 @@ function InvoiceDetails({ invoice, payment }: {invoice: Invoice, payment: Paymen
 function RefundAddress({ invoice }: { invoice: any }) {
   console.log('refund address invoice', invoice)
 
-  const [refund, setRefund] = useState<any> ();
-
   const { data, error, refresh, loading } = useAPI(`/account/invoices/${invoice.uid}/refund`)
 
   console.log({ data, error,loading })
