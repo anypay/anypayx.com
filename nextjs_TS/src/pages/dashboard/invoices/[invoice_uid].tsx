@@ -1,7 +1,5 @@
 import { Box } from '@mui/system';
 
-import { useState } from 'react'
-
 import Moment from 'moment';
 import Script from 'next/script'
 import {
@@ -230,8 +228,6 @@ function RefundAddress({ invoice }: { invoice: any }) {
   const onRefund = function() {
     refresh();
   }
-
-  console.log('refund address', refund)
 
   if (data?.refund_invoice?.status === 'paid') {
 
