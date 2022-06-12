@@ -1,51 +1,44 @@
-import { useState } from 'react';
+import Script from 'next/script'
 
 // @mui
 import {
   Button,
-  Dialog,
-  TextField,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  DialogContentText
 } from '@mui/material';
 
-// ----------------------------------------------------------------------
+import { useSnackbar } from 'notistack';
 
-interface Account {
-    id: number;
-    denomination: string;
-}
+export default function CollectRefundDialog({ refund, onRefund }: { refund?: any, onRefund: any }) {
 
-export default function CollectRefundDialog({ refund }: { refund?: any }) {
-  const [open, setOpen] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
+
+  let invoice;
 
   const handleClickOpen = () => {
-    setOpen(true);
-  };
 
-  const handleCancel = () => {
-      setOpen(false);
-  }
+    //@ts-ignore
+    invoice = anypay.showInvoice(refund?.refund_invoice.uid)
+
+    invoice.on('paid', () => {
+
+      //@ts-ignore
+      anypay.close()
+
+      // refresh data model
+      onRefund();
+
+      enqueueSnackbar('Refund Sent!')
+
+    })
+
+  };
 
   return (
     <>
+      <Script src="https://unpkg.com/@anypayinc/widget/anypay.min.js" />
       <Button variant="outlined" color="warning" onClick={handleClickOpen}>
-        Refund
+        Send Refund
       </Button>
 
-      <Dialog open={open} onClose={handleCancel}>
-        <DialogTitle>Pay to Send Refund</DialogTitle>
-        <DialogContent>
-          <iframe style={{height: '500px'}} src="https://anypayx.com/app/#/invoices/NVvAGP8uG"/>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCancel} color="inherit">
-            Cancel
-          </Button>
-        </DialogActions>
-      </Dialog>
     </>
   );
 }

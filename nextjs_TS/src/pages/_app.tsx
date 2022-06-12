@@ -4,6 +4,9 @@ import '../locales/i18n';
 // highlight
 import '../utils/highlight';
 
+// anypay payment popup
+import '../utils/anypay.css';
+
 // scroll bar
 import 'simplebar/src/simplebar.css';
 

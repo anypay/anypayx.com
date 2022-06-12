@@ -23,6 +23,7 @@ import useSettings from '../../../hooks/useSettings';
 // api data
 import useSWR from 'swr';
 import axios from '../../../utils/axios';
+import { useAPI } from '../../../api/useAPI'
 // layouts
 import Layout from '../../../layouts';
 // components
@@ -31,10 +32,9 @@ import LoadingScreen from '../../../components/LoadingScreen';
 import Iconify from '../../../components/Iconify';
 import Scrollbar from '../../../components/Scrollbar';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
+import CollectRefundDialog from '../../../components/payments/CollectRefundDialog'
 
 import { useRouter } from "next/router";
-import { useEffect } from 'react';
-
 // ----------------------------------------------------------------------
 
 ShowInvoice.getLayout = function getLayout(page: React.ReactElement) {
@@ -221,32 +221,40 @@ function RefundAddress({ invoice }: { invoice: any }) {
 
   const [refund, setRefund] = useState<any> ();
 
-  //let { data, error } = useSWR(`https://api.anypayx.com/v1/api/invoices/${invoice.uid}/refund`)
+  const { data, error, refresh, loading } = useAPI(`/account/invoices/${invoice.uid}/refund`)
 
-  const url = `https://api.anypayx.com/v1/api/account/invoices/${invoice.uid}/refund`
+  console.log({ data, error,loading })
 
-  console.log({ url })
-
-  let data;
-
-  useEffect(() => {
-
-    axios.get(url).then(response => {
-
-      data = response.data;
-
-      console.log('refund.response.data', data)
-  
-      setRefund(data);
-    })
-
-  }, [])
-
-  if (!refund) {
+  if (loading) {
     return <></>
   }
 
+  const onRefund = function() {
+    refresh();
+  }
+
   console.log('refund address', refund)
+
+  if (data?.refund_invoice?.status === 'paid') {
+
+    return (
+      <>
+        <br />
+        <Box sx={{
+          bgcolor: 'background.paper',
+          boxShadow: 1,
+          borderRadius: 2,
+          p: 2,
+          minWidth: 300,
+        }}>
+          <h3>Refund Sent</h3>
+          <p>{data.refund_invoice?.hash}</p>
+        </Box>
+        <br/>
+      </>
+    )
+    
+  } else {
 
   return(
     <>
@@ -258,13 +266,13 @@ function RefundAddress({ invoice }: { invoice: any }) {
             p: 2,
             minWidth: 300,
           }}>  
-        <h3>Refund Address</h3>
-        <p>{refund.refund?.address}</p>
+        <CollectRefundDialog refund={data} onRefund={onRefund}/>
       </Box>
       <br/>
 
     </>
   )
+  }
 }
 
 function InvoiceEvents({ invoice }: { invoice: Invoice }) {

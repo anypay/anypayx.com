@@ -4,19 +4,12 @@ import { useState } from 'react';
 import {
   Button,
   Dialog,
-  TextField,
   DialogTitle,
   DialogContent,
   DialogActions,
-  DialogContentText
 } from '@mui/material';
 
 // ----------------------------------------------------------------------
-
-interface Account {
-    id: number;
-    denomination: string;
-}
 
 export default function RefundAddressDialog({ refund }: { refund?: any }) {
     console.log({ refund })
