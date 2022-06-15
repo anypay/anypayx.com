@@ -29,6 +29,8 @@ import useWebsocket from '../../hooks/useWebsocket';
 
 import LoadingScreen from '../LoadingScreen';
 
+import { useRouter } from 'next/router';
+
 const TABLE_HEAD = [
     { id: 'coin', label: 'Coin', alignRight: false },
     { id: 'amount', label: 'Amount', alignRight: false },
@@ -106,6 +108,8 @@ export default function PaymentsList() {
 
   const { events } = useWebsocket()
 
+  const router = useRouter();
+
 
     const [order] = useState<'asc' | 'desc'>('asc');
     const [orderBy] = useState('date');
@@ -171,8 +175,9 @@ export default function PaymentsList() {
     }
 
     function rowClicked(row: any) {
-
       console.log("payments.list.row.clicked", row)
+
+      router.push(`/dashboard/invoices/${row.invoice.uid}`)
     }
 
     return (
@@ -199,26 +204,26 @@ export default function PaymentsList() {
 
                       return (
                         <TableRow
-                          onClick={() => rowClicked(row)}
                           hover
                           key={txid}
                         >
 
-                          <TableCell size="small" sx={{ display: 'flex', alignItems: 'center' }}>
+                          <TableCell 
+                            onClick={() => rowClicked(row)}
+                            size="small"
+                            sx={{ display: 'flex', alignItems: 'center' }}>
                             <Avatar alt={currency} src={`/icons/coins/${currency}.png`} sx={{ mr: 2 }} />
                             <Typography variant="subtitle2" noWrap>
                                 {currency}
                             </Typography>
                           </TableCell>
-                          <TableCell align="left">
+                          <TableCell onClick={() => rowClicked(row)} align="left">
                               {invoice.amount} {invoice.currency}
                           </TableCell>
-                          <TableCell align="left">
-                            <Link href={`/dashboard/invoices/${invoice.uid}`} passHref>
-                              <span style={{color: 'white', textDecoration: 'underline' }}>{invoice.uid}</span>
-                            </Link>
+                          <TableCell onClick={() => rowClicked(row)} align="left">
+                              <span style={{color: 'white', textDecoration: 'none' }}>{invoice.uid}</span>
                           </TableCell>
-                          <TableCell align="left">{date}</TableCell>
+                          <TableCell onClick={() => rowClicked(row)} align="left">{date}</TableCell>
                           <TableCell align="right">
                             <PaymentsMoreMenu invoice={invoice} onSendWebhook={() => {
                                 sendWebhook(invoice.uid)
