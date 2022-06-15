@@ -170,6 +170,11 @@ export default function PaymentsList() {
         return <div>Failed to Load Payments</div>
     }
 
+    function rowClicked(row: any) {
+
+      console.log("payments.list.row.clicked", row)
+    }
+
     return (
 
         <Card>
@@ -194,6 +199,7 @@ export default function PaymentsList() {
 
                       return (
                         <TableRow
+                          onClick={() => rowClicked(row)}
                           hover
                           key={txid}
                         >

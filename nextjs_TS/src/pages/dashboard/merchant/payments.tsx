@@ -17,6 +17,8 @@ import Iconify from '../../../components/Iconify';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 import PaymentsList from '../../../components/payments/PaymentsList'
 
+import { getJwt } from '../../../utils/jwt'
+
 
 ShowInvoice.getLayout = function getLayout(page: React.ReactElement) {
   return <Layout>{page}</Layout>;
@@ -30,7 +32,11 @@ export default function ShowInvoice() {
 
   const { user } = useAuth();
 
-  const checkoutURL = `https://anypayx.com/app/#/pay/${user?.id}`
+  console.log({ user });
+
+  const { uid: token } = getJwt()
+
+  const checkoutURL = `https://api.anypayx.com/reports/csv/payments.csv?token=${token}`
 
   return (
     <Page title="Payments: List">
@@ -45,8 +51,8 @@ export default function ShowInvoice() {
           action={
 
             <a target="_blank" href={checkoutURL} rel="noopener noreferrer">
-                <Button variant="contained" startIcon={<Iconify icon={'eva:plus-fill'} />}>
-                Quick Checkout
+                <Button variant="contained" startIcon={<Iconify icon={'eva:share-fill'} />}>
+                Export CSV Report
               </Button>
             </a>
 

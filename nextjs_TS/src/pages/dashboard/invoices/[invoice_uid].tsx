@@ -135,7 +135,7 @@ const loadModal = ({ uid }: { uid: any }) => {
 }
 
 function InvoiceDetails({ invoice, payment }: {invoice: Invoice, payment: Payment}) {
-    console.log('invoice', invoice)
+  
     return (
       <>
         <Script
