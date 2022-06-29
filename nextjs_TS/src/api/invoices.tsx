@@ -1,9 +1,7 @@
 
-import { useAPI } from './useAPI';
+import { useAPI, BASE } from './useAPI';
 
 import axios from '../utils/axios'
-
-const BASE = 'https://api.anypayx.com/v1/api';
 
 export function useListInvoices() {
 

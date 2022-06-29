@@ -1,8 +1,9 @@
 
 import useSWR from 'swr';
 
-//const BASE = 'https://anypayx.com/v1/api';
-const BASE = 'https://api.anypayinc.com/v1/api';
+//const BASE = 'https://api.anypayx.com/v1/api';
+const BASE = 'https://api.next.anypayx.com/v1/api';
+//const BASE = 'http://localhost:8000/v1/api';
 
 import axios from '../utils/axios'
 
@@ -20,4 +21,4 @@ function useAPI(path: string) {
 
 }
 
-export { useAPI }
+export { useAPI, BASE }

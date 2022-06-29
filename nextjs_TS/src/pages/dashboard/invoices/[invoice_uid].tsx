@@ -33,6 +33,8 @@ import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 import CollectRefundDialog from '../../../components/payments/CollectRefundDialog'
 
 import { useRouter } from "next/router";
+
+import { BASE } from '../../../api/useAPI'
 // ----------------------------------------------------------------------
 
 ShowInvoice.getLayout = function getLayout(page: React.ReactElement) {
@@ -47,7 +49,7 @@ export default function ShowInvoice() {
     
   const { themeStretch } = useSettings();
 
-  const { data, error } = useSWR(`https://api.anypayx.com/v1/api/invoices/${query.invoice_uid}`, axios)
+  const { data, error } = useSWR(`${BASE}/invoices/${query.invoice_uid}`, axios)
 
   if (!data && !error) {
     return <LoadingScreen />;
@@ -271,7 +273,7 @@ function RefundAddress({ invoice }: { invoice: any }) {
 
 function InvoiceEvents({ invoice }: { invoice: Invoice }) {
 
-    const { data, error } = useSWR(`https://api.anypayx.com/v1/api/invoices/${invoice.uid}/events`, axios)
+    const { data, error } = useSWR(`${BASE}/v1/api/invoices/${invoice.uid}/events`, axios)
 
     if (error) {
         return (

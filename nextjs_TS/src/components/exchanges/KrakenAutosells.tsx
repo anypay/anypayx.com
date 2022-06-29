@@ -11,6 +11,7 @@ import {
   import useSWR from 'swr';
   import axios from '../../utils/axios';
 
+  import { BASE } from '../../api/useAPI'
   
   const TABLE_HEAD = [
       { id: 'date', label: 'Date', alignRight: false },
@@ -75,7 +76,6 @@ import {
     );
   }
   
-  
   export default function KrakenAutosells() {
     
       const [order] = useState<'asc' | 'desc'>('asc');
@@ -85,7 +85,7 @@ import {
   
       const { enqueueSnackbar } = useSnackbar();
 
-      const { data, error } = useSWR('https://api.anypayx.com/v1/api/kraken/autosell', axios)
+      const { data, error } = useSWR(`${BASE}/kraken/autosell`, axios)
 
       if (!data && !error) {
         return <LoadingScreen/>

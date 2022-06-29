@@ -22,6 +22,8 @@ import Layout from '../../../layouts';
 import Page from '../../../components/Page';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 
+import { BASE } from '../../../api/useAPI';
+
 // ----------------------------------------------------------------------
 
 WebhooksList.getLayout = function getLayout(page: React.ReactElement) {
@@ -34,7 +36,7 @@ export default function WebhooksList() {
   const { enqueueSnackbar } = useSnackbar();
   const { themeStretch } = useSettings();
 
-  const { data, error } = useSWR('https://api.anypayx.com/v1/api/account/access-keys', axios)
+  const { data, error } = useSWR(`${BASE}/account/access-keys`, axios)
 
   if (error) {
     enqueueSnackbar('Error Loading API Keys', { variant: 'warning' })
