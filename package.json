@@ -44,6 +44,7 @@
     "autosuggest-highlight": "^3.2.1",
     "axios": "^0.26.0",
     "change-case": "^4.1.2",
+    "commitizen": "^4.2.4",
     "cookie": "^0.4.2",
     "d3-array": "^3.1.1",
     "d3-scale": "^4.0.2",
