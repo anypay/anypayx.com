@@ -1,31 +1,34 @@
-# About zip
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-**This package will include directories:**
+## Getting Started
 
-### 1.react-scripts folder
+First, run the development server:
 
-- Using react script & react router.
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-### 2.nextjs folder
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- Using for Next.Js
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-### 3.simple folder
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-- To remove unnecessary components. This is a simplified version ([https://simple-minimals.vercel.app](https://simple-minimals.vercel.app))
-- Good to start a new project. You can copy components from the full version.
-- Make sure to install the dependencies exactly as compared to the full version
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-**NOTE:**
+## Learn More
 
-**1 - Recommended environment:**
+To learn more about Next.js, take a look at the following resources:
 
-- node js 14.x (suggestion v14.17.3)
-- npm 6+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-**2 - After downloading and extracting please do not delete any files.**
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-- For React Script : Run command `npm install` & `npm start` (or yarn install & yarn start).
-- For Next.Js : Run command `npm install` & `npm run dev` (or yarn install & yarn dev).
+## Deploy on Vercel
 
-[Learn more:](https://docs-minimals.vercel.app/quick-start/requirements)
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
