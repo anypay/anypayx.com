@@ -1,33 +1,75 @@
 version: 2.1
 
-workflows:
-  version: 2
-  build-deploy:
-    jobs:
-      - build_and_deploy:
-          filters:
-            branches:
-              only: master
-
 jobs:
-  build_and_deploy:
+  build:
     docker:
       - image: circleci/node:14
     steps:
       - checkout
       - run:
           name: Install Dependencies
-          command: cd nextjs_TS && npm install
+          command: cd nextjs_TS && yarn
 
       - run:
           name: Build Static App
-          command: cd nextjs_TS && npm run export
+          command: cd nextjs_TS && yarn run export
 
       - run:
           name: Run Tests
           command:  echo "no tests"
 
+  build_docker:
+    docker:
+      machine: true
+    steps:
+      - checkout
+      - setup_remote_docker
       - run:
-          name: Deploy to Webserver
-          command: scp -o StrictHostKeyChecking=no -r nextjs_TS/_static/* ubuntu@anypayx.com:/opt/next.anypayx.com
+          name: Build docker image
+          command: docker build -t anypay/anypayx.com . 
+      - run:
+          name: Push to Docker Hub
+          command: |
+            docker login --username $DOCKER_USER --password $DOCKER_PASSWORD 
+            docker tag anypay anypay/anypayx.com:$CIRCLE_BRANCH
+            docker push anypay/anypayx.com:$CIRCLE_BRANCH
+
+  deploy:
+    machine: true
+    steps:
+      - run:
+          name: Deploy to Web Servers
+          command: ssh root@anypayx.com "sudo chef-client -o recipe[anypayx.com]"
+
+  deploy_beta:
+    machine: true
+    steps:
+      - run:
+          name: Deploy Next Branch To Next Web Server
+          command: ssh root@next.anypayx.com "sudo chef-client -o recipe[anypay.com::next]"
+
+
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - build_docker:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - build_docker
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_next:
+          requires:
+            - build_docker
+          filters:
+            branches:
+              only:
+                - next
 
