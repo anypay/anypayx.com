@@ -31,7 +31,6 @@ jobs:
           name: Push to Docker Hub
           command: |
             docker login --username $DOCKER_USER --password $DOCKER_PASSWORD 
-            docker tag anypay $DOCKER_REPO:$CIRCLE_BRANCH
             docker push $DOCKER_REPO:$CIRCLE_BRANCH
 
   deploy:
