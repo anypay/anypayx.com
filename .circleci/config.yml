@@ -26,13 +26,13 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build docker image
-          command: docker build -t anypay/anypayx.com . 
+          command: docker build -t $DOCKER_REPO:$CIRCLE_BRANCH . 
       - run:
           name: Push to Docker Hub
           command: |
             docker login --username $DOCKER_USER --password $DOCKER_PASSWORD 
-            docker tag anypay anypay/anypayx.com:$CIRCLE_BRANCH
-            docker push anypay/anypayx.com:$CIRCLE_BRANCH
+            docker tag anypay $DOCKER_REPO:$CIRCLE_BRANCH
+            docker push $DOCKER_REPO:$CIRCLE_BRANCH
 
   deploy:
     machine: true
