@@ -14,7 +14,7 @@ RUN npm install
 # Bundle app source
 COPY ./nextjs_TS /usr/src/app
 
-#RUN npm run build
+RUN npm run build
 
 CMD npm start
 
