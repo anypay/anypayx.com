@@ -9,12 +9,12 @@ ENV NEXT_TELEMETRY_DISABLED 1
 # Install app dependencies
 COPY nextjs_TS/package.json /usr/src/app/
 
-RUN yarn
+RUN npm install
 
 # Bundle app source
 COPY ./nextjs_TS /usr/src/app
 
-RUN yarn build
+#RUN npm run build
 
-CMD yarn start
+CMD npm start
 
