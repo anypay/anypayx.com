@@ -20,7 +20,7 @@ jobs:
 
   build_docker:
     docker:
-      machine: true
+      - image: circleci/node:14
     steps:
       - checkout
       - setup_remote_docker
@@ -41,7 +41,7 @@ jobs:
           name: Deploy to Web Servers
           command: ssh root@anypayx.com "sudo chef-client -o recipe[anypayx.com]"
 
-  deploy_beta:
+  deploy_next:
     machine: true
     steps:
       - run:
