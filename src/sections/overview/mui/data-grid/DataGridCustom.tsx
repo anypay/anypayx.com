@@ -216,7 +216,7 @@ export default function DataGridCustom() {
     const ratingColumn = columns.find((column) => column.field === 'rating')!;
     const ratingColIndex = columns.findIndex((col) => col.field === 'rating');
 
-    const ratingFilterOperators = getGridNumericColumnOperators().map((operator) => ({
+    const ratingFilterOperators = getGridNumericColumnOperators().map((operator: any) => ({
       ...operator,
       InputComponent: RatingInputValue,
     }));
