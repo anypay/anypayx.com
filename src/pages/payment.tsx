@@ -35,7 +35,7 @@ export default function Payment() {
         <Container>
           <Box sx={{ mb: 5 }}>
             <Typography variant="h3" align="center" paragraph>
-              Let's finish powering you up!
+              Let us finish powering you up!
             </Typography>
             <Typography align="center" sx={{ color: 'text.secondary' }}>
               Professional plan is right for you.

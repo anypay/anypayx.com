@@ -13,7 +13,7 @@ import { ListItemStyle } from './style';
 import { isExternalLink } from '..';
 
 // ----------------------------------------------------------------------
-
+// eslint-disable-next-line react/display-name
 export const NavItemRoot = forwardRef<HTMLButtonElement & HTMLAnchorElement, NavItemProps>(
   ({ item, active, open, onMouseEnter, onMouseLeave }, ref) => {
     const { title, path, icon, children } = item;
@@ -47,7 +47,7 @@ export const NavItemRoot = forwardRef<HTMLButtonElement & HTMLAnchorElement, Nav
 );
 
 // ----------------------------------------------------------------------
-
+// eslint-disable-next-line react/display-name
 export const NavItemSub = forwardRef<HTMLButtonElement & HTMLAnchorElement, NavItemProps>(
   ({ item, active, open, onMouseEnter, onMouseLeave }, ref) => {
     const { title, path, icon, children } = item;

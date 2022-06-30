@@ -5,6 +5,7 @@ import { Box, IconButton, IconButtonProps } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
+// eslint-disable-next-line react/display-name
 const IconButtonAnimate = forwardRef<HTMLButtonElement, IconButtonProps>(
   ({ children, size = 'medium', ...other }, ref) => (
     <AnimateWrap size={size}>

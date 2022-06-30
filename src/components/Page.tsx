@@ -11,6 +11,7 @@ interface Props extends BoxProps {
   title: string;
 }
 
+// eslint-disable-next-line react/display-name
 const Page = forwardRef<HTMLDivElement, Props>(({ children, title = '', meta, ...other }, ref) => (
   <>
     <Head>

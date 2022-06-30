@@ -17,6 +17,7 @@ interface Props extends IProps {
   variant?: Variant;
 }
 
+// eslint-disable-next-line react/display-name
 const TextMaxLine = forwardRef<HTMLAnchorElement, Props>(
   ({ asLink, variant = 'body1', line = 2, persistent = false, children, sx, ...other }, ref) => {
     const { lineHeight } = GetFontValue(variant);

@@ -19,6 +19,7 @@ interface Props extends Omit<FabProps, 'color'> {
     | 'error';
 }
 
+// eslint-disable-next-line react/display-name
 const FabButtonAnimate = forwardRef<HTMLButtonElement, Props>(
   ({ color = 'primary', size = 'large', children, sx, sxWrap, ...other }, ref) => {
     const theme = useTheme();
