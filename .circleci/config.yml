@@ -8,11 +8,11 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          command: cd nextjs_TS && yarn
+          command: yarn
 
       - run:
           name: Build Static App
-          command: cd nextjs_TS && yarn run export
+          command: yarn run export
 
       - run:
           name: Run Tests
