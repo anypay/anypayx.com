@@ -11,7 +11,7 @@ The application runs as a long-running process which should be managed by k8s, d
 docker pull anypay/wallet-bot
 ```
 
-### Setting Up Wallet Keys
+#### Setting Up Wallet Keys
 
 Rather than managing your own private key generation and backup, allow wallet bot to generate keys offline and automatically output a wallet-bot.json config file for you. Simply save a copy of this file to your organizations' vaults to restore funds in case of a machine failure.
 
@@ -47,7 +47,7 @@ You may also combine some variables from one method with others from the other m
 
 Wallets and system settings may be configured by a combination of json config files, environment variables, and command line flags. All variables may be provided by either of the config variations.
 
-### Environment Variables
+#### Environment Variables
 
 *required
 
