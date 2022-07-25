@@ -12,13 +12,15 @@ Users can choose what priority fee they would like to require of payees. There a
 
 These are represented in the code with:
 
-`{
+```
+{
   "fastestFee": 11,
   "halfHourFee": 5,
   "hourFee": 1,
   "economyFee": 1,
   "minimumFee": 1
-}`
+}
+```
 
 ## Why Use This
 
