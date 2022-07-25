@@ -6,7 +6,7 @@ Users can choose what priority fee they would like to require of payees. There a
 2. Half Hour Fee
 3. Hour Fee
 4. Economy Fee
-5. Minimum Fee
+5. Minimum Fee (Slowest)
 
 ## Code
 
