@@ -19,6 +19,8 @@ import PaymentsList from '../../../components/payments/PaymentsList'
 
 import { getJwt } from '../../../utils/jwt'
 
+import { DOMAIN } from '../../../api/useAPI';
+
 
 ShowInvoice.getLayout = function getLayout(page: React.ReactElement) {
   return <Layout>{page}</Layout>;
@@ -36,7 +38,7 @@ export default function ShowInvoice() {
 
   const { uid: token } = getJwt()
 
-  const checkoutURL = `https://api.anypayx.com/reports/csv/payments.csv?token=${token}`
+  const checkoutURL = `https://${DOMAIN}/reports/csv/payments.csv?token=${token}`
 
   return (
     <Page title="Payments: List">

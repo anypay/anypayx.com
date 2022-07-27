@@ -6,13 +6,15 @@ import useWebSocket, { ReadyState } from 'react-use-websocket';
 import EventEmitter from 'eventemitter3';
 import { snackbarClasses } from '@mui/material';
 
+import { DOMAIN } from '../api/useAPI'
+
 // ----------------------------------------------------------------------
 
 const useWebsocket = () => {
 
     const { enqueueSnackbar } = useSnackbar();
 
-    const [socketUrl, setSocketUrl] = useState('wss://api.anypayinc.com');
+    const [socketUrl, setSocketUrl] = useState(`wss://${DOMAIN}`);
     const [messageHistory, setMessageHistory] = useState([]);
 
   const events = new EventEmitter()

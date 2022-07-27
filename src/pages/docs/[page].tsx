@@ -2,15 +2,16 @@
 import { styled } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
 // layouts
-import Layout from '../layouts';
+import Layout from '../../layouts';
 // components
-import Page from '../components/Page';
-// sections
-import { FaqsHero, FaqsList1, FaqsList2 } from '../sections/faqs';
+import Page from '../../components/Page';
 
 import MuiMarkdown from 'mui-markdown';
 
 import { useState } from 'react'
+
+import { useRouter } from 'next/router'
+
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -22,17 +23,24 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-Faqs.getLayout = function getLayout(page: React.ReactElement) {
+DocumentationMarkdownPage.getLayout = function getLayout(page: React.ReactElement) {
   return <Layout variant="main">{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
-export default function Faqs() {
+export default function DocumentationMarkdownPage() {
+
+  const router = useRouter()
+
+  console.log('pathname', router.pathname)
+  console.log('router', router)
 
   let [markdown, setMarkdown] = useState('')
 
-  fetch('/docs/wallet-bot.md').then(async (response) => {
+  const file = router.asPath.split('/')[2]
+
+  fetch(`/docs/${file}.md`).then(async (response) => {
 
     const md = await response.text()
 
@@ -41,9 +49,10 @@ export default function Faqs() {
   })
 
   return (
-    <Page title="Wallet Bot">
+    <Page title="Documentation Page Name">
       <RootStyle>
         <Container>
+
           <MuiMarkdown>{markdown}</MuiMarkdown>
           <br/>
         </Container>

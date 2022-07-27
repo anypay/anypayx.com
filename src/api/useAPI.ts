@@ -1,19 +1,19 @@
 
 import useSWR from 'swr';
 
-const BASE = 'https://api.anypayx.com/v1/api';
-//const BASE = 'https://api.next.anypayx.com/v1/api';
-//const BASE = 'http://localhost:8000/v1/api';
+export const DOMAIN = 'api_next.anypayx.com'
+
+export const BASE = `https://${DOMAIN}/v1/api`;
 
 import axios from '../utils/axios'
 
-function fetcher(params: any) {
+export function fetcher(params: any) {
     return axios(params).then(({data}) => {
         return data;
     })
 }
 
-function useAPI(path: string) {
+export function useAPI(path: string) {
 
     let {data, error, mutate: refresh, isValidating: loading} = useSWR(`${BASE}${path}`, fetcher)
     
@@ -21,4 +21,3 @@ function useAPI(path: string) {
 
 }
 
-export { useAPI, BASE }

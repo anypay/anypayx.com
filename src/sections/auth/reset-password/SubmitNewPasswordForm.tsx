@@ -12,6 +12,8 @@ import { FormProvider, RHFTextField } from '../../../components/hook-form';
 
 import axios from '../../../utils/axios';
 
+import { DOMAIN } from '../../../api/useAPI'
+
 // ----------------------------------------------------------------------
 
 type FormValuesProps = {
@@ -42,7 +44,7 @@ export default function SubmitNewPasswordForm({ onSent, token }: Props) {
 
   const onSubmit = async (data: FormValuesProps) => {
     try {
-      await axios.post(`https://api.anypayinc.com/password-resets/${token}`, {
+      await axios.post(`https://${DOMAIN}/password-resets/${token}`, {
         password: data.password
       });
       if (isMountedRef.current) {
