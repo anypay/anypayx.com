@@ -51,6 +51,7 @@ export const PATH_DASHBOARD = {
   account: {
     settings: path(ROOTS_DASHBOARD, '/account/settings'),
     wallets: path(ROOTS_DASHBOARD, '/account/wallets'),
+    links: path(ROOTS_DASHBOARD, '/linked-accounts')
   },
   general: {
     app: path(ROOTS_DASHBOARD, '/app'),

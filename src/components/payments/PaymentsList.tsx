@@ -104,7 +104,7 @@ function PaymentsListHead({
 
 }*/
 
-export default function PaymentsList() {
+export default function PaymentsList({ payments }: { payments?: any[] }) {
 
   const { events } = useWebsocket()
 
@@ -118,7 +118,9 @@ export default function PaymentsList() {
 
     const { enqueueSnackbar } = useSnackbar();
 
-    const { payments, error, loading, refresh } = useListPayments();
+    const { payments: _payments, error, loading, refresh } = useListPayments();
+
+    if (!payments && _payments) { payments = _payments }
 
     events.on('payment', (payload) => {
 
@@ -141,16 +143,6 @@ export default function PaymentsList() {
     })
     */
 
-    const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - payments.length) : 0;
-
-
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
-
-    
 
     if (!payments && loading) {
         return <LoadingScreen />
@@ -174,11 +166,22 @@ export default function PaymentsList() {
         return <div>Failed to Load Payments</div>
     }
 
+    const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - payments.length) : 0;
+
+
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setRowsPerPage(parseInt(event.target.value, 10));
+      setPage(0);
+    };
+    
+
     function rowClicked(row: any) {
       console.log("payments.list.row.clicked", row)
 
       router.push(`/dashboard/invoices/${row.invoice.uid}`)
     }
+
+    console.log('PAYMENTS', payments)
 
     return (
 
