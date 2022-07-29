@@ -64,7 +64,6 @@
     "lodash": "^4.17.19",
     "mapbox-gl": "^2.7.0",
     "moment": "^2.29.1",
-    "mui-markdown": "^0.5.5",
     "next": "^12.1.0",
     "next-transpile-modules": "^9.0.0",
     "notistack": "^2.0.3",
