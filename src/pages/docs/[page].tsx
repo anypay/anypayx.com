@@ -6,7 +6,7 @@ import Layout from '../../layouts';
 // components
 import Page from '../../components/Page';
 
-import MuiMarkdown from 'mui-markdown';
+//import MuiMarkdown from 'mui-markdown';
 
 import { useState } from 'react'
 
@@ -53,7 +53,6 @@ export default function DocumentationMarkdownPage() {
       <RootStyle>
         <Container>
 
-          <MuiMarkdown>{markdown}</MuiMarkdown>
           <br/>
         </Container>
       </RootStyle>
