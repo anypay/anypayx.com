@@ -5,8 +5,8 @@ export const DOMAIN = 'api.anypayx.com'
 
 //export const BASE = `https://${DOMAIN}/v1/api`;
 
-export const BASE = process.env.API_BASE || `http://localhost:8000/v1/api`;
-//export const BASE = process.env.API_BASE || `https://api_next.anypayx.com/v1/api`;
+//export const BASE = process.env.API_BASE || `http://localhost:8000/v1/api`;
+export const BASE = process.env.API_BASE || `https://api.anypayx.com/v1/api`;
 
 const API_BASE = BASE
 
