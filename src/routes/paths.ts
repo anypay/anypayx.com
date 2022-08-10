@@ -32,6 +32,10 @@ export const PATH_PAGE = {
   components: '/components'
 };
 
+export const PATH_APPS = {
+  'wallet-bot': path('/apps', '/wallet-bot')
+}
+
 export const PATH_DASHBOARD = {
   root: ROOTS_DASHBOARD,
   merchant: {

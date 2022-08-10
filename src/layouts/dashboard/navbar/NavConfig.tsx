@@ -1,5 +1,5 @@
 // routes
-import { PATH_DASHBOARD } from '../../../routes/paths';
+import { PATH_DASHBOARD, PATH_APPS } from '../../../routes/paths';
 // components
 import Label from '../../../components/Label';
 import SvgIconStyle from '../../../components/SvgIconStyle';
@@ -48,6 +48,12 @@ var navConfig = [
       { title: 'API keys', path: PATH_DASHBOARD.developer.apikeys, icon: ICONS.dashboard },
       { title: 'audit logs', path: PATH_DASHBOARD.developer.logs, icon: ICONS.banking },
       //{ title: 'webhooks', path: PATH_DASHBOARD.developer.webhooks, icon: ICONS.mail }
+    ],
+  },
+  {
+    subheader: 'apps',
+    items: [
+      { title: 'Wallet Bot', path: PATH_APPS['wallet-bot'], icon: ICONS.dashboard }
     ],
   },
   {
