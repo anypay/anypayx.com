@@ -32,7 +32,9 @@ To run with wallet-bot.json config file:
 
 ```
 docker run \
+
   -v /path/to/wallet-bot.json:/etc/wallet-bot/wallet-bot.json \
+  
   anypay/wallet-bot start
 ```
 

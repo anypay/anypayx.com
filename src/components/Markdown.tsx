@@ -82,7 +82,8 @@ const MarkdownStyle = styled('div')(({ theme }) => {
 export default function Markdown({ ...other }: Options) {
   return (
     <MarkdownStyle>
-      <ReactMarkdown rehypePlugins={[rehypeRaw]} components={components} {...other} />
+      {/*<ReactMarkdown rehypePlugins={[rehypeRaw]} components={components} {...other} />*/}
+      <ReactMarkdown {...other} />
     </MarkdownStyle>
   );
 }

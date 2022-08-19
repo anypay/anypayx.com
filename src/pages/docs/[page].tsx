@@ -12,6 +12,10 @@ import { useState } from 'react'
 
 import { useRouter } from 'next/router'
 
+import Markdown from '../../components/Markdown'
+
+import remarkGfm from 'remark-gfm'
+
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -48,12 +52,15 @@ export default function DocumentationMarkdownPage() {
 
   })
 
+  const remarkPlugins = [
+    remarkGfm
+  ]
+
   return (
     <Page title="Documentation Page Name">
       <RootStyle>
         <Container>
-
-          <br/>
+          <Markdown remarkPlugins={remarkPlugins}>{markdown}</Markdown>
         </Container>
       </RootStyle>
     </Page>
