@@ -51,7 +51,7 @@ export default function WalletBotDashboard() {
 
         />       
         <Card>
-          <img src="https://doge.bitcoinfiles.org/ea8205469186c12f6b23866d3ef50ab84f6f6b82dab43075e0229ab32ca6f5bc"/>
+          <img src="https://bitcoinfileserver.com/ea8205469186c12f6b23866d3ef50ab84f6f6b82dab43075e0229ab32ca6f5bc"/>
         </Card>
         <br/>
         <Card>
