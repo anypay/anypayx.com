@@ -64,7 +64,7 @@ export default function DashboardLayout({ children }: Props) {
 
   const { enqueueSnackbar } = useSnackbar();
   
-  events.on('authenticated', (payload) => {
+  events.once('authenticated', (payload) => {
 
     enqueueSnackbar('Websocket Authenticated');
     
