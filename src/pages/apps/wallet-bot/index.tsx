@@ -7,7 +7,12 @@ import {
   CardHeader,
   Stack,
   Container,
-  Typography
+  Typography,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody
 } from '@mui/material';
 // hooks
 import useSettings from '../../../hooks/useSettings';
@@ -32,6 +37,10 @@ export default function WalletBotDashboard() {
   const { themeStretch } = useSettings();
 
   const { data, error, loading } = useAPI(`/apps/wallet-bot`)
+
+  const { data: invoices, error: invoicesError, loading: invoiesLoading } = useAPI(`/apps/wallet-bot/invoices`)
+
+  console.log({ invoices, invoicesError, invoiesLoading })
 
   if (error) {
     enqueueSnackbar('Error Loading Wallet Bot', { variant: 'warning' })
@@ -95,6 +104,32 @@ export default function WalletBotDashboard() {
 
           </Stack>
         </Card>
+        <br/>
+
+        {data?.balances && (
+          <Card>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Asset</TableCell>
+                        <TableCell>Address</TableCell>
+                        <TableCell>Value</TableCell>
+                        <TableCell>Value USD</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                {data?.balances.map((balance) => (
+                      <TableRow key={`${balance.asset}-${balance.address}`}>
+                          <TableCell>{balance.asset}</TableCell>
+                          <TableCell>{balance.address}</TableCell>
+                          <TableCell>{balance.value / 100_000_000}</TableCell>
+                          <TableCell>${balance.value_usd}</TableCell>
+                      </TableRow>
+                  ))}
+                </TableBody>
+            </Table>
+          </Card>
+        )}
 
       </Container>
     </Page>
