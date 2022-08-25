@@ -50,6 +50,7 @@ type Props = {
 };
 
 export default function DashboardLayout({ children }: Props) {
+  
   const { collapseClick, isCollapse } = useCollapseDrawer();
 
   const { themeLayout } = useSettings();
