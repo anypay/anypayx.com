@@ -35,8 +35,8 @@ export default function NewWalletBotPaymentDialog({ account, onPaymentRequestCre
 }) {
   const [open, setOpen] = useState(false);
   const [amount, setAmount] = useState(0);
-  const [coin, setCoin] = useState(0);
-  const [address, setAddress] = useState(0);
+  const [coin, setCoin] = useState('DASH');
+  const [address, setAddress] = useState(undefined);
 
   const { enqueueSnackbar } = useSnackbar();
 
