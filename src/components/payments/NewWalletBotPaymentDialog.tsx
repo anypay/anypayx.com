@@ -29,9 +29,10 @@ interface Account {
     denomination: string;
 }
 
-export default function NewWalletBotPaymentDialog({ account, onPaymentRequestCreated }: {
+export default function NewWalletBotPaymentDialog({ account, onPaymentRequestCreated, coins }: {
     account?: Account,
-    onPaymentRequestCreated?: Function
+    onPaymentRequestCreated?: Function,
+    coins?: string[]
 }) {
   const [open, setOpen] = useState(false);
   const [amount, setAmount] = useState(0);
@@ -158,6 +159,9 @@ export default function NewWalletBotPaymentDialog({ account, onPaymentRequestCre
                 </option>
                 <option key={'BSV'} value='BSV'>
                     BSV
+                </option>
+                <option key={'BTC'} value='BTC'>
+                    BTC
                 </option>
             </Select>
 
