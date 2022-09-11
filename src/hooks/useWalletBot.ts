@@ -59,10 +59,19 @@ export default function() {
 
     const { data, error, loading } = useAPI(`/apps/wallet-bot`)
 
-    const { data: paid } = useAPI(`/apps/wallet-bot/invoices?status=paid`)
-    const { data: unpaid } = useAPI(`/apps/wallet-bot/invoices?status=unpaid`)
-    const { data: cancelled } = useAPI(`/apps/wallet-bot/invoices?status=cancelled`)
-    const { data: failed } = useAPI(`/apps/wallet-bot/invoices?status=failed`)
+    const { data: paid, refresh: refreshPaid } = useAPI(`/apps/wallet-bot/invoices?status=paid`)
+    const { data: unpaid, refresh: refreshUnpaid } = useAPI(`/apps/wallet-bot/invoices?status=unpaid`)
+    const { data: cancelled, refresh: refreshCancelled } = useAPI(`/apps/wallet-bot/invoices?status=cancelled`)
+    const { data: failed, refresh: refreshFailed } = useAPI(`/apps/wallet-bot/invoices?status=failed`)
+
+    const refresh = async function() {
+        return Promise.all([
+            refreshPaid,
+            refreshUnpaid,
+            refreshCancelled,
+            refreshFailed
+        ])
+    }
 
     const [numberPending, setNumberPending] = useState<number | null>(0)
     const [numberPaid, setNumberPaid] = useState<number | null>(null)
@@ -126,7 +135,8 @@ export default function() {
         error,
         status,
         balances,
-        counts
+        counts,
+        refresh
     }
 
 }
