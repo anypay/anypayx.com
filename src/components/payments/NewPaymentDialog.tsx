@@ -66,7 +66,7 @@ export default function NewPaymentDialog({ account }: { account?: Account }) {
   return (
     <div>
       <Button variant="outlined" color="warning" onClick={handleClickOpen}>
-        + New Payment
+        + Collect Payment
       </Button>
 
       <Dialog open={open} onClose={handleCancel}>

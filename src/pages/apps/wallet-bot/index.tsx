@@ -36,11 +36,14 @@ import Image from 'next/image'
 
 import { app } from 'anypay'
 
+import NewWalletBotPaymentDialog from '../../../components/payments/NewWalletBotPaymentDialog'
+
 import useWalletBot from '../../../hooks/useWalletBot'
 
 import SendSharpIcon from '@mui/icons-material/SendSharp';
 
 import { useState } from 'react'
+import { Refresh } from '@mui/icons-material';
 
 const Img = styled('img')({
   margin: 'auto',
@@ -98,7 +101,7 @@ export default function WalletBotDashboard() {
   const { enqueueSnackbar } = useSnackbar();
   const { themeStretch } = useSettings();
 
-  const { counts, balances, token, data, error, connected, status, paid, unpaid, cancelled, failed } = useWalletBot()
+  const { counts, balances, token, data, error, connected, status, paid, unpaid, cancelled, failed, refresh } = useWalletBot()
 
   const [showByStatus, setShowByStatus] = useState<string>('paid')
 
@@ -115,6 +118,8 @@ export default function WalletBotDashboard() {
   const StatusCard = status === 'connected' ? ConnectedStatusCard : DisconnectedStatusCard;
 
   async function payNow() {
+
+    /*
 
     const anypay = app(token)
 
@@ -134,7 +139,17 @@ export default function WalletBotDashboard() {
     }])
 
     console.log('request', request)
+    */
 
+  }
+
+  console.log('BALANCES', data?.balances)
+
+  async function onPaymentRequestCreated() {
+
+    enqueueSnackbar(`wallet-bot.payment.created`);
+
+    await refresh()
   }
 
   return (
@@ -171,7 +186,7 @@ export default function WalletBotDashboard() {
               <Stack spacing={2} sx={{ p: 3 }}>
 
                 <Typography variant="body2">
-                  <h1>Pay Now <span style={{marginTop: '2em'}} ><SendSharpIcon fontSize={'large'}/></span></h1>
+                  <NewWalletBotPaymentDialog onPaymentRequestCreated={onPaymentRequestCreated} />              
                 </Typography>
               </Stack>
               </StyledPayNowCard>
@@ -386,13 +401,14 @@ export default function WalletBotDashboard() {
 
                   <TableBody>
                   {data?.balances.map((balance) => (
-                        <TableRow key={`${balance.asset}-${balance.address}`}>
-                            <TableCell>{balance.asset}</TableCell>
-                            <TableCell>{balance.address}</TableCell>
-                            <TableCell>${balance.value_usd}</TableCell>
+                    (balance && (
+                        <TableRow key={`${balance?.asset}-${balance?.address}`}>
+                            <TableCell>{balance?.asset}</TableCell>
+                            <TableCell>{balance?.address}</TableCell>
+                            <TableCell>${balance?.value_usd}</TableCell>
                             <TableCell>:</TableCell>
 
-                        </TableRow>
+                        </TableRow>))
                     ))}
                   </TableBody>
               </Table>
@@ -400,9 +416,7 @@ export default function WalletBotDashboard() {
           </Grid>
         )}
 
-
         </Grid>
-
 
       </Container>
     </Page>
