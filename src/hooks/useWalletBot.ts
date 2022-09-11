@@ -100,10 +100,6 @@ export default function() {
 
     const status = data?.wallet_bot.status || 'disconnected'
 
-    if (data?.counts) {
-        console.log('COUNTS', data?.counts)
-    }
-
     var counts = data?.counts || []
 
     const token = data?.access_token

@@ -101,7 +101,7 @@ export default function WalletBotDashboard() {
   const { enqueueSnackbar } = useSnackbar();
   const { themeStretch } = useSettings();
 
-  const { counts, balances, token, data, error, connected, status, paid, unpaid, cancelled, failed, refresh } = useWalletBot()
+  const { counts, token, data, error, connected, status, paid, unpaid, cancelled, failed, refresh } = useWalletBot()
 
   const [showByStatus, setShowByStatus] = useState<string>('paid')
 
@@ -119,31 +119,13 @@ export default function WalletBotDashboard() {
 
   async function payNow() {
 
-    /*
-
-    const anypay = app(token)
-
-    const available = balances.filter(balance => balance.asset == 'BSV')
-
-    const balance = available[0]
-
-    console.log({ available })
-
-    let request = await anypay.request([{
-      currency: balance.asset,
-      to: [{
-        address: balance.address,
-        amount: 0.05,
-        currency: 'USD'
-      }]
-    }])
-
-    console.log('request', request)
-    */
 
   }
 
-  console.log('BALANCES', data?.balances)
+  var balances = data?.balances || []
+
+  balances = balances.filter(balance => !!balance)
+
 
   async function onPaymentRequestCreated() {
 
@@ -212,6 +194,32 @@ export default function WalletBotDashboard() {
               </Stack>
             </StyledCard>
           </Grid>
+
+
+        {balances && (
+
+          <Grid item  xs={12} sm={9} md={9}>
+            <Card>
+            <CardHeader sx={{textAlign: 'center', padding: '1em'}} title="Balances" />
+
+              <Table>
+
+                  <TableBody>
+                  {balances.map((balance) => (
+                    (balance && balance.value && (
+                        <TableRow key={`${balance?.asset}-${balance?.address}`}>
+                            <TableCell>{balance?.asset}</TableCell>
+                            <TableCell>{balance?.address}</TableCell>
+                            <TableCell>${balance?.value_usd}</TableCell>
+                            <TableCell>:</TableCell>
+
+                        </TableRow>))
+                    ))}
+                  </TableBody>
+              </Table>
+            </Card>
+          </Grid>
+          )}
 
           <Grid item xs={12} sm={6}>
 
@@ -391,30 +399,6 @@ export default function WalletBotDashboard() {
       </Grid>
       )}
 
-        {data?.balances && (
-
-          <Grid item  xs={12} sm={6} md={6}>
-            <Card>
-            <CardHeader sx={{textAlign: 'center', padding: '1em'}} title="Balances" />
-
-              <Table>
-
-                  <TableBody>
-                  {data?.balances.map((balance) => (
-                    (balance && (
-                        <TableRow key={`${balance?.asset}-${balance?.address}`}>
-                            <TableCell>{balance?.asset}</TableCell>
-                            <TableCell>{balance?.address}</TableCell>
-                            <TableCell>${balance?.value_usd}</TableCell>
-                            <TableCell>:</TableCell>
-
-                        </TableRow>))
-                    ))}
-                  </TableBody>
-              </Table>
-            </Card>
-          </Grid>
-        )}
 
         </Grid>
 
