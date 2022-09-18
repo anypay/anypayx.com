@@ -195,10 +195,9 @@ export default function WalletBotDashboard() {
             </StyledCard>
           </Grid>
 
-
         {balances && (
 
-          <Grid item  xs={12} sm={9} md={9}>
+          <Grid item  xs={12} sm={12} md={12}>
             <Card>
             <CardHeader sx={{textAlign: 'center', padding: '1em'}} title="Balances" />
 
@@ -209,8 +208,8 @@ export default function WalletBotDashboard() {
                     (balance && balance.value && (
                         <TableRow key={`${balance?.asset}-${balance?.address}`}>
                             <TableCell>{balance?.asset}</TableCell>
-                            <TableCell>{balance?.address}</TableCell>
                             <TableCell>${balance?.value_usd}</TableCell>
+                            <TableCell>{balance?.address}</TableCell>
                             <TableCell>:</TableCell>
 
                         </TableRow>))
