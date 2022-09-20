@@ -36,7 +36,9 @@ import { useRouter } from "next/router";
 
 import { BASE } from '../../../api/useAPI'
 
-import ReactJson from 'react-json-view'
+import loadable from '@loadable/component';
+const ReactJson = loadable(() => import('react-json-view'));
+
 // ----------------------------------------------------------------------
 
 ShowInvoice.getLayout = function getLayout(page: React.ReactElement) {
