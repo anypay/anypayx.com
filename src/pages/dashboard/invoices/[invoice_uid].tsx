@@ -35,6 +35,8 @@ import CollectRefundDialog from '../../../components/payments/CollectRefundDialo
 import { useRouter } from "next/router";
 
 import { BASE } from '../../../api/useAPI'
+
+import ReactJson from 'react-json-view'
 // ----------------------------------------------------------------------
 
 ShowInvoice.getLayout = function getLayout(page: React.ReactElement) {
@@ -273,7 +275,7 @@ function RefundAddress({ invoice }: { invoice: any }) {
 
 function InvoiceEvents({ invoice }: { invoice: Invoice }) {
 
-    const { data, error } = useSWR(`${BASE}/v1/api/invoices/${invoice.uid}/events`, axios)
+    const { data, error } = useSWR(`${BASE}/invoices/${invoice.uid}/events`, axios)
 
     if (error) {
         return (
@@ -305,7 +307,7 @@ function InvoiceEvents({ invoice }: { invoice: Invoice }) {
 
     events = events.map((event) => (
       Object.assign(event, {
-        createdAt: Moment(new Date(event.createdAt)).format('MMM Do, YYYY hh:MMa')
+        createdAt: new Date(event.createdAt).toDateString()
       })
     ))
 
@@ -339,7 +341,19 @@ function InvoiceEvents({ invoice }: { invoice: Invoice }) {
                               <TableRow key={event.id}>
                                   <TableCell>{event.createdAt}</TableCell>
                                   <TableCell>{event.type}</TableCell>
-                                  <TableCell>{JSON.stringify(event.payload)}</TableCell>
+                                  <TableCell>
+                                    <ReactJson
+                                      src={event.payload}
+                                      name={null}
+                                      theme={'twilight'}
+                                      iconStyle={'square'}
+                                      enableClipboard={true}
+                                      displayDataTypes={false}
+                                      displayObjectSize={false}
+                                      indentWidth={8}
+                                      collapseStringsAfterLength={32}
+                                    />
+                                  </TableCell>
                               </TableRow>
                           ))}
                         </TableBody>

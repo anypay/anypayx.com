@@ -163,6 +163,9 @@ export default function NewWalletBotPaymentDialog({ account, onPaymentRequestCre
                 <option key={'BTC'} value='BTC'>
                     BTC
                 </option>
+                <option key={'XMR'} value='XMR'>
+                    XMR
+                </option>
             </Select>
 
         </DialogContent>
