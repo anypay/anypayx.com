@@ -55,6 +55,13 @@ export default function ShowInvoice() {
 
   const { data, error } = useSWR(`${BASE}/invoices/${query.invoice_uid}`, axios)
 
+  const { data: addressesData } = useSWR(`${BASE}/account/addresses`, axios)
+
+  const addresses = addressesData?.data?.addresses
+
+
+  console.log({addresses})
+
   if (!data && !error) {
     return <LoadingScreen />;
   }
@@ -64,6 +71,18 @@ export default function ShowInvoice() {
   }
 
   const { invoice, payment, kraken_deposits } = data?.data;
+
+  var address;
+
+  if (payment?.currency && addresses) {
+
+    address = addresses.filter(address => {
+
+      return address.code === payment.currency
+
+    })[0]?.address
+
+  }
 
   invoice['uid'] = query.invoice_uid
 
@@ -94,8 +113,7 @@ export default function ShowInvoice() {
           }
         />
 
-
-        <InvoiceDetails invoice={invoice} payment={payment}/>
+        <InvoiceDetails invoice={invoice} payment={payment} address={address}/>
         <RefundAddress invoice={invoice}/>
         <KrakenDeposits deposits={kraken_deposits} />
         <InvoiceEvents invoice={invoice} />
@@ -118,6 +136,7 @@ interface Payment {
     currency: string;
     txid: string;
     txhex: string;
+    tx_key?: string;
     createdAt: Date;
 }
 
@@ -140,7 +159,7 @@ const loadModal = ({ uid }: { uid: any }) => {
   window.open(`https://anypay.sv/invoices/${uid}`, '_blank')
 }
 
-function InvoiceDetails({ invoice, payment }: {invoice: Invoice, payment: Payment}) {
+function InvoiceDetails({ invoice, payment, address }: {invoice: Invoice, payment: Payment, address: string}) {
   
     return (
       <>
@@ -183,8 +202,33 @@ function InvoiceDetails({ invoice, payment }: {invoice: Invoice, payment: Paymen
               <Box sx={{ fontWeight: 100 }}>
                   {payment.txid}
               </Box>
+
               </>
           )}
+
+          {payment.tx_key && (
+                          <>
+                          <br/>
+
+                          <Box
+                              sx={{
+                              color: 'success.dark',
+                              display: 'inline',
+                              fontWeight: 'bold',
+                              mx: 0.5,
+                              fontSize: 14,
+                              }}
+                          >
+                              TX View Key
+                          </Box>
+  
+                          <Box sx={{ fontWeight: 100 }}>
+                            {payment.tx_key}
+                          </Box>
+            
+                          </>
+ 
+              )}
           {invoice.external_id && (
             <>
               <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 14 }}>

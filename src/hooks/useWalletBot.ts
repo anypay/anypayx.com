@@ -106,11 +106,6 @@ export default function() {
 
     const balances = data?.balances
 
-    counts = counts.reduce((map, row) => {
-        map[row.status] = row.count
-        return map
-    }, {})
-
     return {
         loading,
         unpaid,
