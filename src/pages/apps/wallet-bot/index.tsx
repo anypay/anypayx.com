@@ -205,7 +205,7 @@ export default function WalletBotDashboard() {
 
                   <TableBody>
                   {balances.map((balance) => (
-                    (balance && balance.value && (
+                    (balance && balance.address && (
                         <TableRow key={`${balance?.asset}-${balance?.address}`}>
                             <TableCell>{balance?.asset}</TableCell>
                             <TableCell>${balance?.value_usd}</TableCell>
@@ -359,7 +359,7 @@ export default function WalletBotDashboard() {
 
           <Grid item  xs={12} sm={6} md={6}>
             <Card>
-            <CardHeader sx={{textAlign: 'center', padding: '1em'}} title="Pending Payments" />
+            <CardHeader sx={{textAlign: 'center', padding: '1em'}} title="Unpaid Payments" />
 
             <Table>
                     <TableBody>
