@@ -21,17 +21,37 @@ export function fetcher(params: any) {
 
 export function useAPIFromRoot(path: string) {
 
-    let {data, error, mutate: refresh, isValidating: loading} = useSWR(path, fetcher)
+    let { data, error, mutate: refresh, isValidating: loading } = useSWR(path, fetcher)
     
     return { data, error, refresh, loading}
 
 }
 
-export function useAPI(path: string) {
+export function useAPI(path: string, options?:any) {
 
-    let {data, error, mutate: refresh, isValidating: loading} = useSWR(`${API_BASE}${path}`, fetcher)
-    
-    return { data, error, refresh, loading}
+    let data, error, refresh, loading;
+
+    let fetch = fetcher
+
+    if (options) {
+
+        fetch = (params) => {
+
+            return axios(params, options)
+        }
+
+    }
+        
+    const result = useSWR(`${API_BASE}${path}`, fetch)
+
+    data = result.data;
+
+    error = result.error;
+
+    refresh = result.mutate;
+
+    loading = result.isValidating;
+
+    return { data, error, refresh, loading }
 
 }
-

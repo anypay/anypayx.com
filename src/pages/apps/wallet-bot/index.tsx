@@ -9,11 +9,9 @@ import {
   Container,
   Typography,
   Table,
-  TableHead,
   TableRow,
   TableCell,
   TableBody,
-  Paper,
   Grid,
   Box
 } from '@mui/material';
@@ -26,24 +24,15 @@ import Layout from '../../../layouts';
 // components
 import Page from '../../../components/Page';
 
-import { useAPI } from '../../../api/useAPI';
-
 import * as React from 'react';
+
 import { styled } from '@mui/material/styles';
-import ButtonBase from '@mui/material/ButtonBase';
-
-import Image from 'next/image'
-
-import { app } from 'anypay'
 
 import NewWalletBotPaymentDialog from '../../../components/payments/NewWalletBotPaymentDialog'
 
 import useWalletBot from '../../../hooks/useWalletBot'
 
-import SendSharpIcon from '@mui/icons-material/SendSharp';
-
 import { useState } from 'react'
-import { Refresh } from '@mui/icons-material';
 
 const Img = styled('img')({
   margin: 'auto',
@@ -101,7 +90,9 @@ export default function WalletBotDashboard() {
   const { enqueueSnackbar } = useSnackbar();
   const { themeStretch } = useSettings();
 
-  const { counts, token, data, error, connected, status, paid, unpaid, cancelled, failed, refresh } = useWalletBot()
+  const { counts, token, data, error, connected, status, paid, unpaid, cancelled, refresh } = useWalletBot()
+
+  console.log({ counts, token, data, error, connected, status, paid, unpaid, cancelled, refresh })
 
   const [showByStatus, setShowByStatus] = useState<string>('paid')
 
@@ -129,7 +120,6 @@ export default function WalletBotDashboard() {
 
   async function onPaymentRequestCreated() {
 
-    enqueueSnackbar(`wallet-bot.payment.created`);
 
     await refresh()
   }
@@ -240,22 +230,6 @@ export default function WalletBotDashboard() {
                 </StyledCard>
               </Grid>
 
-              <Grid item  xs={6} sm={6} md={3}>
-              <StyledCard
-                onClick={() => setShowByStatus('failed')}
-                sx={{ border: showByStatus === 'failed' ? '2px solid #ccc' : '0px'}}>                  
-                <CardHeader title="Failed"/>
-
-                  <Stack spacing={2} sx={{ p: 3 }}>
-                    {counts === null ? (
-                      <h1>?</h1>
-                    ): (
-                      <h1>{counts.failed || 0}</h1>
-                    )}
-                  </Stack>
-                </StyledCard>
-              </Grid>
-
 
               <Grid item  xs={6} sm={6} md={3}>
               <StyledCard
@@ -320,7 +294,7 @@ export default function WalletBotDashboard() {
 
                 <Table>
                     <TableBody>
-                    {paid.invoices.map((balance) => (
+                    {paid.invoices && paid.invoices.map((balance) => (
                           <TableRow key={`${balance.asset}-${balance.address}`}>
                               <TableCell>{balance.createdAt}</TableCell>
                               <TableCell>{balance.uid}</TableCell>
@@ -342,7 +316,7 @@ export default function WalletBotDashboard() {
 
           <Table>
                     <TableBody>
-                    {cancelled.invoices.map((balance) => (
+                    {cancelled.invoices && cancelled.invoices.map((balance) => (
                           <TableRow key={`${balance.asset}-${balance.address}`}>
                               <TableCell>{balance.createdAt}</TableCell>
                               <TableCell>{balance.uid}</TableCell>
@@ -363,7 +337,7 @@ export default function WalletBotDashboard() {
 
             <Table>
                     <TableBody>
-                    {unpaid.invoices.map((balance) => (
+                    {unpaid.invoices && unpaid.invoices.map((balance) => (
                           <TableRow key={`${balance.asset}-${balance.address}`}>
                               <TableCell>{balance.createdAt}</TableCell>
                               <TableCell>{balance.uid}</TableCell>
@@ -375,29 +349,6 @@ export default function WalletBotDashboard() {
             </Card>
           </Grid>
           )}
-
-      {failed && showByStatus === 'failed' && (
-
-      <Grid item  xs={12} sm={6} md={6}>
-        <Card>
-        <CardHeader sx={{textAlign: 'center', padding: '1em'}} title="Failed Payments" />
-
-
-          <Table>
-                    <TableBody>
-                    {failed.invoices.map((balance) => (
-                          <TableRow key={`${balance.asset}-${balance.address}`}>
-                              <TableCell>{balance.createdAt}</TableCell>
-                              <TableCell>{balance.uid}</TableCell>
-                              <TableCell>:</TableCell>
-                          </TableRow>
-                      ))}
-                    </TableBody>
-                </Table>
-        </Card>
-      </Grid>
-      )}
-
 
         </Grid>
 

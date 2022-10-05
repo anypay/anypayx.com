@@ -87,23 +87,35 @@ export default function NewWalletBotPaymentDialog({ account, onPaymentRequestCre
         }]
     }]
 
-    console.log('payment-request.template', template)
+    const options = {
+      webhook_url: 'https://api.anypayx.com/v1/api/test/webhooks'
+    }
 
-    let request = await anypay.request(template)
-
-    console.log('payment-request.created', request)
+    console.log('payment-request', { template, options})
 
     setOpen(false)
 
-    if (onPaymentRequestCreated) {
+    try {
 
-        onPaymentRequestCreated(request)
+      let request = await anypay.request(template, options)
+
+      console.log('payment-request.created', request)
+
+      enqueueSnackbar('wallet bot payment request created')
+
+      if (onPaymentRequestCreated) {
+
+          onPaymentRequestCreated(request)
+
+      }
+
+    } catch(error) {
+
+      console.error('wallet-bot.payment-request.create.error', error)
 
     }
 
   };
-
-
 
   return (
     <div>
@@ -154,18 +166,25 @@ export default function NewWalletBotPaymentDialog({ account, onPaymentRequestCre
               onChange={handleCoinChange}
 
             >
+                <option key={'BCH'} value='BCH'>
+                    BCH
+                </option>
                 <option key={'DASH'} value='DASH'>
                     DASH
                 </option>
                 <option key={'BSV'} value='BSV'>
                     BSV
                 </option>
+                <option key={'LTC'} value='LTC'>
+                    LTC
+                </option>
+                <option key={'DOGE'} value='DOGE'>
+                    DOGE
+                </option>
                 <option key={'BTC'} value='BTC'>
                     BTC
                 </option>
-                <option key={'XMR'} value='XMR'>
-                    XMR
-                </option>
+
             </Select>
 
         </DialogContent>

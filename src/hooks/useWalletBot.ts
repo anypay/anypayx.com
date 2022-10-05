@@ -59,24 +59,45 @@ export default function() {
 
     const { data, error, loading } = useAPI(`/apps/wallet-bot`)
 
-    const { data: paid, refresh: refreshPaid } = useAPI(`/apps/wallet-bot/invoices?status=paid`)
-    const { data: unpaid, refresh: refreshUnpaid } = useAPI(`/apps/wallet-bot/invoices?status=unpaid`)
-    const { data: cancelled, refresh: refreshCancelled } = useAPI(`/apps/wallet-bot/invoices?status=cancelled`)
-    const { data: failed, refresh: refreshFailed } = useAPI(`/apps/wallet-bot/invoices?status=failed`)
+    const status = data?.wallet_bot.status || 'disconnected'
+
+    var counts = data?.counts || []
+
+    const token = data?.access_token
+
+    const balances = data?.balances
+
+    const { data: paid, refresh: refreshPaid } = useAPI(`/apps/wallet-bot/invoices?status=paid`, {
+        auth: {
+            username: token,
+            password: ''
+        }
+    })
+
+    const { data: unpaid, refresh: refreshUnpaid } = useAPI(`/apps/wallet-bot/invoices?status=unpaid`, {
+        auth: {
+            username: token,
+            password: ''
+        }
+    })
+    const { data: cancelled, refresh: refreshCancelled } = useAPI(`/apps/wallet-bot/invoices?status=cancelled`, {
+        auth: {
+            username: token,
+            password: ''
+        }
+    })
 
     const refresh = async function() {
         return Promise.all([
             refreshPaid,
             refreshUnpaid,
-            refreshCancelled,
-            refreshFailed
+            refreshCancelled
         ])
     }
 
     const [numberPending, setNumberPending] = useState<number | null>(0)
     const [numberPaid, setNumberPaid] = useState<number | null>(null)
     const [numberCancelled, setNumberCancelled] = useState<number | null>(null)
-    const [numberFailed, setNumberFailed] = useState<number | null>(null)
 
     const [connected, setConnected] = useState<boolean>(false)
 
@@ -98,24 +119,16 @@ export default function() {
         return walletBot?.queuePayment()
     }
 
-    const status = data?.wallet_bot.status || 'disconnected'
 
-    var counts = data?.counts || []
-
-    const token = data?.access_token
-
-    const balances = data?.balances
 
     return {
         loading,
         unpaid,
         paid,
         cancelled,
-        failed,
         numberPending,
         numberPaid,
         numberCancelled,
-        numberFailed,
         connected,
         listPending,
         listCancelled,
