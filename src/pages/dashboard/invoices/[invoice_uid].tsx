@@ -59,7 +59,6 @@ export default function ShowInvoice() {
 
   const addresses = addressesData?.data?.addresses
 
-
   console.log({addresses})
 
   if (!data && !error) {
@@ -159,7 +158,42 @@ const loadModal = ({ uid }: { uid: any }) => {
   window.open(`https://anypay.sv/invoices/${uid}`, '_blank')
 }
 
+const blockchairCurrencies = {
+  'BSV': 'bitcoin-sv',
+  'DASH': 'dash',
+  'BCH': 'bitcoin-cash',
+  'BTC': 'bitcoin',
+  'LTC': 'litecoin',
+  'DOGE': 'dogecoin'
+}
+
+function viewOnBlockchain() {
+
+}
+
 function InvoiceDetails({ invoice, payment, address }: {invoice: Invoice, payment: Payment, address: string}) {
+
+  const blockchairCurrency = blockchairCurrencies[payment.currency]
+
+  const { themeMode } = useSettings();
+
+  const isLight = themeMode === 'light';
+
+  var blockExplorerURL;
+
+  switch(payment.currency) {
+    case 'XMR':
+      blockExplorerURL = `https://monero.com/payment/${payment.txid}/${address}/${payment.tx_key}/`;
+      break;
+    case 'DASH':
+      blockExplorerURL = `https://insight.dash.org/insight/tx/${payment.txid}`
+      break;
+    case 'BSV':
+      blockExplorerURL = `https://whatsonchain.com/tx/${payment.txid}`
+      break;
+    default:
+      blockExplorerURL = `https://blockchair.com/${blockchairCurrency}/transaction/${payment.txid}`;
+  }
   
     return (
       <>
@@ -203,6 +237,13 @@ function InvoiceDetails({ invoice, payment, address }: {invoice: Invoice, paymen
                   {payment.txid}
               </Box>
 
+              <br/>
+              <Box sx={{  display: 'inline', fontSize: 14 }}>
+                <Button variant="outlined" color="warning" onClick={viewOnBlockchain}>
+                  <a style={{color: (isLight ? 'black' : 'white'), textDecoration: 'none' }} target='_blank' rel='noreferrer' href={blockExplorerURL}>View on Block Explorer</a>
+                </Button>
+              </Box> 
+
               </>
           )}
 
@@ -225,6 +266,7 @@ function InvoiceDetails({ invoice, payment, address }: {invoice: Invoice, paymen
                           <Box sx={{ fontWeight: 100 }}>
                             {payment.tx_key}
                           </Box>
+
             
                           </>
  
