@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:16
 
 RUN mkdir -p /usr/src/app
 
@@ -6,11 +6,10 @@ WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app/
 
-RUN yarn
+RUN npm install
 
 COPY . /usr/src/app
 
-RUN yarn build
+RUN npm run build
 
-CMD yarn start
-
+CMD npm start

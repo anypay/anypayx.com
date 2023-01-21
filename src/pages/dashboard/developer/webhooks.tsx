@@ -49,6 +49,7 @@ import {
 import {
   AppUnderConstruction
 } from '../../../sections/@dashboard/general/app';
+import { useListWebhooks } from 'src/api/webhooks';
 
 // ----------------------------------------------------------------------
 
@@ -151,6 +152,18 @@ export default function WebhooksList() {
 
   const isNotFound = !filteredUsers.length && Boolean(filterName);
 
+  const { webhooks, loading } = useListWebhooks()
+
+  if (!webhooks && loading) {
+    return <div>Loading...</div>
+  }
+
+  console.log({ webhooks})
+
+  for (let webhook of webhooks) {
+    console.log({ webhook })
+  }
+
   return (
     <Page title="Webhooks: List">
       <Container maxWidth={themeStretch ? false : 'lg'}>
@@ -160,16 +173,7 @@ export default function WebhooksList() {
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
             { name: 'Webhooks' }
           ]}
-          action={
-            <NextLink href={PATH_DASHBOARD.user.newUser} passHref>
-              <Button variant="contained" startIcon={<Iconify icon={'eva:plus-fill'} />}>
-                Webhook URL
-              </Button>
-            </NextLink>
-          }
         />
-
-        <AppUnderConstruction />
 
         <Card>
           <UserListToolbar
@@ -192,10 +196,10 @@ export default function WebhooksList() {
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  {filteredUsers
+                  {webhooks
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
-                      const { id, name, role, status, company, avatarUrl, isVerified } = row;
+                      const { id, invoice_uid, name, role, url, status, company, avatarUrl, isVerified } = row;
                       const isItemSelected = selected.indexOf(name) !== -1;
 
                       return (
@@ -216,8 +220,8 @@ export default function WebhooksList() {
                               {name}
                             </Typography>
                           </TableCell>
-                          <TableCell align="left">{company}</TableCell>
-                          <TableCell align="left">{role}</TableCell>
+                          <TableCell align="left">{invoice_uid}</TableCell>
+                          <TableCell align="left">{url}</TableCell>
                           <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
                           <TableCell align="left">
                             <Label
@@ -229,7 +233,7 @@ export default function WebhooksList() {
                           </TableCell>
 
                           <TableCell align="right">
-                            <UserMoreMenu onDelete={() => handleDeleteUser(id)} userName={name} />
+                            <UserMoreMenu onDelete={() => handleDeleteUser(id)} userName={name || 'name'} />
                           </TableCell>
                         </TableRow>
                       );

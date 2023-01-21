@@ -47,6 +47,8 @@ var navConfig = [
     items: [
       { title: 'API keys', path: PATH_DASHBOARD.developer.apikeys, icon: ICONS.dashboard },
       { title: 'audit logs', path: PATH_DASHBOARD.developer.logs, icon: ICONS.banking },
+      { title: 'webhooks', path: PATH_DASHBOARD.developer.webhooks, icon: ICONS.banking },
+
       //{ title: 'webhooks', path: PATH_DASHBOARD.developer.webhooks, icon: ICONS.mail }
     ],
   },
