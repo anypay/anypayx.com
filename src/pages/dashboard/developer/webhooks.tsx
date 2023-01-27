@@ -1,6 +1,8 @@
 import { sentenceCase } from 'change-case';
 import { useState } from 'react';
 import { useSnackbar } from 'notistack';
+import Moment from 'moment';
+
 // next
 import NextLink from 'next/link';
 // @mui
@@ -57,7 +59,7 @@ const TABLE_HEAD = [
   { id: 'date', label: 'Date', alignRight: false },
   { id: 'invoice', label: 'Invoice', alignRight: false },
   { id: 'url', label: 'URL', alignRight: false },
-  { id: 'attempts', label: 'Attempts', alignRight: false },
+  //{ id: 'attempts', label: 'Attempts', alignRight: false },
   { id: 'status', label: 'Status', alignRight: false },
   { id: '' }
 ];
@@ -83,7 +85,19 @@ export default function WebhooksList() {
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const { error } = useSWR('https://anypayx.com/v1/api/webhooks', axios)
+  const apiBase = process.env.NEXT_PUBLIC_API_BASE || 'https://api.anypayx.com';
+
+  console.log("API BASE: ", apiBase)
+
+  const { error, data: result, loading }: any = useSWR(`${apiBase}/v1/api/webhooks`, axios)
+
+  if (result) {
+
+  }
+
+  const data = result?.data
+
+  console.log({ result: { error, data, loading } })
 
   if (error) {
 
@@ -152,18 +166,30 @@ export default function WebhooksList() {
 
   const isNotFound = !filteredUsers.length && Boolean(filterName);
 
-  const { webhooks, loading } = useListWebhooks()
-
-  if (!webhooks && loading) {
+  if (!data?.webhooks && loading) {
     return <div>Loading...</div>
   }
 
-  console.log({ webhooks})
+  async function onResendWebhook(webhook: any) {
 
-  for (let webhook of webhooks) {
-    console.log({ webhook })
+    alert('Resend Webhook: ' + webhook.invoice_uid)
+
+    enqueueSnackbar(`Requesting to Retry Sending Webhook for Invoice ${webhook.invoice_uid}`, { variant: 'warning'});
+
+    const response = await axios.post(`${apiBase}/v1/api/webhooks/${webhook.invoice_uid}/attempts`)
+
+    if (response.status === 201) {
+      enqueueSnackbar(`Success Requesting Retry of Webhook for Invoice ${webhook.invoice_uid}`, { variant: 'success'});
+
+    } else {
+      
+      console.log('webhook.resend.attempt.response', response)
+      enqueueSnackbar(`Error Requesting to Retry Sending Webhook for Invoice ${webhook.invoice_uid}`, { variant: 'error'});
+
+    }
+
   }
-
+  
   return (
     <Page title="Webhooks: List">
       <Container maxWidth={themeStretch ? false : 'lg'}>
@@ -176,13 +202,6 @@ export default function WebhooksList() {
         />
 
         <Card>
-          <UserListToolbar
-            numSelected={selected.length}
-            filterName={filterName}
-            onFilterName={handleFilterByName}
-            onDeleteUsers={() => handleDeleteMultiUser(selected)}
-          />
-
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
               <Table>
@@ -196,10 +215,11 @@ export default function WebhooksList() {
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  {webhooks
+                  {data && data?.webhooks && (
+                    data.webhooks
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
-                      const { id, invoice_uid, name, role, url, status, company, avatarUrl, isVerified } = row;
+                      const { id, invoice_uid, name, role, url, status, company, avatarUrl, createdAt, isVerified } = row;
                       const isItemSelected = selected.indexOf(name) !== -1;
 
                       return (
@@ -211,33 +231,49 @@ export default function WebhooksList() {
                           selected={isItemSelected}
                           aria-checked={isItemSelected}
                         >
-                          <TableCell padding="checkbox">
-                            <Checkbox checked={isItemSelected} onClick={() => handleClick(name)} />
-                          </TableCell>
+
                           <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
-                            <Avatar alt={name} src={avatarUrl} sx={{ mr: 2 }} />
                             <Typography variant="subtitle2" noWrap>
-                              {name}
+                              {Moment(new Date(createdAt)).format('MMM Do, YYYY hh:MMa')}
                             </Typography>
                           </TableCell>
                           <TableCell align="left">{invoice_uid}</TableCell>
                           <TableCell align="left">{url}</TableCell>
-                          <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
+                          {/*<TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell> <----- Number of Attempts */}
                           <TableCell align="left">
-                            <Label
+                            {status === 'pending' && (
+                              <Label
                               variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
-                              color={(status === 'banned' && 'error') || 'success'}
-                            >
-                              {sentenceCase(status)}
-                            </Label>
+                              color={'warning'}
+                              >
+                                {sentenceCase(status)}
+                              </Label>
+                            )}
+                            {status === 'success' && (
+                                <Label
+                                  variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
+                                  color={(status === 'banned' && 'error') || 'success'}
+                                >
+                                  {sentenceCase(status)}
+                                </Label>
+                            )}
+                            {status === 'failed' && (
+                                <Label
+                                  variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
+                                  color={'error'}
+                                >
+                                  {sentenceCase(status)}
+                                </Label>
+                            )}
+
                           </TableCell>
 
                           <TableCell align="right">
-                            <UserMoreMenu onDelete={() => handleDeleteUser(id)} userName={name || 'name'} />
+                            <UserMoreMenu onResendWebhook={() => { onResendWebhook(row) }} />
                           </TableCell>
                         </TableRow>
                       );
-                    })}
+                    }))}
                   {emptyRows > 0 && (
                     <TableRow style={{ height: 53 * emptyRows }}>
                       <TableCell colSpan={6} />

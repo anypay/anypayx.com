@@ -13,11 +13,12 @@ import MenuPopover from '../../../../components/MenuPopover';
 // ----------------------------------------------------------------------
 
 type Props = {
-  onDelete: VoidFunction;
-  userName: string;
+  onDelete?: VoidFunction;
+  onResendWebhook?: VoidFunction;
+  userName?: string;
 };
 
-export default function UserMoreMenu({ onDelete, userName }: Props) {
+export default function UserMoreMenu({ onDelete, userName, onResendWebhook }: Props) {
   const [open, setOpen] = useState<HTMLElement | null>(null);
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -33,6 +34,10 @@ export default function UserMoreMenu({ onDelete, userName }: Props) {
     width: 20,
     height: 20,
   };
+
+  function retryWebhook() {
+
+  }
 
   return (
     <>
@@ -53,17 +58,14 @@ export default function UserMoreMenu({ onDelete, userName }: Props) {
           '& .MuiMenuItem-root': { px: 1, typography: 'body2', borderRadius: 0.75 },
         }}
       >
-        <MenuItem onClick={onDelete} sx={{ color: 'error.main' }}>
-          <Iconify icon={'eva:trash-2-outline'} sx={{ ...ICON }} />
-          Delete
-        </MenuItem>
 
-        <NextLink href={`${PATH_DASHBOARD.user.root}/${paramCase(userName)}/edit`}>
-          <MenuItem>
-            <Iconify icon={'eva:edit-fill'} sx={{ mr: 2, width: 24, height: 24 }} />
-            Edit
+
+
+          <MenuItem  onClick={onResendWebhook}>
+            <Iconify icon={'eva:email-fill'} sx={{ mr: 2, width: 24, height: 24 }} />
+            Retry Webhook
           </MenuItem>
-        </NextLink>
+
       </MenuPopover>
     </>
   );
