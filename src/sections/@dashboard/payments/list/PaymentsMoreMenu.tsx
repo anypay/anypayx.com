@@ -26,7 +26,7 @@ export default function PaymentsMoreMenu({ onSendWebhook, invoice }: Props) {
     setOpen(event.currentTarget);
   };
 
-  const shareInvoiceUrl = `https://anypay.sv/invoices/${invoice.uid}`
+  const shareInvoiceUrl = `https://anypayx.com/i/${invoice.uid}`
 
   function onShareReceipt(opts: any) {
     console.log('share receipt clicked', shareInvoiceUrl)

@@ -85,7 +85,7 @@ export default function ShowInvoice() {
 
   invoice['uid'] = query.invoice_uid
 
-  const shareInvoiceUrl = `https://anypay.sv/invoices/${invoice.uid}`
+  const shareInvoiceUrl = `https://anypayx.com/i/${invoice.uid}`
 
   const heading = `Invoice # ${query.invoice_uid}`
 
@@ -155,7 +155,7 @@ const loadModal = ({ uid }: { uid: any }) => {
   window.anypay = sdk;
   */
 
-  window.open(`https://anypay.sv/invoices/${uid}`, '_blank')
+  window.open(`https://anypayx.com/i/${uid}`, '_blank')
 }
 
 const blockchairCurrencies = {
