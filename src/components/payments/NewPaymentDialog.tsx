@@ -55,7 +55,7 @@ export default function NewPaymentDialog({ account }: { account?: Account }) {
     setOpen(false);
 
     // open new window target="_blank"
-    window.open(`https://anypay.sv/invoices/${invoice.uid}`)
+    window.open(`https://anypayx.com/i/${invoice.uid}`)
 
     router.push(`/dashboard/invoices/${invoice.uid}`)
 
