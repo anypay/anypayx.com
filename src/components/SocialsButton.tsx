@@ -15,7 +15,7 @@ import Iconify from './Iconify';
 // ----------------------------------------------------------------------
 
 export type SocialLinks = {
-  facebook?: string;
+  github?: string;
   instagram?: string;
   linkedin?: string;
   twitter?: string;
@@ -38,28 +38,28 @@ export default function SocialsButton({
 }: Props) {
   const SOCIALS = [
     {
-      name: 'FaceBook',
-      icon: 'eva:facebook-fill',
+      name: 'GitHub',
+      icon: 'eva:github-fill',
       socialColor: '#1877F2',
-      path: links.facebook || '#facebook-link',
+      path: links.github || '#github-link',
     },
+    // {
+    //   name: 'Instagram',
+    //   icon: 'ant-design:instagram-filled',
+    //   socialColor: '#E02D69',
+    //   path: links.instagram || '#instagram-link',
+    // },
     {
-      name: 'Instagram',
-      icon: 'ant-design:instagram-filled',
-      socialColor: '#E02D69',
-      path: links.instagram || '#instagram-link',
-    },
-    {
-      name: 'Linkedin',
-      icon: 'eva:linkedin-fill',
-      socialColor: '#007EBB',
-      path: links.linkedin || '#linkedin-link',
-    },
-    {
-      name: 'Twitter',
+      name: 'Twetch',
       icon: 'eva:twitter-fill',
       socialColor: '#00AAEC',
-      path: links.twitter || '#twitter-link',
+      path: links.twitter || 'https://twetch.com/u/4965',
+    },
+    {
+      name: 'Telegram',
+      icon: 'eva:paper-plane-fill',
+      socialColor: '#007EBB',
+      path: links.linkedin || 'https://t.me/anypayx',
     },
   ];
 

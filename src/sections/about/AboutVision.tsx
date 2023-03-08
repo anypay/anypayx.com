@@ -56,8 +56,7 @@ export default function AboutVision() {
         <Grid item xs={12} sm={8}>
           <m.div variants={varFade().inUp}>
             <Typography variant="h3" sx={{ textAlign: 'center' }}>
-              Our vision offering the best product nulla vehicula tortor scelerisque ultrices
-              malesuada.
+              Our vision is a world connected by instant, easy, and peer-to-peer payments for goods and services.
             </Typography>
           </m.div>
         </Grid>

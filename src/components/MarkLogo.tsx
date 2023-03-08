@@ -24,7 +24,7 @@ const MarkLogo = forwardRef<any, Props>(({ disabledLink = false, sx }, ref) => {
                     <Image
                       disabledEffect
                       alt="Anypay Logo"
-                      src={'https://bitcoinfileserver.com/2771f8367d5f512e05d8dd67e6980fc4a5f29a8551377b536bbda1fa92e376ca'}
+                      src={'https://bico.media/2771f8367d5f512e05d8dd67e6980fc4a5f29a8551377b536bbda1fa92e376ca'}
                       sx={{ width: 64 , height: 64 }}
                     />
                   </>

@@ -80,9 +80,9 @@ export default function HomeHugePackElements() {
   const screenRightAnimate = variantScreenRight;
 
   const screenshots = [
-    'https://bitcoinfileserver.com/dfb327cf917f31341c7b5d7ec7a9b7e28e280825544953d6b6307b0cbe27f3c4',
-    'https://bitcoinfileserver.com/922cdfec0072a587997db76502f681c270b0d2f1541799a77749dc1b6a61aa0b',
-    'https://bitcoinfileserver.com/19232eb073041b3d9d10e97e084fc28f315e13720a3d07ac87ab2832d38531b0'
+    'https://bico.media/dfb327cf917f31341c7b5d7ec7a9b7e28e280825544953d6b6307b0cbe27f3c4',
+    'https://bico.media/922cdfec0072a587997db76502f681c270b0d2f1541799a77749dc1b6a61aa0b',
+    'https://bico.media/19232eb073041b3d9d10e97e084fc28f315e13720a3d07ac87ab2832d38531b0'
   ]
 
   return (

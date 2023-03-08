@@ -15,22 +15,22 @@ const LINKS = [
   {
     headline: 'Anypay',
     children: [
-      { name: 'About us', href: '#' },
-      { name: 'Contact us', href: '#' },
+      { name: 'About Us', href: '/about-us' },
+      //{ name: 'Contact us', href: '/contact-us' },
       { name: 'FAQs', href: PATH_PAGE.faqs },
     ],
   },
   {
     headline: 'Legal',
     children: [
-      { name: 'Terms and Condition', href: '#' },
-      { name: 'Privacy Policy', href: '#' },
+      { name: 'Terms and Condition', href: '/docs/terms' },
+      { name: 'Privacy Policy', href: '/docs/privacy' },
     ],
   },
   {
     headline: 'Contact',
     children: [
-      { name: 'support@anypayinc.com', href: '#' },
+      { name: 'support@anypayx.com', href: 'mailto:support@anypayx.com' },
     ],
   },
 ];
@@ -57,7 +57,7 @@ export default function MainFooter() {
           </Grid>
           <Grid item xs={8} md={3}>
             <Typography variant="body2" sx={{ pr: { md: 5 } }}>
-              The fastest ecommerce and retail solution for accepting payments in digital currency
+              The easiest, fastest, and most secure solution for processing bitcoin and crypto payments.
             </Typography>
 
             <Stack
@@ -103,7 +103,7 @@ export default function MainFooter() {
             textAlign: { xs: 'center', md: 'left' },
           }}
         >
-          © 2022 Anypay Inc. All rights reserved
+          © 2023 Anypay Inc. All rights reserved
         </Typography>
       </Container>
     </RootStyle>

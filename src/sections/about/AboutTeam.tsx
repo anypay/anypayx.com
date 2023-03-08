@@ -53,13 +53,13 @@ export default function AboutTeam() {
     <Container component={MotionViewport} sx={{ pb: 10, textAlign: 'center' }}>
       <m.div variants={varFade().inDown}>
         <Typography component="p" variant="overline" sx={{ mb: 2, color: 'text.secondary' }}>
-          Dream team
+          Contributors
         </Typography>
       </m.div>
 
       <m.div variants={varFade().inUp}>
         <Typography variant="h2" sx={{ mb: 3 }}>
-          Great team is the key
+          Open Source Contribution Is the Key
         </Typography>
       </m.div>
 
@@ -71,8 +71,8 @@ export default function AboutTeam() {
             color: (theme) => (theme.palette.mode === 'light' ? 'text.secondary' : 'common.white'),
           }}
         >
-          Minimal will provide you support if you have any problems, our support team will reply
-          within a day and we also have detailed documentation.
+          Anypay will provide you support if you have any problems. Our support team will reply
+          within a day, and we also have detailed documentation.
         </Typography>
       </m.div>
 
@@ -99,7 +99,7 @@ export default function AboutTeam() {
         endIcon={<Iconify icon={'ic:round-arrow-right-alt'} width={24} height={24} />}
         sx={{ mx: 'auto' }}
       >
-        View all team members
+        View all contributors
       </Button>
     </Container>
   );

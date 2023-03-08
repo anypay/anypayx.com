@@ -27,8 +27,8 @@ const Logo = forwardRef<any, Props>(({ disabledLink = false, sx }, ref) => {
                       alt="Anypay Logo"
                       src={
                         isLight ?
-                        `https://bitcoinfileserver.com/4f913a35258626de7e07571b0ef8de39e9e77908570a4a4ae2af6072bb34a59d` :
-                        'https://bitcoinfileserver.com/4bd0680e7545a42d76bb92c83415659cc6d66aae15d9f264062efc0cd7d1972e'
+                        `https://bico.media/4f913a35258626de7e07571b0ef8de39e9e77908570a4a4ae2af6072bb34a59d` :
+                        'https://bico.media/4bd0680e7545a42d76bb92c83415659cc6d66aae15d9f264062efc0cd7d1972e'
                       }
                       sx={{ width: 180 , height: 50 }}
                     />
