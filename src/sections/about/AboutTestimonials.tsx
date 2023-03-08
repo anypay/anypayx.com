@@ -14,40 +14,65 @@ import { MotionViewport, varFade } from '../../components/animate';
 
 const TESTIMONIALS = [
   {
-    name: 'Jenny Wilson',
+    name: 'Joël Valenzuela',
     rating: 5,
-    dateCreate: 'April 19, 2021',
-    content: `Excellent Work! Thanks a lot!`,
+    dateCreate: 'January 10, 2021',
+    content: `The best crypto POS app on the market`,
+  },
+
+  {
+    name: 'jimbabb',
+    rating: 5,
+    dateCreate: 'May 24, 2019',
+    content: `Crypto for merchants made easy...Accepting bitcoin at a business can be challenging, particularly with employee training and work flow integration. I love how this app is so clean and simple. It’s a breeze for both the cashiers and the customers to confirm transactions. The absence of a complicated account structure is huge benefit.`,
+  },
+
+  {
+    name: 'Tamsin Thorn',
+    rating: 5,
+    dateCreate: 'August 28, 2020',
+    content: `Really easy to use! Works flawlessly.`,
+  },
+  
+  {
+    name: 'Maymay8',
+    rating: 5,
+    dateCreate: 'August 28, 2020',
+    content: `I need easy. This is it. I’ve wanted to engage with crypto to draw in more customers and connections, but I needed the process to be easy. This did the trick. Thanks!`,
+  },
+    
+  {
+    name: 'A Google User',
+    rating: 5,
+    dateCreate: 'July 11, 2019',
+    content: `Very easy to use. Superb for getting retailers online quickly.`,
+  },
+
+  {
+    name: 'Nicole_Tremblay_90',
+    rating: 5,
+    dateCreate: 'September 21, 2019',
+    content: `all I need. Many of my customers use cryptocurrencies so this is the best app for them to make payment. Quick and easy`,
+  },
+
+  {
+    name: 'A Google User',
+    rating: 5,
+    dateCreate: 'May 24, 2019',
+    content: `Great app, ease of use is so important. Thanks Anypay!`,
+  },
+
+  {
+    name: 'A Google User',
+    rating: 5,
+    dateCreate: 'August 28, 2020',
+    content: `I was able to accept crypto within seconds`,
   },
   {
-    name: 'Cody Fisher',
+    name: 'A Google User',
     rating: 5,
-    dateCreate: 'April 19, 2021',
-    content: `It's a very good dashboard and we are really liking the product . We've done some things, like migrate to TS and implementing a react useContext api, to fit our job methodology but the product is one of the best in terms of design and application architecture. The team did a really good job.`,
-  },
-  {
-    name: 'Marvin McKinney',
-    rating: 5,
-    dateCreate: 'April 19, 2021',
-    content: `Customer support is realy fast and helpful the desgin of this theme is looks amazing also the code is very clean and readble realy good job !`,
-  },
-  {
-    name: 'Darrell Steward',
-    rating: 5,
-    dateCreate: 'April 19, 2021',
-    content: `Amazing, really good code quality and gives you a lot of examples for implementations.`,
-  },
-  {
-    name: 'Jacob Jones',
-    rating: 5,
-    dateCreate: 'April 19, 2021',
-    content: `Got a few questions after purchasing the product. The owner responded very fast and very helpfull. Overall the code is excellent and works very good. 5/5 stars!`,
-  },
-  {
-    name: 'Bessie Cooper',
-    rating: 5,
-    dateCreate: 'April 19, 2021',
-    content: `CEO of Codealy.io here. We’ve built a developer assessment platform that makes sense - tasks are based on git repositories and run in virtual machines. We automate the pain points - storing candidates code, running it and sharing test results with the whole team, remotely. Bought this template as we need to provide an awesome dashboard for our early customers. I am super happy with purchase. The code is just as good as the design. Thanks!`,
+    dateCreate: 'May 24, 2019',
+    content: `wow, this is such a great app for the cryptocurrency community. very helpful for anyone accepting Bitcoin or any cryptocurrency as payments. I am recommending this to all my friends and businesses that are interested in cryptocurrency.`,
   },
 ];
 
@@ -96,16 +121,16 @@ export default function AboutTestimonials() {
 
               <m.div variants={varFade().inUp}>
                 <Typography variant="h2" sx={{ mb: 3, color: 'common.white' }}>
-                  Who love <br />
-                  my work
+                  We love <br />
+                  Anypay
                 </Typography>
               </m.div>
 
               <m.div variants={varFade().inUp}>
                 <Typography sx={{ color: 'common.white' }}>
-                  Our goal is to create a product and service that you’re satisfied with and use it
-                  every day. This is why we’re constantly working on our services to make it better
-                  every day and really listen to what our users has to say.
+                  Our goal is to create a product and service that you’re satisfied with and use
+                  every day. This is why we’re constantly making improvements to our platform to 
+                  make it better and really listen to what our users have to say.
                 </Typography>
               </m.div>
 

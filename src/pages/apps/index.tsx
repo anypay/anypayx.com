@@ -54,7 +54,7 @@ export default function WalletBotDashboard() {
         />       
         <Card>
             <Link href='/apps/wallet-bot'>
-              <img src="https://bitcoinfileserver.com/ea8205469186c12f6b23866d3ef50ab84f6f6b82dab43075e0229ab32ca6f5bc"/>
+              <img src="https://bico.media/ea8205469186c12f6b23866d3ef50ab84f6f6b82dab43075e0229ab32ca6f5bc"/>
             </Link>
         </Card>
 

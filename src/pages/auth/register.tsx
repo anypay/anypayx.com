@@ -113,7 +113,7 @@ export default function Register() {
                     <Image
                       disabledEffect
                       alt={method}
-                      src={`https://bitcoinfileserver.com/bfcae220cb1cc0ce4322b463092d9216cd6caad42eb078f6e113857751a61753`}
+                      src={`https://bico.media/bfcae220cb1cc0ce4322b463092d9216cd6caad42eb078f6e113857751a61753`}
                       sx={{ width: 32, height: 32 }}
                     />
                   </>

@@ -38,8 +38,8 @@ export default function AboutHero() {
           <TextAnimate text="Who" sx={{ color: 'primary.main' }} variants={varFade().inRight} />
           <br />
           <Box sx={{ display: 'inline-flex', color: 'common.white' }}>
-            <TextAnimate text="we" sx={{ mr: 2 }} />
-            <TextAnimate text="are?" />
+            <TextAnimate text="is" sx={{ mr: 2 }} />
+            <TextAnimate text="Anypay?" />
           </Box>
 
           <m.div variants={varFade().inRight}>
@@ -51,8 +51,8 @@ export default function AboutHero() {
                 fontWeight: 'fontWeightMedium',
               }}
             >
-              Let's work together and
-              <br /> make awesome site easily
+              Making bitcoin payments
+              <br /> magic since 2016
             </Typography>
           </m.div>
         </ContentStyle>

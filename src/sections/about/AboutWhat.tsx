@@ -74,7 +74,7 @@ export default function AboutWhat() {
           <Grid item xs={12} md={6} lg={5}>
             <m.div variants={varFade().inRight}>
               <Typography variant="h2" sx={{ mb: 3 }}>
-                What is minimal?
+                Open Source Platform
               </Typography>
             </m.div>
 
@@ -85,10 +85,10 @@ export default function AboutWhat() {
                     theme.palette.mode === 'light' ? 'text.secondary' : 'common.white',
                 }}
               >
-                Our theme is the most advanced and user-friendly theme you will find on the market,
-                we have documentation and video to help set your site really easily, pre-installed
-                demos you can import in one click and everything from the theme options to page
-                content can be edited from the front-end. This is the theme you are looking for.
+                Anypay is the most advanced and user-friendly multi-coin processor in the world.
+                We have documentation and videos to help integrate payments into your app or 
+                retail business. We accept contributions from open source developers to provide
+                the best and most secure cryptocurrency payments platform possible. 
               </Typography>
             </m.div>
 
@@ -103,9 +103,11 @@ export default function AboutWhat() {
             <m.div variants={varFade().inRight}>
               <Button
                 variant="outlined"
+                
                 color="inherit"
                 size="large"
                 endIcon={<Iconify icon={'ic:round-arrow-right-alt'} width={24} height={24} />}
+                
               >
                 Check out our work
               </Button>
