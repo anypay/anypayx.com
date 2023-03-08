@@ -41,7 +41,7 @@ export default function SocialsButton({
       name: 'GitHub',
       icon: 'eva:github-fill',
       socialColor: '#1877F2',
-      path: links.github || '#github-link',
+      path: links.github || 'https://github.com/anypay',
     },
     // {
     //   name: 'Instagram',
