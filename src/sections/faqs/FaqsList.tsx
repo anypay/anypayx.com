@@ -8,8 +8,14 @@ import Iconify from '../../components/Iconify';
 // ----------------------------------------------------------------------
 
 const questions1 = [
-  'What is the value of Anypay?',
-  'What does Anypay do?',
+  {
+    question: 'What is the value of Anypay?',
+    answer: 'Everything.'
+  },
+  {
+    question: 'What does Anypay do?',
+    answer: 'Collects payments in cryptocurrency.'
+  },
   'What services does Anypay offer?',
   'Why should I use Anypay?',
   'Who is Anypay for?',
