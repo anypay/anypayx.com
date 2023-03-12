@@ -39,7 +39,7 @@ export default function HomePage() {
   //router.push('/dashboard')
 
   return (
-    <Page title="Enterprise Bitcoin Payments">
+    <Page title="Bitcoin Payments">
       <RootStyle>
         <ContentStyle>
 

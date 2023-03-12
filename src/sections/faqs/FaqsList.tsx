@@ -39,14 +39,17 @@ const faqs1: FAQ[] = [{
 }, {
   question:   'Do I have to KYC?',
   answer: 'Most users are not required to provide any sensitive information to use Anypay\'s payment software. Anypay blocks access from certain geographic locations to comply with regulations.'
+}, {
+  question:   'What wallets are supported?',
+  answer: 'Anypay communicates with all wallets that use the Payment Protocol introduced to bitcoin in 2013. '
 }]
 
 const faqs2: FAQ[] = [{
   question: 'Are there limits?',
   answer: 'All transactions over $0.04 are valid on all chains except BTC ($1.00 min). The upper limit is the total amount of currency in circulation.',
 }, {
-  question: 'Can businesses considered high-risk use it (e.g.: cannabis dispensary)?',
-  answer: 'Yes. Businesses that banks consider "high-risk" such as cannabis dispensaries can use Anypay to accept crypto payments.'
+  question: 'Can businesses considered "high-risk" use Anypay?',
+  answer: 'All legal businesses that are permitted to accept cryptocurrency may use Anypay. This includes businesses that banks consider "high-risk," such as cannabis dispensaries.'
 }, {
   question:  'What cryptocurrencies can I use?',
   answer: 'Anypay supports Bitcoin Core (BTC), Litecoin (LTC), Dogecoin (DOGE), Bitcoin Cash (BCH), Monero (XMR), Dash (DASH), and Bitcoin SV (BSV)'  
@@ -58,13 +61,16 @@ const faqs2: FAQ[] = [{
   answer: 'Developers can find API documentation at api.anypayx.com. Merchant app users can find tutorials on YouTube.'
 }, {
   question:   'Do you have integrations with e-commerce platforms?',
-  answer: 'Anypay has WordPress plugin that works with WooCommerce. However, this plugin is undergoing an update and is unavailable to new users.'  
+  answer: 'Anypay has WordPress plugin that works with WooCommerce. The Anypay for WooCommerce plugin is undergoing an update and is temporarily unavailable to new users.'  
 }, {
-  question:   'How do I get support, and how do I get in touch with your company?',
+  question:   'How do I get support or get in touch with Anypay?',
   answer: 'Email Anypay Support at support@anypayx.com for direct answers to your questions. Message in the public Anypay Telegram group at t.me/anypayx for the fastest response.'  
 }, {
   question:   'If you encounter an issue with your software, do you work on it and improve it?',
   answer: 'Anypay rarely encounters problems and is long-term stable. When users encounter an issue, we quickly resolve it with an update.'
+}, {
+  question:   'Why is Anypay open-source?',
+  answer: 'Embracing open-source software enables Anypay to provide the most stable and secure tools at the lowest cost. Rather than build a wall around our products, we empower anyone to contribute to development, making crypto payments better for everyone.'
 }]
 
 interface AccordianItem {

@@ -55,14 +55,19 @@ export default function HomeEnterprisePaymentsPlatform() {
                 color: isLight ? 'text.secondary' : 'text.primary',
               }}
             >
-
-Add complex crypto payments to your applications in seconds with our simple developer platform. We abstract away all the bitcoin stuff so your team can get building quickly.
-
-Well-documented code with lots of examples makes Anypay easy!<br/><br/>
-            
-Your business can finally let your developers build solutions that your clients need and we’ll make sure that 100% of all payments are built, verified, broadcasted and executed correctly.<br/><br/>
-
-We offer the best pricing model in the industry at 0.1% per transaction and lower!
+            Add crypto payments to your applications in seconds with our developer platform. 
+            <br/>
+            Anypay takes care of the crypto processing so your team can get building quickly.
+            <br/>
+            Well-documented code with lots of examples makes Anypay easy!
+            <br/>
+            <br/>            
+            Let your developers build the solutions your clients need.
+            <br/>
+            Anypay makes sure all payments are perfect every time.
+            <br/>
+            <br/>
+            The best pricing in the industry 0.1% per transaction and lower!
             </Typography>
           </m.div>
 

@@ -77,11 +77,11 @@ export default function RegisterForm() {
         {!!errors.afterSubmit && <Alert severity="error">{errors.afterSubmit.message}</Alert>}
 
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-          <RHFTextField name="firstName" label="First name" />
-          <RHFTextField name="lastName" label="Last name" />
+          <RHFTextField name="firstName" label="First Name" />
+          <RHFTextField name="lastName" label="Last Name" />
         </Stack>
 
-        <RHFTextField name="email" label="Email address" />
+        <RHFTextField name="email" label="Email Address" />
 
         <RHFTextField
           name="password"

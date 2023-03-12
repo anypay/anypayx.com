@@ -88,7 +88,7 @@ export default function Register() {
           {mdUp && (
             <SectionStyle>
               <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-                Sell products for crypto more easily with Anypay
+                Take crypto payments easily with Anypay
               </Typography>
               <Image
                 alt="register"
@@ -102,10 +102,10 @@ export default function Register() {
               <Box sx={{ mb: 5, display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ flexGrow: 1 }}>
                   <Typography variant="h4" gutterBottom>
-                    Earn and Spend Bitcoins
+                    Start Earning Bitcoins
                   </Typography>
                   <Typography sx={{ color: 'text.secondary' }}>
-                    Your Commerce the Blockchain the right way
+                    Collect cryptocurrency payments in seconds!
                   </Typography>
                 </Box>
                 <Tooltip title={capitalCase(method)}>
@@ -124,11 +124,11 @@ export default function Register() {
 
               <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
                 By registering, I agree to Anypay&nbsp;
-                <Link underline="always" color="text.primary" href="#">
+                <Link underline="always" color="text.primary" target="_blank" href="/docs/terms">
                   Terms of Service
                 </Link>
-                {''}and{''}
-                <Link underline="always" color="text.primary" href="#">
+                {''} and {''}
+                <Link underline="always" color="text.primary" target="_blank" href="/docs/privacy">
                   Privacy Policy
                 </Link>
                 .
