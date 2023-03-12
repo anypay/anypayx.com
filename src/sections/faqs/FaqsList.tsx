@@ -48,8 +48,8 @@ const faqs2: FAQ[] = [{
   question: 'Are there limits?',
   answer: 'All transactions over $0.04 are valid on all chains except BTC ($1.00 min). The upper limit is the total amount of currency in circulation.',
 }, {
-  question: 'Can businesses considered high-risk use it (e.g.: cannabis dispensary)?',
-  answer: 'Yes. Businesses that banks consider "high-risk" such as cannabis dispensaries can use Anypay to accept crypto payments.'
+  question: 'Can businesses considered "high-risk" use Anypay?',
+  answer: 'All legal businesses that are permitted to accept cryptocurrency may use Anypay. This includes businesses that banks consider "high-risk," such as cannabis dispensaries.'
 }, {
   question:  'What cryptocurrencies can I use?',
   answer: 'Anypay supports Bitcoin Core (BTC), Litecoin (LTC), Dogecoin (DOGE), Bitcoin Cash (BCH), Monero (XMR), Dash (DASH), and Bitcoin SV (BSV)'  
