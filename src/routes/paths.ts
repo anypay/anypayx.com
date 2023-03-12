@@ -24,9 +24,9 @@ export const PATH_PAGE = {
   maintenance: '/maintenance',
   pricing: '/pricing',
   payment: '/payment',
-  about: '/about-us',
-  contact: '/contact-us',
-  faqs: '/faqs',
+  about: '/about',
+  contact: '/contact',
+  faqs: '/faq',
   page404: '/404',
   page500: '/500',
   components: '/components'

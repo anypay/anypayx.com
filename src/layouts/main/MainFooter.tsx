@@ -15,7 +15,7 @@ const LINKS = [
   {
     headline: 'Anypay',
     children: [
-      { name: 'About Us', href: '/about-us' },
+      { name: 'About Us', href: PATH_PAGE.about },
       //{ name: 'Contact us', href: '/contact-us' },
       { name: 'FAQs', href: PATH_PAGE.faqs },
     ],
