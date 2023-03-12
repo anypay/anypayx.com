@@ -38,7 +38,7 @@ const faqs1: FAQ[] = [{
   answer: 'Anypay is 100% non-custodial. That means Anypay never takes "custody" of your coins. All payments go directly from customer to merchant, without going through a third party. These transactions are also called "Peer-to-peer" and are the most secure.'
 }, {
   question:   'Do I have to KYC?',
-  answer: ''
+  answer: 'Most users are not required to provide any sensitive information to use Anypay\'s payment software. Anypay blocks access from certain geographic locations to comply with regulations.'
 }]
 
 const faqs2: FAQ[] = [{
@@ -57,7 +57,7 @@ const faqs2: FAQ[] = [{
   question:   'Where can I find documentation and tutorials?',
   answer: 'Developers can find API documentation at api.anypayx.com. Merchant app users can find tutorials on YouTube.'
 }, {
-  question:   'Do you have integrations with e-commerce platforms? Which ones?',
+  question:   'Do you have integrations with e-commerce platforms?',
   answer: 'Anypay has WordPress plugin that works with WooCommerce. However, this plugin is undergoing an update and is unavailable to new users.'  
 }, {
   question:   'How do I get support, and how do I get in touch with your company?',
