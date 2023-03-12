@@ -27,7 +27,7 @@ Faqs.getLayout = function getLayout(page: React.ReactElement) {
 
 export default function Faqs() {
   return (
-    <Page title="Faqs">
+    <Page title="FAQs">
       <RootStyle>
         <FaqsHero />
 
@@ -35,7 +35,7 @@ export default function Faqs() {
           {/*<FaqsCategory />*/}
 
           <Typography variant="h3" sx={{ mb: 5 }}>
-            Frequently asked questions
+            Frequently Asked Questions
           </Typography>
 
           <Grid container spacing={10}>
