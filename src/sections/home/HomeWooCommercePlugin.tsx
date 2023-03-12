@@ -115,7 +115,7 @@ export default function HomeHugePackElements() {
                   }}
                 >
                 
-                Get paid in Bitcoin today. Add Dogecoin, Litecoin, Bitcoin Cash, and BitcoinSV alongside other payment methods.
+                Get paid in Bitcoin, Litecoin, Dogecoin, Litecoin, Dash, Bitcoin Cash, and BitcoinSV alongside traditional payment methods.
 
 
 
@@ -125,21 +125,21 @@ export default function HomeHugePackElements() {
               <m.div variants={varFade().inUp}>
                 <NextLink href="https://wordpress.org/plugins/anypay-woocommerce/" passHref>
                   <Button size="large" color="inherit" variant="outlined">
-                    Download the Plugin
+                    Anypay® for WooCommerce
                   </Button>
                 </NextLink>
               </m.div>
 
               <m.div variants={varFade().inUp}>
               <br/>
-                <Link href="https://anypay.dev">
+                <Link target="_blank" href="https://anypayx.com/faq">
                   <Typography
                     sx={{
                       mb: 5,
                       color: isLight ? 'text.secondary' : 'common.white',
                     }}
                   >
-                  I’d like to build a custom API integration
+                  Contact us for a custom web integration
                   </Typography>
                 </Link>
               </m.div>

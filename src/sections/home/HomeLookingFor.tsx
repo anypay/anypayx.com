@@ -36,13 +36,13 @@ export default function HomeLookingFor() {
           <Grid item xs={12} md={4} sx={{ textAlign: { xs: 'center', md: 'left' } }}>
             <m.div variants={varFade().inDown}>
               <Typography variant="overline" component="div" sx={{ color: 'text.disabled' }}>
-                Running a retail store?
+                Point of Sale App
               </Typography>
             </m.div>
 
             <m.div variants={varFade().inDown}>
               <Typography variant="h2" sx={{ mt: 2, mb: 5 }}>
-                Crypto for Retail
+                Retail Store
               </Typography>
             </m.div>
 
@@ -54,7 +54,7 @@ export default function HomeLookingFor() {
                     color: isLight ? 'text.secondary' : 'common.white',
                   }}
                 >
-Accept crypto at your store today. There’s no hardware to buy, and we track all your payments for easy accounting. Start to finish in under 30 minutes.
+                No hardware. Easy accounting. Setup in minutes.
 
 
                 </Typography>
@@ -66,24 +66,39 @@ Accept crypto at your store today. There’s no hardware to buy, and we track al
                   size="large"
                   variant="outlined"
                   target="_blank"
+                  //margin-bottom="10px"
                   rel="noopener"
-                  href="https://appurl.io/HSMu6nlLQ"
+                  href="https://apps.apple.com/us/app/anypay/id1442219043"
                   endIcon={<Iconify icon={'ic:round-arrow-right-alt'} />}
                 >
-                  Download the App Here
+                  Anypay®  iOS
+                </Button>
+              </m.div>
+            
+              <m.div variants={varFade().inDown}>
+                <Button
+                  color="inherit"
+                  size="large"
+                  variant="outlined"
+                  target="_blank"
+                  rel="noopener"
+                  href="https://play.google.com/store/apps/details?id=global.anypay.pos"
+                  endIcon={<Iconify icon={'ic:round-arrow-right-alt'} />}
+                >
+                  Anypay® 🤖 Android
                 </Button>
               </m.div>
 
               <m.div variants={varFade().inUp}>
               <br/>
-                <Link href="https://anypay.dev">
+                <Link href="https://acadiapos.com/">
                   <Typography
                     sx={{
                       mb: 5,
                       color: isLight ? 'text.secondary' : 'common.white',
                     }}
                   >
-                  I’d like to learn more about AEPP
+                  Want POS integration? Click here for AcadiaPOS.
                   </Typography>
                 </Link>
               </m.div>
