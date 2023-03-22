@@ -159,11 +159,11 @@ const loadModal = ({ uid }: { uid: any }) => {
 }
 
 const blockchairCurrencies = {
-  'BSV': 'bitcoin-sv',
+  'BSV':  'bitcoin-sv',
   'DASH': 'dash',
-  'BCH': 'bitcoin-cash',
-  'BTC': 'bitcoin',
-  'LTC': 'litecoin',
+  'BCH':  'bitcoin-cash',
+  'BTC':  'bitcoin',
+  'LTC':  'litecoin',
   'DOGE': 'dogecoin'
 }
 

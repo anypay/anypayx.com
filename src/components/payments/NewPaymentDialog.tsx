@@ -38,7 +38,11 @@ export default function NewPaymentDialog({ account }: { account?: Account }) {
   }
 
   const handleAmountChange = (event: any) => {
-
+    //it triggers by pressing the enter key
+    if (event.keyCode === 13) {
+      handleSubmit();
+      console.log('fired')
+    } else
       setAmount(event.target.value)
   }
 
@@ -60,6 +64,14 @@ export default function NewPaymentDialog({ account }: { account?: Account }) {
     router.push(`/dashboard/invoices/${invoice.uid}`)
 
   };
+
+  // function handleKeypress(e) {
+  //   //it triggers by pressing the enter key
+  //   if (e.keyCode === 'Enter') {
+  //     handleSubmit();
+  //     console.log('fired')
+  //   }
+  // }
 
   const denomination = account?.denomination || 'USD'
 
@@ -83,6 +95,7 @@ export default function NewPaymentDialog({ account }: { account?: Account }) {
             variant="outlined"
             label="Amount to Collect"
             onChange={handleAmountChange}
+            //onKeyPress={handleKeypress}
           />
         </DialogContent>
         <DialogActions>
