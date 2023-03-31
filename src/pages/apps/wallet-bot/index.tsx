@@ -13,7 +13,7 @@ import {
   TableCell,
   TableBody,
   Grid,
-  Box
+  Box,
 } from '@mui/material';
 // hooks
 import useSettings from '../../../hooks/useSettings';
@@ -30,9 +30,13 @@ import { styled } from '@mui/material/styles';
 
 import NewWalletBotPaymentDialog from '../../../components/payments/NewWalletBotPaymentDialog'
 
-import useWalletBot from '../../../hooks/useWalletBot'
+import useWalletBot, { AddressBalance } from '../../../hooks/useWalletBot'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import WalletBotBalances from 'src/components/wallet-bot/WalletBotBalances';
+import HeaderBreadcrumbs from 'src/components/HeaderBreadcrumbs';
+import PaymentsList from 'src/components/payments/PaymentsList';
+import Link from 'next/link';
 
 const Img = styled('img')({
   margin: 'auto',
@@ -90,11 +94,35 @@ export default function WalletBotDashboard() {
   const { enqueueSnackbar } = useSnackbar();
   const { themeStretch } = useSettings();
 
-  const { counts, token, data, error, connected, status, paid, unpaid, cancelled, refresh } = useWalletBot()
-
-  console.log({ counts, token, data, error, connected, status, paid, unpaid, cancelled, refresh })
+  const { counts, token, loading, data, error, listPaid, connected, status, paid, unpaid, cancelled, refresh, listAddressBalances } = useWalletBot()
 
   const [showByStatus, setShowByStatus] = useState<string>('paid')
+
+  const [addressBalances, setAddressBalances] = useState<AddressBalance[]>([]);
+
+  const [payments, setPayments] = useState<any[]>([])
+
+  useEffect(() => {
+    if (loading) { return }
+
+    listPaid({ limit: 100, offset: 0 }).then((paid) => {
+
+        console.log('PAID', paid)
+        setPayments(paid)
+    })
+}, [loading])
+
+  useEffect(() => {
+    if (loading) { return }
+    listAddressBalances().then((balances) => {
+      console.log('BALANCES', balances)
+      setAddressBalances(balances)
+    })
+    .catch(error =>{
+        enqueueSnackbar('Error Loading Wallet Bot Balance History', { variant: 'warning' })
+    })
+  }, [loading])
+
 
   if (error) {
     enqueueSnackbar('Error Loading Wallet Bot', { variant: 'warning' })
@@ -107,11 +135,6 @@ export default function WalletBotDashboard() {
   console.log({ status, connected })
 
   const StatusCard = status === 'connected' ? ConnectedStatusCard : DisconnectedStatusCard;
-
-  async function payNow() {
-
-
-  }
 
   var balances = data?.balances || []
 
@@ -127,228 +150,116 @@ export default function WalletBotDashboard() {
   return (
     <Page title="Wallet Bot: Dashboard">
       <Container maxWidth={themeStretch ? false : 'lg'}>
+      <HeaderBreadcrumbs
+            heading="Wallet Bot"
+            links={[
+              { name: 'Apps', href: '/apps' },
+              { name: 'Wallet Bot', },
+            ]}
+          />
 
         <Grid container spacing={2}>
-          <Grid item md={3} lg={4}>
-            <Card>
-              <Box sx={{backgroundColor: '#444444', height: '140px', display: 'flex'}}>
-                <Img src="https://doge.bitcoinfiles.org/ea8205469186c12f6b23866d3ef50ab84f6f6b82dab43075e0229ab32ca6f5bc"/>
-              </Box>
-            </Card>
-          </Grid>
-          <Grid item   xs={6} sm={4} md={3} lg={2}>
 
-            <StatusCard>
-              <CardHeader />
+        <Grid item xs={12} sm={6}>
 
-              <Stack spacing={2} sx={{ p: 3 }}>
-                <Typography variant="body2">
-                  <h2><b>{capitalizeFirstLetter(data?.wallet_bot.status)}</b></h2>
-                </Typography>
+<Grid container spacing={2}>
 
-              </Stack>
-              </StatusCard>
+  <Grid item  xs={6} sm={6} md={3}>
+  <StyledCard
+    onClick={() => setShowByStatus('unpaid')}
+    sx={{ border: showByStatus === 'unpaid' ? '2px solid #ccc' : '0px'}}>
+      <CardHeader title="Pending"/>
 
-          </Grid>
-          {status === 'connected' && (
-            <Grid item xs={6} sm={4} md={3} lg={2}>
-              <StyledPayNowCard onClick={payNow}>
-              <CardHeader />
+      <Stack spacing={2} sx={{ p: 3 }}>
+        {counts === null ? (
+          <h1>?</h1>
+        ): (
+          <h1>{counts.unpaid || 0}</h1>
+        )}
+      </Stack>
+    </StyledCard>
+  </Grid>
 
-              <Stack spacing={2} sx={{ p: 3 }}>
 
-                <Typography variant="body2">
-                  <NewWalletBotPaymentDialog onPaymentRequestCreated={onPaymentRequestCreated} />              
-                </Typography>
-              </Stack>
-              </StyledPayNowCard>
-            </Grid>
-          )}
+  <Grid item  xs={6} sm={6} md={3}>
+  <StyledCard
+    onClick={() => setShowByStatus('cancelled')}
+    sx={{ border: showByStatus === 'cancelled' ? '2px solid #ccc' : '0px'}}>   
+      <CardHeader title="Cancelled"/>
 
-          <Grid item  xs={4} sm={3} md={3} lg={2}>
-            <StyledCard>
-              <CardHeader />
+      <Stack spacing={2} sx={{ p: 3 }}>
+        {counts === null ? (
+          <h1>?</h1>
+        ): (
+          <h1>{counts.cancelled || 0}</h1>
+        )}
+      </Stack>
+    </StyledCard>
+  </Grid>
 
-              <Stack spacing={2} sx={{ p: 3 }}>
-                <a target='_blank'  rel="noreferrer" href='https://github.com/anypay/wallet-bot'><IconImg src={'https://imgs.search.brave.com/WBmzxaghxwDdiyR2hX18EBpTe0cCmBPP1lf0fkLISw0/rs:fit:1200:1156:1/g:ce/aHR0cHM6Ly9wbmdp/bWcuY29tL3VwbG9h/ZHMvZ2l0aHViL2dp/dGh1Yl9QTkcyMC5w/bmc'}/></a>
-              </Stack>
-            </StyledCard>
-          </Grid>
-          <Grid item   xs={4} sm={3} md={3} lg={2}>
-            <StyledCard>
-              <CardHeader/>
 
-              <Stack spacing={2} sx={{ p: 3 }}>
-                <a target='_blank'  rel="noreferrer"  href='https://hub.docker.com/r/anypay/wallet-bot'><IconImg src={'/icons/docker_200_170.png'}/></a>
+  <Grid item  xs={6} sm={6} md={3}>
+  <StyledCard
+    onClick={() => setShowByStatus('paid')}
+    sx={{ border: showByStatus === 'paid' ? '2px solid #ccc' : '0px'}}>                  
+    <CardHeader title="Paid"/>
 
-              </Stack>
-            </StyledCard>
-          </Grid>
+      <Stack spacing={2} sx={{ p: 3 }}>
+        {counts === null ? (
+          <h1>?</h1>
+        ): (
+          <h1>{counts.paid || 0}</h1>
+        )}
+      </Stack>
+    </StyledCard>
+  </Grid>
+  
 
-        {balances && (
+</Grid>
+
+</Grid>
+
+<Grid item   xs={12} sm={6} md={3}>
+<StyledCard>
+  <CardHeader title="Token" />
+
+  <Stack spacing={1} sx={{ p: 1 }}>
+    <Typography variant="body2">{data?.access_token}</Typography>
+
+  </Stack>
+</StyledCard>
+</Grid>
+
+
+
+
+        {!loading && addressBalances && (
 
           <Grid item  xs={12} sm={12} md={12}>
-            <Card>
-            <CardHeader sx={{textAlign: 'center', padding: '1em'}} title="Balances" />
 
-              <Table>
+              <Typography>
+                <h2><Link href={'/apps/wallet-bot/balances'}>Address Balances</Link></h2>
+              </Typography>
 
-                  <TableBody>
-                  {balances.map((balance) => (
-                    (balance && balance.address && (
-                        <TableRow key={`${balance?.asset}-${balance?.address}`}>
-                            <TableCell>{balance?.asset}</TableCell>
-                            <TableCell>${balance?.value_usd}</TableCell>
-                            <TableCell>{balance?.address}</TableCell>
-                            <TableCell>:</TableCell>
+            <WalletBotBalances balances={addressBalances} />
 
-                        </TableRow>))
-                    ))}
-                  </TableBody>
-              </Table>
-            </Card>
           </Grid>
           )}
 
-          <Grid item xs={12} sm={6}>
-
-            <Grid container spacing={2}>
-
-              <Grid item  xs={6} sm={6} md={3}>
-              <StyledCard
-                onClick={() => setShowByStatus('unpaid')}
-                sx={{ border: showByStatus === 'unpaid' ? '2px solid #ccc' : '0px'}}>
-                  <CardHeader title="Pending"/>
-
-                  <Stack spacing={2} sx={{ p: 3 }}>
-                    {counts === null ? (
-                      <h1>?</h1>
-                    ): (
-                      <h1>{counts.unpaid || 0}</h1>
-                    )}
-                  </Stack>
-                </StyledCard>
-              </Grid>
-
-
-              <Grid item  xs={6} sm={6} md={3}>
-              <StyledCard
-                onClick={() => setShowByStatus('cancelled')}
-                sx={{ border: showByStatus === 'cancelled' ? '2px solid #ccc' : '0px'}}>   
-                  <CardHeader title="Cancelled"/>
-
-                  <Stack spacing={2} sx={{ p: 3 }}>
-                    {counts === null ? (
-                      <h1>?</h1>
-                    ): (
-                      <h1>{counts.cancelled || 0}</h1>
-                    )}
-                  </Stack>
-                </StyledCard>
-              </Grid>
-
-
-              <Grid item  xs={6} sm={6} md={3}>
-              <StyledCard
-                onClick={() => setShowByStatus('paid')}
-                sx={{ border: showByStatus === 'paid' ? '2px solid #ccc' : '0px'}}>                  
-                <CardHeader title="Paid"/>
-
-                  <Stack spacing={2} sx={{ p: 3 }}>
-                    {counts === null ? (
-                      <h1>?</h1>
-                    ): (
-                      <h1>{counts.paid || 0}</h1>
-                    )}
-                  </Stack>
-                </StyledCard>
-              </Grid>
-              
-
-            </Grid>
-
-          </Grid>
-
-        <Grid item   xs={12} sm={6} md={3}>
-            <StyledCard>
-              <CardHeader title="Token" />
-
-              <Stack spacing={2} sx={{ p: 3 }}>
-                <Typography variant="body2">{data?.access_token}</Typography>
-
-              </Stack>
-            </StyledCard>
-          </Grid>
-
-          <Grid item xs={3} sm={3} md={3}>
-            <Card>
-              <TrendingUpCard/>
-            </Card>
-          </Grid>
 
           {paid && showByStatus === 'paid' && (
-
-            <Grid item  xs={12} sm={6} md={6}>
-              <Card>
-              <CardHeader sx={{textAlign: 'center', padding: '1em'}} title="Completed Payments" />
-
-                <Table>
-                    <TableBody>
-                    {paid.invoices && paid.invoices.map((balance) => (
-                          <TableRow key={`${balance.asset}-${balance.address}`}>
-                              <TableCell>{balance.createdAt}</TableCell>
-                              <TableCell>{balance.uid}</TableCell>
-                              <TableCell>:</TableCell>
-                          </TableRow>
-                      ))}
-                    </TableBody>
-                </Table>
-              </Card>
+            
+            <Grid item  xs={12} sm={12} md={12}>
+              <Typography>
+                <h2><Link href={'/apps/wallet-bot/payments'}>Payments History</Link></h2>
+              </Typography>
+              {payments && <PaymentsList payments={payments} />}            
             </Grid>
           )}
 
 
-        {cancelled && showByStatus === 'cancelled' && (
 
-        <Grid item  xs={12} sm={6} md={6}>
-          <Card>
-          <CardHeader sx={{textAlign: 'center', padding: '1em'}} title="Cancelled Payments" />
 
-          <Table>
-                    <TableBody>
-                    {cancelled.invoices && cancelled.invoices.map((balance) => (
-                          <TableRow key={`${balance.asset}-${balance.address}`}>
-                              <TableCell>{balance.createdAt}</TableCell>
-                              <TableCell>{balance.uid}</TableCell>
-                              <TableCell>:</TableCell>
-                          </TableRow>
-                      ))}
-                    </TableBody>
-                </Table>
-          </Card>
-        </Grid>
-        )}
-
-          {unpaid && showByStatus === 'unpaid' && (
-
-          <Grid item  xs={12} sm={6} md={6}>
-            <Card>
-            <CardHeader sx={{textAlign: 'center', padding: '1em'}} title="Unpaid Payments" />
-
-            <Table>
-                    <TableBody>
-                    {unpaid.invoices && unpaid.invoices.map((balance) => (
-                          <TableRow key={`${balance.asset}-${balance.address}`}>
-                              <TableCell>{balance.createdAt}</TableCell>
-                              <TableCell>{balance.uid}</TableCell>
-                              <TableCell>:</TableCell>
-                          </TableRow>
-                      ))}
-                    </TableBody>
-                </Table>
-            </Card>
-          </Grid>
-          )}
 
         </Grid>
 

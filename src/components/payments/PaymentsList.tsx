@@ -215,21 +215,21 @@ export default function PaymentsList({ payments }: { payments?: any[] }) {
                             onClick={() => rowClicked(row)}
                             size="small"
                             sx={{ display: 'flex', alignItems: 'center' }}>
-                            <Avatar alt={currency} src={`/icons/coins/${currency}.png`} sx={{ mr: 2 }} />
+                            <Avatar alt={row.currency} src={`/icons/coins/${row.currency}.png`} sx={{ mr: 2 }} />
                             <Typography variant="subtitle2" noWrap>
-                                {currency}
+                                {row.currency}
                             </Typography>
                           </TableCell>
                           <TableCell onClick={() => rowClicked(row)} align="left">
-                              {invoice.amount} {invoice.currency}
+                              {row.amount} {row.currency}
                           </TableCell>
                           <TableCell onClick={() => rowClicked(row)} align="left">
-                              <span style={{color: 'white', textDecoration: 'none' }}>{invoice.uid}</span>
+                              <span style={{color: 'white', textDecoration: 'none' }}>{row.uid}</span>
                           </TableCell>
                           <TableCell onClick={() => rowClicked(row)} align="left">{date}</TableCell>
                           <TableCell align="right">
-                            <PaymentsMoreMenu invoice={invoice} onSendWebhook={() => {
-                                sendWebhook(invoice.uid)
+                            <PaymentsMoreMenu invoice={row} onSendWebhook={() => {
+                                sendWebhook(row.uid)
                             }} />
                           </TableCell>
                         </TableRow>

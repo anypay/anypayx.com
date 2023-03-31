@@ -2,15 +2,11 @@
 
 import { app } from 'anypay'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
-import { useAPI } from '../api/useAPI'
+import { useAPI, API_BASE } from '../api/useAPI'
 
-interface UseWalletBot {
-    updateBalances: Function;
-    queuePayment: Function;
-    cancelPayment: Function;
-}
+import axios from 'axios';
 
 interface Card {
     chain?: string;
@@ -21,7 +17,46 @@ interface Card {
     timestamp?: Date;
 }
 
-class WalletBot {
+export interface Address {
+    chain: string;
+    currency: string;
+    address: string;
+}
+
+export interface AddressBalance extends Address {
+    balance: number;
+    updatedAt: string;
+    usd_balance?: number;
+}
+
+export interface UseWalletBot {
+    loading: boolean;
+    unpaid: any;
+    paid: any;
+    cancelled: any;
+    numberPending: number | null;
+    numberPaid: number | null;
+    numberCancelled: number | null;
+    connected: boolean;
+    listPending: () => Promise<any>;
+    cancelPayment: () => Promise<any>;
+    addPayment: () => Promise<any>;
+    token: string;
+    data: any;
+    error: any;
+    status: string;
+    balances: any;
+    counts: any;
+    refresh: () => Promise<any>;
+    listAddressBalances: () => Promise<AddressBalance[]>;
+    listAddressBalanceHistory: (Address) => Promise<AddressBalance[]>;
+    listPaid: ({limit, offset}: {limit: number, offset: number}) => Promise<AddressBalance[]>;
+    listUnpaid: ({limit, offset}: {limit: number, offset: number}) => Promise<AddressBalance[]>;
+}
+
+
+
+export class WalletBot {
 
     accessToken: string;
 
@@ -55,7 +90,7 @@ class WalletBot {
     }
 }
 
-export default function() {
+export default function(): UseWalletBot {
 
     const { data, error, loading } = useAPI(`/apps/wallet-bot`)
 
@@ -119,7 +154,58 @@ export default function() {
         return walletBot?.queuePayment()
     }
 
+    async function listAddressBalances(): Promise<AddressBalance[]> {
 
+        const { data } = await axios.get(`${API_BASE}/apps/wallet-bot/address-balances`, {
+            auth: {
+                username: token,
+                password: ''
+            }
+        })
+
+        return data.balances
+
+    }
+
+    async function listAddressBalanceHistory({address,chain,currency}: Address): Promise<AddressBalance[]> {
+
+        const { data } = await axios.get(`${API_BASE}/apps/wallet-bot/address-balances/${chain}/${currency}/${address}`, {
+            auth: {
+                username: token,
+                password: ''
+            }
+        })
+
+        return data.history
+
+    }
+
+    async function listPaid({limit, offset}: {limit: number, offset: number}): Promise<any[]> {
+
+        const { data } = await axios.get(`${API_BASE}/apps/wallet-bot/invoices?status=paid&limit=${limit}&offset=${offset}`, {
+            auth: {
+                username: token,
+                password: ''
+            }
+        })
+
+        return data.invoices
+
+    }
+
+
+    async function listUnpaid({limit, offset}: {limit: number, offset: number}): Promise<AddressBalance[]> {
+
+        const { data } = await axios.get(`${API_BASE}/apps/wallet-bot/invoices?status=unpaid&limit=${limit}&offset=${offset}`, {
+            auth: {
+                username: token,
+                password: ''
+            }
+        })
+
+        return data.invoices
+
+    }
 
     return {
         loading,
@@ -130,8 +216,9 @@ export default function() {
         numberPaid,
         numberCancelled,
         connected,
+        listPaid,
+        listUnpaid,
         listPending,
-        listCancelled,
         cancelPayment,
         addPayment,
         token,
@@ -140,7 +227,10 @@ export default function() {
         status,
         balances,
         counts,
-        refresh
+        refresh,
+        listAddressBalances,
+        listAddressBalanceHistory
     }
 
 }
+
