@@ -1,7 +1,7 @@
 
 import useSWR from 'swr';
 
-export const DOMAIN = 'api.anypayx.com'
+export const DOMAIN = process.env.DOMAIN || 'api.anypayx.com'
 
 //export const BASE = process.env.API_BASE || `http://localhost:5200/v1/api`;
 //export const BASE = process.env.API_BASE || `https://api_next.anypayx.com/v1/api`;

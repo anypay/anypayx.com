@@ -55,12 +55,22 @@ const RootStyle = styled(Box)(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export interface Props extends ReactQuillProps {
+  onChange: Function;
   id?: string;
   error?: boolean;
   simple?: boolean;
   helperText?: ReactNode;
   sx?: BoxProps;
+  value: any;
 }
+/*
+  id?: string;
+  error?: boolean;
+  simple?: boolean;
+  helperText?: ReactNode;
+  sx?: BoxProps;
+  value: any;
+ */
 
 export default function Editor({
   id = 'minimal-quill',
@@ -98,14 +108,16 @@ export default function Editor({
         }}
       >
         <EditorToolbar id={id} isSimple={simple} />
+        {/*
         <ReactQuill
-          value={value}
-          onChange={onChange}
+          //value={value}
+          //onChange={onChange}
           modules={modules}
           formats={formats}
           placeholder="Write something awesome..."
           {...other}
         />
+        */}
       </RootStyle>
 
       {helperText && helperText}

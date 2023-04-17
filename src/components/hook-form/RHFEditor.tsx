@@ -21,8 +21,8 @@ export default function RHFEditor({ name, ...other }: Props) {
       render={({ field, fieldState: { error } }) => (
         <Editor
           id={name}
-          value={field.value}
-          onChange={field.onChange}
+          //value={field.value}
+          //onChange={field.onChange}
           error={!!error}
           helperText={
             <FormHelperText error sx={{ px: 2, textTransform: 'capitalize' }}>
