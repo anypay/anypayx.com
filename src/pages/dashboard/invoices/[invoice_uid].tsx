@@ -73,7 +73,9 @@ export default function ShowInvoice() {
 
   var address;
 
-  if (payment?.currency && addresses) {
+  console.log(payment, '--if payment--')
+
+  if (payment && payment.currency && addresses) {
 
     address = addresses.filter(address => {
 
@@ -173,7 +175,7 @@ function viewOnBlockchain() {
 
 function InvoiceDetails({ invoice, payment, address }: {invoice: Invoice, payment: Payment, address: string}) {
 
-  const blockchairCurrency = blockchairCurrencies[payment.currency]
+  const blockchairCurrency = blockchairCurrencies[payment?.currency]
 
   const { themeMode } = useSettings();
 
@@ -181,7 +183,7 @@ function InvoiceDetails({ invoice, payment, address }: {invoice: Invoice, paymen
 
   var blockExplorerURL;
 
-  switch(payment.currency) {
+  switch(payment?.currency) {
     case 'XMR':
       blockExplorerURL = `https://monero.com/payment/${payment.txid}/${address}/${payment.tx_key}/`;
       break;
