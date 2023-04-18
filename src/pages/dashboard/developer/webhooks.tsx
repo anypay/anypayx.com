@@ -53,6 +53,8 @@ import {
 } from '../../../sections/@dashboard/general/app';
 import { useListWebhooks } from 'src/api/webhooks';
 
+import { API_BASE } from 'src/api/useAPI'
+
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
@@ -85,11 +87,7 @@ export default function WebhooksList() {
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const apiBase = process.env.NEXT_PUBLIC_API_BASE || 'https://api.anypayx.com';
-
-  console.log("API BASE: ", apiBase)
-
-  const { error, data: result, loading }: any = useSWR(`${apiBase}/v1/api/webhooks`, axios)
+  const { error, data: result, loading }: any = useSWR(`${API_BASE}/v1/api/webhooks`, axios)
 
   if (result) {
 
@@ -176,7 +174,7 @@ export default function WebhooksList() {
 
     enqueueSnackbar(`Requesting to Retry Sending Webhook for Invoice ${webhook.invoice_uid}`, { variant: 'warning'});
 
-    const response = await axios.post(`${apiBase}/v1/api/webhooks/${webhook.invoice_uid}/attempts`)
+    const response = await axios.post(`${API_BASE}/v1/api/webhooks/${webhook.invoice_uid}/attempts`)
 
     if (response.status === 201) {
       enqueueSnackbar(`Success Requesting Retry of Webhook for Invoice ${webhook.invoice_uid}`, { variant: 'success'});

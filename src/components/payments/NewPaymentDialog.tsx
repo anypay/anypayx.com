@@ -14,6 +14,8 @@ import {
   DialogContentText
 } from '@mui/material';
 
+import { DOMAIN } from '../../api/useAPI'
+
 // ----------------------------------------------------------------------
 
 interface Account {
@@ -55,7 +57,7 @@ export default function NewPaymentDialog({ account }: { account?: Account }) {
     setOpen(false);
 
     // open new window target="_blank"
-    window.open(`https://anypayx.com/i/${invoice.uid}`)
+    window.open(`https://${DOMAIN}/i/${invoice.uid}`)
 
     router.push(`/dashboard/invoices/${invoice.uid}`)
 

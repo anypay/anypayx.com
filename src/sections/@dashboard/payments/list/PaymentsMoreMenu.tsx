@@ -12,6 +12,7 @@ import MenuPopover from '../../../../components/MenuPopover';
 
 import { useRouter } from 'next/router'
 
+import { DOMAIN } from 'src/api/useAPI'
 // ----------------------------------------------------------------------
 
 type Props = {
@@ -26,7 +27,7 @@ export default function PaymentsMoreMenu({ onSendWebhook, invoice }: Props) {
     setOpen(event.currentTarget);
   };
 
-  const shareInvoiceUrl = `https://anypayx.com/i/${invoice.uid}`
+  const shareInvoiceUrl = `https://${DOMAIN}/i/${invoice.uid}`
 
   function onShareReceipt(opts: any) {
     console.log('share receipt clicked', shareInvoiceUrl)

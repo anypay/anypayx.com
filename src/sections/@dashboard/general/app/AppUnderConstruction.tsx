@@ -5,6 +5,7 @@ import { SeoIllustration } from '../../../../assets';
 import { PATH_DASHBOARD } from '../../../../routes/paths';
 import useAuth from '../../../../hooks/useAuth';
 
+import { DOMAIN } from 'src/api/useAPI'
 
 // @next
 import NextLink from 'next/link';
@@ -35,7 +36,7 @@ export default function AppUnderConstruction({ message }: AppUnderConstructionPr
 
   let { user } = useAuth();
 
-  const checkoutURL = `https://anypayx.com/app/#/pay/${user?.id}`
+  const checkoutURL = `https://${DOMAIN}/app/#/pay/${user?.id}`
 
   return (
     <RootStyle>
