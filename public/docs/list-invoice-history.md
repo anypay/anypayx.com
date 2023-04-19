@@ -1,12 +1,12 @@
-#List Invoice History
+# List Invoice History
 
 **GET** https://api.anypayx.com**/invoices**
 
-###List Invoice History
+## List Invoice History
 
 -
 
-###Parameters
+## Parameters
 
 **Query**
 
@@ -25,7 +25,7 @@
 
 -
 
-###Responses
+## Responses
 
 | Code | Meaning |
 | --- | ----------- | ----- |

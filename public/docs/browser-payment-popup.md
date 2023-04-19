@@ -1,4 +1,4 @@
-#Browser Payment Popup
+# Browser Payment Popup
 
 The Anypay Platform Makes It Super Easy To Profit By Bitcoin In Your App Or Website
 
@@ -12,7 +12,7 @@ Include the Anypay.js browser SDK in your website.
 
 Then request payment to one or more recipients, for one or more coins including BTC, BCH, BSV, LTC, DASH. Your app will be automatically notified when payment is complete.
 
-##Collecting Payment To Your Anypay Account Addresses
+## Collecting Payment To Your Anypay Account Addresses
 
 ```json
 anypay.collectPayment({                                                                                               
@@ -30,7 +30,7 @@ anypay.collectPayment({
 })                                                                                                                    
 ```
 
-##Collecting Payment For Existing Invoice
+## Collecting Payment For Existing Invoice
 
 If you already have created an invoice using the Anypay Payments API you can provide its uid to the Anypay.js Web SDK to display the pop up user interface to the user like so:
 
@@ -40,7 +40,7 @@ If you already have created an invoice using the Anypay Payments API you can pro
 anypay.showInvoice(INVOICE_UID).on('paid', console.log)
 ```
 
-##Multi-Output Payments To Any Addresses
+## Multi-Output Payments To Any Addresses
 
 ```
 <script>

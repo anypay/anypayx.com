@@ -1,10 +1,10 @@
-#HTTP API
+# HTTP API
 
 Request Payment With HTTP
 
 -
 
-##Requesting Payment Directly From Anypay Payments API
+## Requesting Payment Directly From Anypay Payments API
 
 request_payment.sh
 
@@ -31,7 +31,7 @@ curl --location --request POST 'https://api.anypayx.com/r' \
 }'
 ```
 
-##Payment For Multiple Coin Options
+## Payment For Multiple Coin Options
 
 ```
 const ANYPAY_API_SECRET = 'YOUR_API_KEY_HERE'
