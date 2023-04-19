@@ -8,7 +8,7 @@ See whether an invoice was paid and get payment details
 
 ###Check Invoice Status
 
-In the case that your system is unable to receive webhook or websocket notification of payment and you would like to manually check for payment status, us this enpdpoint.
+In the case that your system is unable to receive webhook or websocket notification of payment and you would like to manually check for payment status, us this endpoint.
 
 -
 
