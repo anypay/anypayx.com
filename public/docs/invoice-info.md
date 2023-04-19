@@ -1,4 +1,4 @@
-#Invoice Info
+# Invoice Info
 
 See whether an invoice was paid and get payment details
 
@@ -6,13 +6,13 @@ See whether an invoice was paid and get payment details
 
 **GET** https://api.anypayx.com**/invoices/{uid}**
 
-###Check Invoice Status
+## Check Invoice Status
 
 In the case that your system is unable to receive webhook or websocket notification of payment and you would like to manually check for payment status, us this endpoint.
 
 -
 
-###Parameters
+## Parameters
 
 **Path**
 
@@ -22,7 +22,7 @@ In the case that your system is unable to receive webhook or websocket notificat
 
 -
 
-###Responses
+## Responses
 
 | Code | Meaning |
 | --- | ----------- |

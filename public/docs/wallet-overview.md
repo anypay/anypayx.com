@@ -1,14 +1,14 @@
-#Wallet Overview
+# Wallet Overview
 
 Wallets communicate with Pay: Protocol servers to coordinate perfect payments with scalable efficiency.
 
 ---
 
-##Detecting `pay:` Codes
+## Detecting `pay:` Codes
 
 `pay:` Protocol codes may be differentiated from other forms of QR codes or links by its signature parameter regardless of the protocol prefix.
 
-###Always look for URIs that include ?r=https
+### Always look for URIs that include ?r=https
 
 Whenever you encounter a code like the one above, consider it is likely a payment request.
 
@@ -25,7 +25,7 @@ One you find a Pay Protocol URI download the contents by specifying your desired
 
 ---
 
-##Downloading the Payment Request Template
+## Downloading the Payment Request Template
 
 fetch\_payment\_request.sh
 
@@ -62,7 +62,7 @@ The Payment Request Template will include one or more outputs, which are compris
 }
 ```
 ---
-##Submitting Your Transaction
+## Submitting Your Transaction
 
 Each Payment Request Template includes a paymentUrl property to which your app will submit the signed transaction built with the required outputs.
 
@@ -86,7 +86,7 @@ Anypay's server will first verify the correctness of your transaction and broadc
 }
 ```
 ---
-##Handling Error Responses
+## Handling Error Responses
 
 Sometimes your transaction may be rejected by your peer for one or more reasons. Anypay's servers may reject the transaction if it does not contain the correct amounts, or has an insufficient fee, or if the coins are already spent.
 

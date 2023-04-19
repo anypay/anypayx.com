@@ -1,14 +1,14 @@
-#Cancel Invoice
+# Cancel Invoice
 -
 **DELETE** https://api.anypayx.com**/invoices/{uid}**
 
-###Cancel Invoice
+### Cancel Invoice
 
 Once an invoice is cancelled payments for that invoice will be rejected. Wallets will no longer be able to submit payment.
 
 -
 
-###Parameters
+### Parameters
 
 **Path**
 
@@ -24,7 +24,7 @@ Once an invoice is cancelled payments for that invoice will be rejected. Wallets
 
 -
 
-###Responses
+### Responses
 
 | Code | Meaning |
 | --- | ----------- | ----- |

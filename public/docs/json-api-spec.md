@@ -1,4 +1,4 @@
-#JSON API Spec
+# JSON API Spec
 
 Perfect Payments Every Time With Pay: Protocol
 
@@ -6,13 +6,13 @@ Perfect Payments Every Time With Pay: Protocol
 
 **GET** https://api.anypayx.com**/r/LeO7itGT4**
 
-###Get Payment Request
+## Get Payment Request
 
 Get a small template describing the required output of various amounts to various addresses.
 
 -
 
-###Parameters
+## Parameters
 
 
 **Path**
@@ -30,7 +30,7 @@ Get a small template describing the required output of various amounts to variou
 
 -
 
-###Responses
+## Responses
 
 | Code | Meaning |
 | --- |  ----- |
@@ -80,7 +80,7 @@ Submit signed transaction to Anypay for validation and broadcasting. You broadca
 
 -
 
-###Parameters
+## Parameters
 
 **Query**
 
@@ -97,11 +97,11 @@ Submit signed transaction to Anypay for validation and broadcasting. You broadca
 
 -
 
-###Responses
+## Responses
 
 | Code | Meaning |
 | ---- | ------- | 
-| **200** | Transation successfully submitted |
+| **200** | Transaction successfully submitted |
 
 
 ```
@@ -124,7 +124,7 @@ Submit signed transaction to Anypay for validation and broadcasting. You broadca
 -
 | Code | Meaning |
 | ---- | ------- | 
-| **500** | The server failed to process your transaction due to an issue with Anypay not with your transaction. The transaciton was not broadcast, do not broadcast your transaction. You may retry. |
+| **500** | The server failed to process your transaction due to an issue with Anypay not with your transaction. The transaction was not broadcast, do not broadcast your transaction. You may retry. |
 
 ```
 {
