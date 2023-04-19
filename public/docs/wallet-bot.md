@@ -1,17 +1,41 @@
 ![](https://bico.media/ea8205469186c12f6b23866d3ef50ab84f6f6b82dab43075e0229ab32ca6f5bc)
 
-Self-custody, headless wallet service that runs as a daemon process within your data center. It manages your software operation's private keys so that your apps can securely send payments on any peer to peer payments network.
+# Anypay Wallet Bot Documentation
 
-### Installation and Setup
+The Anypay Wallet Bot is a cryptocurrency wallet management tool that allows users to manage their cryptocurrency wallets and make payments directly from the Anypay Wallet Bot interface.
+
+ - Self-custody
+ - Manages private keys 
+ - Enables apps to securely send payments
+ - Headless (runs as daemon process in your data center) 
+
+## Getting Started
 
 The application runs as a long-running process which should be managed by k8s, docker, or your system service manager such as systemd or similar. It may be run in a node.js environment or as an isolated docker container. The single process requires no additional services such as database servers to be run.
 
+To get started with the Anypay Wallet Bot, follow these steps:
 
+### Docker:
 ```
 docker pull anypay/wallet-bot
 ```
 
-#### Setting Up Wallet Keys
+### Without Docker:
+
+1. Clone the Anypay Wallet Bot repository from https://github.com/anypay/wallet-bot
+2. Install the required dependencies by running the following command:
+   ```
+   npm install
+   ```
+3. Start the wallet bot server by running the following command:
+   ```
+   npm start
+   ```
+4. Follow the prompts to create an Anypay account and link your cryptocurrency wallets.
+
+
+
+## Setting Up Wallet Keys
 
 Rather than managing your own private key generation and backup, allow wallet bot to generate keys offline and automatically output a wallet-bot.json config file for you. Simply save a copy of this file to your organizations' vaults to restore funds in case of a machine failure.
 
@@ -25,7 +49,7 @@ You may view with `cat wallet-bot.json` that one private key has been created fo
 
 Alternatively you may provide your own wallet keys using the Wallet Import Format (WIF) inside wallet-bot.json.
 
-### Running the Service
+## Running the Service
 
 To run with wallet-bot.json config file:
 
@@ -45,11 +69,12 @@ docker run --env-file=/path/to/.env anypay/wallet-bot start
 ```
 
 You may also combine some variables from one method with others from the other method.
-### Configuration
+
+## Configuration
 
 Wallets and system settings may be configured by a combination of json config files, environment variables, and command line flags. All variables may be provided by either of the config variations.
 
-#### Environment Variables
+## Environment Variables
 
 *required
 
@@ -70,4 +95,28 @@ Wallets and system settings may be configured by a combination of json config fi
   
 
 
+## Commands
 
+The Anypay Wallet Bot supports the following commands:
+
+- `/balance`: Check the balance of a specific cryptocurrency wallet.
+- `/send`: Send cryptocurrency to a specific address.
+- `/receive`: Receive cryptocurrency by generating a unique wallet address.
+- `/history`: View the transaction history of a specific cryptocurrency wallet.
+
+
+## Security
+
+The Anypay Wallet Bot is designed to be secure and protect your cryptocurrency. Here are some security features of the bot:
+
+- Offline storage of cryptocurrency private keys to prevent them from being hacked.
+- Two-factor authentication (2FA) to confirm certain actions, such as sending cryptocurrency or changing account settings.
+- Multi-signature technology to protect against unauthorized access to your cryptocurrency.
+
+## Support
+
+If you have any questions or issues with the Anypay Wallet Bot, please visit the Anypay support page at https://anypayx.com/faq or contact support@anypayx.com or message on Telegram https://t.me/anypayx .
+
+## License
+
+The Anypay Wallet Bot is open source software released under the MIT License. See the LICENSE file for more details.
