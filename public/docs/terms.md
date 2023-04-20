@@ -10,13 +10,13 @@ Email: support@anypayx.com
 
 ---
 
-### Acceptance of the Terms of Use
+## Acceptance of the Terms of Use
 
 These Terms of Use and any terms expressly incorporated herein (“Terms”) apply to any access to, or use of, any services made available by Anypay Inc. (“Anypay,” “we,” “us,” or “our”) using the website AnypayX.com (the “Site”) or our mobile applications, and to any other related services provided by Anypay Inc. including the Anypay Enterprise Payment Platform (AEPP) and Anypay® App (collectively, the “Services”).
 
 Please read the Terms of Use carefully before you start to use the Services. By using the Services or by clicking to accept or agree to the Terms of Use when this option is made available to you, you accept and agree to be bound and abide by these Terms of Use and our privacy policy incorporated herein by reference. If you do not want to agree to these Terms of Use or the privacy policy, you must not access or use the Services.
 
-### Changes to the Terms of Use
+## Changes to the Terms of Use
 
 We may revise and update these Terms of Use from time to time at our sole discretion. All changes are effective immediately when we post them and apply to all access to and use of the Services thereafter. However, any changes to the dispute resolution provisions set out in Governing Law and Jurisdiction will not apply to any disputes for which the parties have actual notice before the change is posted by us. If we make changes, we will let you know by revising the date at the top of the Terms. Your continued use of the Sites after such posting shall be deemed to constitute acceptance by you of the changes.
 

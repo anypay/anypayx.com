@@ -5,6 +5,8 @@ import { _faqs } from '../../_mock';
 // components
 import Iconify from '../../components/Iconify';
 
+import { API_BASE } from 'src/api/useAPI'
+
 // ----------------------------------------------------------------------
 
 interface FAQ {
@@ -58,7 +60,7 @@ const faqs2: FAQ[] = [{
   answer: 'Contact us directly if you need Lightning or Liquid integrations for your business.'  
 }, {
   question:   'Where can I find documentation and tutorials?',
-  answer: 'Developers can find API documentation at api.anypayx.com. Merchant app users can find tutorials on YouTube.'
+  answer: `Developers can find API documentation at ${API_BASE}. Merchant app users can find tutorials on YouTube.`
 }, {
   question:   'Do you have integrations with e-commerce platforms?',
   answer: 'Anypay has WordPress plugin that works with WooCommerce. The Anypay for WooCommerce plugin is undergoing an update and is temporarily unavailable to new users.'  

@@ -9,6 +9,8 @@ import { PATH_PAGE } from '../../routes/paths';
 import Logo from '../../components/Logo';
 import SocialsButton from '../../components/SocialsButton';
 
+import { DOMAIN } from '../../api/useAPI'
+
 // ----------------------------------------------------------------------
 
 const LINKS = [

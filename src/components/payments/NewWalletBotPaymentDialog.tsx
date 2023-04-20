@@ -8,7 +8,7 @@ import useWalletBot from '../../hooks/useWalletBot'
 
 import { useSnackbar } from 'notistack';
 
-
+import { API_BASE } from '../../api/useAPI'
 
 // @mui
 import {
@@ -88,7 +88,7 @@ export default function NewWalletBotPaymentDialog({ account, onPaymentRequestCre
     }]
 
     const options = {
-      webhook_url: 'https://api.anypayx.com/v1/api/test/webhooks'
+      webhook_url: `https://${API_BASE}/v1/api/test/webhooks`
     }
 
     console.log('payment-request', { template, options})

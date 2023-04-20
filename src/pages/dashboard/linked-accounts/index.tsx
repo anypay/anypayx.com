@@ -24,7 +24,7 @@ import {
   
   import { getJwt } from '../../../utils/jwt'
   
-  import { DOMAIN } from '../../../api/useAPI';
+  import { API_BASE } from '../../../api/useAPI';
   
   
   ShowInvoice.getLayout = function getLayout(page: React.ReactElement) {
@@ -43,7 +43,7 @@ import {
   
     const { uid: token } = getJwt()
   
-    const checkoutURL = `https://${DOMAIN}/reports/csv/payments.csv?token=${token}`
+    const checkoutURL = `https://${API_BASE}/reports/csv/payments.csv?token=${token}`
 
     const links = [{
         source: 1177

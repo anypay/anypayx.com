@@ -131,6 +131,7 @@ export default function MailCompose({ isOpenCompose, onCloseCompose }: Props) {
           id="compose-mail"
           value={message}
           onChange={handleChangeMessage}
+          //@ts-ignore
           placeholder="Type a message"
           sx={{
             borderColor: 'transparent',

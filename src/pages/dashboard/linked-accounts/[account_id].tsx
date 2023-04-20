@@ -22,7 +22,7 @@ import {
   
   import { getJwt } from '../../../utils/jwt'
   
-  import { DOMAIN, useAPI } from '../../../api/useAPI';
+  import { API_BASE, useAPI } from '../../../api/useAPI';
 
   import { useRouter } from 'next/router';
 
@@ -48,7 +48,7 @@ import {
 
     const { account_id } = router.query
   
-    const checkoutURL = `https://${DOMAIN}/reports/csv/payments.csv?token=${token}`
+    const checkoutURL = `https://${API_BASE}/reports/csv/payments.csv?token=${token}`
 
     let { data, error, refresh, loading } = useAPI(`/linked-accounts/${account_id}/payments`);
 

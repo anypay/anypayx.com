@@ -1,18 +1,18 @@
-#Reason
+# Reason
 
 ---
 
 We invented the Anypay Pay: Protocol as a simple way for wallets to streamline paying with digital currencies in retail businesses at point of sale.
 
-Supported wallets include HandCash, Dash Wallet, Badger Wallet, Bitcoin.com Wallet, SimplyCash Wallet, Edge Wallet, ElectrumSV, and others. We aim to collaborate with all wallets whose users value spending at retail businesses to maximize the delighfulness of their payment experience.
+Supported wallets include HandCash, Dash Wallet, Badger Wallet, Bitcoin.com Wallet, SimplyCash Wallet, Edge Wallet, ElectrumSV, and others. We aim to collaborate with all wallets whose users value spending at retail businesses to maximize the delightfulness of their payment experience.
 
-#BIP70 Wallets
+## BIP70 Wallets
 
 Wallets already supporting the BIP70 payment protocol have the least to do to support the pay: protocol.
 
 Since we extend BIP70 you already have nearly everything you need.
 
-###Bitcoin.com Wallet BCH
+## Bitcoin.com Wallet BCH
 
 Bitcoin.com wallet needs only to treat URIs with prefix `pay:` as if they were URIs with prefix `bitcoincash:`. From there every detail of BIP70 protocol remains the same. No change to the protobuf binary format is necessary. No change to the request and response headers, nor changes to the digest and signatures.
 
@@ -24,15 +24,15 @@ Your wallet will need to implement the following changes:
 
 From there every step of the BIP70 protocol is exactly the same as the Anypay Pay: Protocol
 
-###Bitcoin.com Wallet BTC
+## Bitcoin.com Wallet BTC
 
 When the user has the BTC wallet open rather than BCH, simply replace `pay:` with `bitcoin:` and treat the scanned URI exactly like a normal bitcoin BIP70 payment.
 
-##JSON Payment Protocol Wallets for BCH, DASH, BSV, BTC, etc
+## JSON Payment Protocol Wallets for BCH, DASH, BSV, BTC, etc
 
 Wallets like that support the JSON Payment Protocol also only have a small number of modifications to make to give your users the power of the pay: protocol.
 
-###Edge Wallet
+## Edge Wallet
 
 Edge wallet needs to take one additional step to tell us which currency they would like to pay with. Unlike BIP70-compatible wallets, JSON Payment Protocol does not use headers to indicate which currency the wallet would like to use.
 

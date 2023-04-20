@@ -152,7 +152,7 @@ export default function BlogNewPostForm() {
 
                 <div>
                   <LabelStyle>Content</LabelStyle>
-                  <RHFEditor name="content" />
+                  {/*<RHFEditor name="content" />*/}
                 </div>
 
                 <div>

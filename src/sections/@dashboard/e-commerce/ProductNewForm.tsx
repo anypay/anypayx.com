@@ -180,7 +180,7 @@ export default function ProductNewForm({ isEdit, currentProduct }: Props) {
 
               <div>
                 <LabelStyle>Description</LabelStyle>
-                <RHFEditor simple name="description" />
+                {/*<RHFEditor simple name="description" />*/}
               </div>
 
               <div>

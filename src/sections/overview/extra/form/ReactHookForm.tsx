@@ -164,7 +164,7 @@ export default function ReactHookForm() {
 
         <Grid item xs={12} md={6}>
           <Stack spacing={3}>
-            <RHFEditor name="editor" />
+            {/*<RHFEditor name="editor" />*/}
 
             <div>
               <Stack direction="row" alignItems="center" spacing={3}>

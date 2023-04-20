@@ -6,7 +6,7 @@ import useWebSocket, { ReadyState } from 'react-use-websocket';
 import EventEmitter from 'eventemitter3';
 import { snackbarClasses } from '@mui/material';
 
-import { DOMAIN } from '../api/useAPI'
+import { API_BASE } from '../api/useAPI'
 
 // ----------------------------------------------------------------------
 
@@ -14,7 +14,7 @@ const useWebsocket = () => {
 
     const { enqueueSnackbar } = useSnackbar();
 
-    const [socketUrl, setSocketUrl] = useState(`wss://${DOMAIN}`);
+    const [socketUrl, setSocketUrl] = useState(`wss://${API_BASE}`);
     const [messageHistory, setMessageHistory] = useState([]);
 
   const events = new EventEmitter()
