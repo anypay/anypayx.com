@@ -38,6 +38,8 @@ import HeaderBreadcrumbs from 'src/components/HeaderBreadcrumbs';
 import PaymentsList from 'src/components/payments/PaymentsList';
 import Link from 'next/link';
 
+import { useRouter } from 'next/router'
+
 const Img = styled('img')({
   margin: 'auto',
   display: 'block',
@@ -90,6 +92,7 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+
 export default function WalletBotDashboard() {
   const { enqueueSnackbar } = useSnackbar();
   const { themeStretch } = useSettings();
@@ -101,6 +104,12 @@ export default function WalletBotDashboard() {
   const [addressBalances, setAddressBalances] = useState<AddressBalance[]>([]);
 
   const [payments, setPayments] = useState<any[]>([])
+
+  const router = useRouter()
+
+  function routeToPendingPayments() {
+    router.push('/apps/wallet-bot/pending-payments')
+  }
 
   useEffect(() => {
     if (loading) { return }
@@ -166,7 +175,7 @@ export default function WalletBotDashboard() {
 
   <Grid item  xs={6} sm={6} md={3}>
   <StyledCard
-    onClick={() => setShowByStatus('unpaid')}
+    onClick={() => routeToPendingPayments() }
     sx={{ border: showByStatus === 'unpaid' ? '2px solid #ccc' : '0px'}}>
       <CardHeader title="Pending"/>
 
