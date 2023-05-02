@@ -39,7 +39,7 @@ export interface UseWalletBot {
     numberCancelled: number | null;
     connected: boolean;
     listPending: () => Promise<any>;
-    cancelPayment: () => Promise<any>;
+    cancelPayment: (string) => Promise<any>;
     addPayment: () => Promise<any>;
     token: string;
     data: any;
@@ -73,7 +73,20 @@ export class WalletBot {
         this.cards = []
     }
 
-    cancelInvoice() {
+    async cancelInvoice(uid: string) {
+
+      console.log('cancelInvoice', { uid })
+
+      const result = await axios.delete(`${API_BASE}/apps/wallet-bot/invoices/${uid}`, {
+        auth: {
+          username: this.accessToken,
+          password: ''
+        }
+      })
+
+      console.log('createInvoice.result', result)
+
+      return result.data
 
     }
     queuePayment() {
@@ -146,9 +159,21 @@ export default function(): UseWalletBot {
         return walletBot?.listQueue()
     }
 
-    const cancelPayment = async function() {
-        return walletBot?.cancelInvoice()
-    }
+    const cancelPayment = async function(uid: string) {
+
+        console.log('cancelInvoice', { uid })
+
+        const result = await axios.delete(`${API_BASE}/apps/wallet-bot/invoices/${uid}`, {
+          auth: {
+            username: token,
+            password: ''
+          }
+        })
+
+        console.log('createInvoice.result', result)
+
+        return result.data
+      }
 
     const addPayment = async function() {
         return walletBot?.queuePayment()

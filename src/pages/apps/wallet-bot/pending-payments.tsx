@@ -37,7 +37,7 @@ import HeaderBreadcrumbs from 'src/components/HeaderBreadcrumbs';
 
 import Scrollbar from 'src/components/Scrollbar';
 
-import PaymentsMoreMenu from 'src/sections/@dashboard/payments/list/PaymentsMoreMenu';
+import WalletBotMoreMenu from 'src/sections/@dashboard/payments/list/WalletBotMoreMenu';
 
 const Img = styled('img')({
   margin: 'auto',
@@ -93,7 +93,7 @@ function capitalizeFirstLetter(string) {
 
 import { AddressBalance } from '../../../hooks/useWalletBot';
 import { useRouter } from 'next/router';
-import PaymentsList from 'src/components/payments/PaymentsList';
+import WalletBotPaymentsList from 'src/components/payments/WalletBotPaymentsList';
 
 interface Payment {
     hash: string;
@@ -168,7 +168,7 @@ export default function WalletBotDashboard() {
             ]}
           />
 
-            <PaymentsList payments={payments} />
+            <WalletBotPaymentsList payments={payments} />
         </Container>
     </Page>
   );
