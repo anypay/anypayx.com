@@ -25,8 +25,8 @@ const LINKS = [
   {
     headline: 'Legal',
     children: [
-      { name: 'Terms and Condition', href: '/docs/terms' },
-      { name: 'Privacy Policy', href: '/docs/privacy' },
+      { name: 'Terms and Conditions', href: 'https://docs.anypayx.com/terms' },
+      { name: 'Privacy Policy', href: 'https://docs.anypayx.com/privacy' },
     ],
   },
   {
