@@ -104,4 +104,4 @@ export const PATH_DASHBOARD = {
   }
 };
 
-export const PATH_DOCS = 'https://anypay.dev';
+export const PATH_DOCS = 'https://docs.anypayx.com';
