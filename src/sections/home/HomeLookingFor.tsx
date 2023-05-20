@@ -54,8 +54,7 @@ export default function HomeLookingFor() {
                     color: isLight ? 'text.secondary' : 'common.white',
                   }}
                 >
-                No hardware. Easy accounting. Setup in minutes.
-
+                Get setup in minutes, with no hardware to buy. Simple and intuitive to use.
 
                 </Typography>
               </m.div>
@@ -98,7 +97,7 @@ export default function HomeLookingFor() {
                       color: isLight ? 'text.secondary' : 'common.white',
                     }}
                   >
-                  Want POS integration? Click here for AcadiaPOS.
+                  Want a full Point-of-Sale? Click here, or request custom integration.
                   </Typography>
                 </Link>
               </m.div>

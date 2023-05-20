@@ -115,7 +115,7 @@ export default function HomeHugePackElements() {
                   }}
                 >
                 
-                Get paid in Bitcoin, Litecoin, Dogecoin, Litecoin, Dash, Bitcoin Cash, and BitcoinSV alongside traditional payment methods.
+                Get paid in BTC, DASH, BCH, BSV, DOGE & more in your WordPress store.
 
 
 
@@ -125,7 +125,7 @@ export default function HomeHugePackElements() {
               <m.div variants={varFade().inUp}>
                 <NextLink href="https://wordpress.org/plugins/anypay-woocommerce/" passHref>
                   <Button size="large" color="inherit" variant="outlined">
-                    Anypay® for WooCommerce
+                    Anypay® WordPress Plugin
                   </Button>
                 </NextLink>
               </m.div>

@@ -124,11 +124,11 @@ export default function Register() {
 
               <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
                 By registering, I agree to Anypay&nbsp;
-                <Link underline="always" color="text.primary" target="_blank" href="/docs/terms">
+                <Link underline="always" color="text.primary" target="_blank" href="https://docs.anypayx.com/terms">
                   Terms of Service
                 </Link>
                 {''} and {''}
-                <Link underline="always" color="text.primary" target="_blank" href="/docs/privacy">
+                <Link underline="always" color="text.primary" target="_blank" href="https://docs.anypayx.com/privacy">
                   Privacy Policy
                 </Link>
                 .
