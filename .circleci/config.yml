@@ -40,14 +40,12 @@ jobs:
           name: Deploy to Web Servers
           command: ssh root@anypayx.com "sudo chef-client -o recipe[anypayx.com]"
 
-  deploy_next:
+  deploy_develop:
     machine: true
     steps:
       - run:
-          name: Deploy Next Branch To Next Web Server
-          command: ssh root@next.anypayx.com "sudo chef-client -o recipe[anypay.com::next]"
-
-
+          name: Deploy Develop Branch To Staging Web Server
+          command: ssh root@ionia.anypayx.com "/opt/deploy_anypayx.sh"
 
 workflows:
   version: 2
@@ -63,16 +61,16 @@ workflows:
                 - master
       - deploy:
           requires:
-            - build_docker
+            - build
           filters:
             branches:
               only:
                 - master
-      - deploy_next:
+      - deploy_develop:
           requires:
-            - build_docker
+            - build
           filters:
             branches:
               only:
-                - next
+                - develop
 
