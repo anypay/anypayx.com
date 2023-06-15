@@ -22,7 +22,7 @@ import Layout from '../../../layouts';
 import Page from '../../../components/Page';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 
-import { BASE } from '../../../api/useAPI';
+import { API_BASE } from '../../../api/useAPI';
 
 // ----------------------------------------------------------------------
 
@@ -36,7 +36,7 @@ export default function WebhooksList() {
   const { enqueueSnackbar } = useSnackbar();
   const { themeStretch } = useSettings();
 
-  const { data, error } = useSWR(`${BASE}/account/access-keys`, axios)
+  const { data, error } = useSWR(`${API_BASE}/v1/api/account/access-keys`, axios)
 
   if (error) {
     enqueueSnackbar('Error Loading API Keys', { variant: 'warning' })

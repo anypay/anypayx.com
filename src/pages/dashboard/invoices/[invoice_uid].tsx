@@ -34,7 +34,7 @@ import CollectRefundDialog from '../../../components/payments/CollectRefundDialo
 
 import { useRouter } from "next/router";
 
-import { BASE, DOMAIN } from '../../../api/useAPI'
+import { API_BASE, DOMAIN } from '../../../api/useAPI'
 
 import loadable from '@loadable/component';
 const ReactJson = loadable(() => import('react-json-view'));
@@ -53,9 +53,9 @@ export default function ShowInvoice() {
     
   const { themeStretch } = useSettings();
 
-  const { data, error } = useSWR(`${BASE}/invoices/${query.invoice_uid}`, axios)
+  const { data, error } = useSWR(`${API_BASE}/v1/api/invoices/${query.invoice_uid}`, axios)
 
-  const { data: addressesData } = useSWR(`${BASE}/account/addresses`, axios)
+  const { data: addressesData } = useSWR(`${API_BASE}/v1/api/account/addresses`, axios)
 
   const addresses = addressesData?.data?.addresses
 
@@ -371,7 +371,7 @@ function RefundAddress({ invoice }: { invoice: any }) {
 
 function InvoiceEvents({ invoice }: { invoice: Invoice }) {
 
-    const { data, error } = useSWR(`${BASE}/invoices/${invoice.uid}/events`, axios)
+    const { data, error } = useSWR(`${API_BASE}/v1/api/invoices/${invoice.uid}/events`, axios)
 
     if (error) {
         return (

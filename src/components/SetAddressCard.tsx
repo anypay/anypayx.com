@@ -9,12 +9,12 @@ import axios from '../utils/axios';
 
 // ----------------------------------------------------------------------
 
-import { BASE } from '../api/useAPI'
+import { API_BASE } from '../api/useAPI'
 
 // ----------------------------------------------------------------------
 
 async function setAddress(currency: string, value: string) {
-  const response = await axios.post(`${BASE}/account/addresses`, {
+  const response = await axios.post(`${API_BASE}/v1/api/account/addresses`, {
     currency,
     value
   })
@@ -27,7 +27,7 @@ async function setAddress(currency: string, value: string) {
 }
 
 async function removeAddress(currency: string) {
-  return axios.delete(`${BASE}/account/addresses/${currency}`)
+  return axios.delete(`${API_BASE}/v1/api/account/addresses/${currency}`)
 }
 
 export default function SetAddressCard(params: any) {
