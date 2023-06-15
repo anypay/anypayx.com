@@ -3,7 +3,7 @@ import { useAPI } from './useAPI';
 
 export function useListPayments() {
 
-    let { data, error, refresh, loading } = useAPI('/account/payments');
+    let { data, error, refresh, loading } = useAPI('/v1/api/account/payments');
 
     console.log('USE API', data?.payments)
 

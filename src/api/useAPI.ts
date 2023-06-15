@@ -3,7 +3,7 @@ import useSWR from 'swr';
 
 export const DOMAIN = process.env.DOMAIN || 'anypayx.com'
 
-export const BASE = process.env.API_BASE || `https://api.anypayx.com/v1/api`;
+export const BASE = process.env.API_BASE || `https://anypayx.com`;
 
 const API_BASE = BASE
 
