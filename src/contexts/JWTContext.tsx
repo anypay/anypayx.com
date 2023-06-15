@@ -5,6 +5,8 @@ import { isValidToken, setSession } from '../utils/jwt';
 // @types
 import { ActionMap, AuthState, AuthUser, JWTContextType } from '../@types/auth';
 
+import { API_BASE } from '../api/useAPI';
+
 // ----------------------------------------------------------------------
 
 enum Types {
@@ -88,7 +90,7 @@ function AuthProvider({ children }: AuthProviderProps) {
         if (accessToken && isValidToken(accessToken)) {
           setSession(accessToken);
 
-          const response = await axios.get('/account/my-account');
+          const response = await axios.get(`${API_BASE}/v1/api/account/my-account`);
           const { user } = response.data;
 
           dispatch({
@@ -123,7 +125,7 @@ function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   const login = async (email: string, password: string) => {
-    const response = await axios.post('/account/login', {
+    const response = await axios.post(`${API_BASE}/v1/api/account/login`, {
       email,
       password,
     });
@@ -139,7 +141,7 @@ function AuthProvider({ children }: AuthProviderProps) {
   };
 
   const register = async (email: string, password: string, firstName: string, lastName: string) => {
-    const response = await axios.post('/account/register', {
+    const response = await axios.post(`${API_BASE}v1/api/account/register`, {
       email,
       password,
       firstName,

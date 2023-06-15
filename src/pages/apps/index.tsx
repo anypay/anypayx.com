@@ -34,7 +34,7 @@ export default function WalletBotDashboard() {
   const { enqueueSnackbar } = useSnackbar();
   const { themeStretch } = useSettings();
 
-  const { data, error, loading } = useAPI(`/apps/wallet-bot`)
+  const { data, error, loading } = useAPI(`/v1/api/apps/wallet-bot`)
 
   if (error) {
     enqueueSnackbar('Error Loading Wallet Bot', { variant: 'warning' })
