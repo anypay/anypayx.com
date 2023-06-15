@@ -19,7 +19,6 @@
     "re-build": "rm -rf .next node_modules && yarn install && yarn build"
   },
   "dependencies": {
-    "@anypay/wallet": "^0.0.3",
     "@auth0/auth0-spa-js": "^1.20.0",
     "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.8.1",
