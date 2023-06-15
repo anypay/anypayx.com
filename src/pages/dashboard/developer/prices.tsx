@@ -60,7 +60,7 @@ import { API_BASE } from 'src/api/useAPI'
 const TABLE_HEAD = [
   { id: 'date', label: 'Coin', alignRight: false },
   { id: 'invoice', label: 'Price (USD)', alignRight: false },
-  { id: 'url', label: 'Last Updated', alignRight: false },
+  { id: 'url', label: 'Last Updated (Local Time)', alignRight: false },
   { id: 'status', label: 'Source', alignRight: false },
 ];
 
@@ -207,10 +207,10 @@ export default function WebhooksList() {
                           <TableCell align="left">${value}</TableCell>
                           <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
                             <Typography variant="subtitle2" noWrap>
-                              {Moment(new Date(updatedAt)).format('MMM Do, YYYY hh:MMa')}
+                              {Moment(new Date(updatedAt)).format('llll')}
                             </Typography>
                           </TableCell>
-                          <TableCell align="left">{source}</TableCell>
+                          <TableCell align="left">{source}.com</TableCell>
                         </TableRow>
                       );
                     })
