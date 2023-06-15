@@ -24,10 +24,6 @@ Chat.getLayout = function getLayout(page: React.ReactElement) {
 
 // ----------------------------------------------------------------------
 
-import { Cards } from '@anypay/wallet'
-
-import * as anypay from '@anypay/wallet'
-
 
 export default function Chat() {
   const { themeStretch } = useSettings();
@@ -37,19 +33,6 @@ export default function Chat() {
     dispatch(getConversations());
     dispatch(getContacts());
   }, [dispatch]);
-
-  useEffect(() => {
-
-    console.log('anypay', anypay)
-
-    
-    //@ts-ignore
-    window.anypay = anypay
-    //@ts-ignore
-    window.Cards = Cards
-
-  }, [])
-
 
   return (
     <Page title="Chat">
