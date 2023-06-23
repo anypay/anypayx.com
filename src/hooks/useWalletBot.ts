@@ -104,7 +104,7 @@ export class WalletBot {
 
 export default function(): UseWalletBot {
 
-    const { data, error, loading } = useAPI(`/apps/wallet-bot`)
+    const { data, error, loading } = useAPI(`/v1/api/apps/wallet-bot`)
 
     const status = data?.wallet_bot.status || 'disconnected'
 
@@ -114,20 +114,20 @@ export default function(): UseWalletBot {
 
     const balances = data?.balances
 
-    const { data: paid, refresh: refreshPaid } = useAPI(`/apps/wallet-bot/invoices?status=paid`, {
+    const { data: paid, refresh: refreshPaid } = useAPI(`/v1/api/apps/wallet-bot/invoices?status=paid`, {
         auth: {
             username: token,
             password: ''
         }
     })
 
-    const { data: unpaid, refresh: refreshUnpaid } = useAPI(`/apps/wallet-bot/invoices?status=unpaid`, {
+    const { data: unpaid, refresh: refreshUnpaid } = useAPI(`/v1/api/apps/wallet-bot/invoices?status=unpaid`, {
         auth: {
             username: token,
             password: ''
         }
     })
-    const { data: cancelled, refresh: refreshCancelled } = useAPI(`/apps/wallet-bot/invoices?status=cancelled`, {
+    const { data: cancelled, refresh: refreshCancelled } = useAPI(`/v1/api/apps/wallet-bot/invoices?status=cancelled`, {
         auth: {
             username: token,
             password: ''
@@ -180,7 +180,7 @@ export default function(): UseWalletBot {
 
     async function listAddressBalances(): Promise<AddressBalance[]> {
 
-        const { data } = await axios.get(`${API_BASE}/apps/wallet-bot/address-balances`, {
+        const { data } = await axios.get(`${API_BASE}/v1/api/apps/wallet-bot/address-balances`, {
             auth: {
                 username: token,
                 password: ''
@@ -193,7 +193,7 @@ export default function(): UseWalletBot {
 
     async function listAddressBalanceHistory({address,chain,currency}: Address): Promise<AddressBalance[]> {
 
-        const { data } = await axios.get(`${API_BASE}/apps/wallet-bot/address-balances/${chain}/${currency}/${address}`, {
+        const { data } = await axios.get(`${API_BASE}/v1/api/apps/wallet-bot/address-balances/${chain}/${currency}/${address}`, {
             auth: {
                 username: token,
                 password: ''
@@ -206,7 +206,7 @@ export default function(): UseWalletBot {
 
     async function listPaid({limit, offset}: {limit: number, offset: number}): Promise<any[]> {
 
-        const { data } = await axios.get(`${API_BASE}/apps/wallet-bot/invoices?status=paid&limit=${limit}&offset=${offset}`, {
+        const { data } = await axios.get(`${API_BASE}/v1/api/apps/wallet-bot/invoices?status=paid&limit=${limit}&offset=${offset}`, {
             auth: {
                 username: token,
                 password: ''
@@ -220,7 +220,7 @@ export default function(): UseWalletBot {
 
     async function listUnpaid({limit, offset}: {limit: number, offset: number}): Promise<AddressBalance[]> {
 
-        const { data } = await axios.get(`${API_BASE}/apps/wallet-bot/invoices?status=unpaid&limit=${limit}&offset=${offset}`, {
+        const { data } = await axios.get(`${API_BASE}/v1/api/apps/wallet-bot/invoices?status=unpaid&limit=${limit}&offset=${offset}`, {
             auth: {
                 username: token,
                 password: ''
