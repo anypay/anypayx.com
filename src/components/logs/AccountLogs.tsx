@@ -7,7 +7,6 @@ import { useSnackbar } from 'notistack';
 import React, { useState } from 'react';
 import { useAccountLogs } from '../../api/logs';
 import useWebsocket from '../../hooks/useWebsocket';
-import PaymentsMoreMenu from '../../sections/@dashboard/payments/list/PaymentsMoreMenu';
 import Scrollbar from '../Scrollbar';
 
 import LoadingScreen from '../LoadingScreen';
@@ -171,9 +170,6 @@ export default function AccountLog2() {
                               {payload}
                           </TableCell>
                           <TableCell align="right">
-                            <PaymentsMoreMenu onSendWebhook={() => {
-                                enqueueSnackbar("manual webhook disabled", { variant: 'warning'})
-                            }} />
                           </TableCell>
                         </TableRow>
                       );

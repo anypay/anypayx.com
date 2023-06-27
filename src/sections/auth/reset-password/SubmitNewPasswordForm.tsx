@@ -12,7 +12,7 @@ import { FormProvider, RHFTextField } from '../../../components/hook-form';
 
 import axios from '../../../utils/axios';
 
-import { DOMAIN } from '../../../api/useAPI'
+import { API_BASE } from '../../../api/useAPI'
 
 // ----------------------------------------------------------------------
 
@@ -44,7 +44,7 @@ export default function SubmitNewPasswordForm({ onSent, token }: Props) {
 
   const onSubmit = async (data: FormValuesProps) => {
     try {
-      await axios.post(`https://${DOMAIN}/password-resets/${token}`, {
+      await axios.post(`https://api.anypayx.com/password-resets/${token}`, {
         password: data.password
       });
       if (isMountedRef.current) {
@@ -58,7 +58,7 @@ export default function SubmitNewPasswordForm({ onSent, token }: Props) {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
-        <RHFTextField name="password" label="New Password" />
+        <RHFTextField name="password" type="password" label="New Password" />
 
         <LoadingButton
           fullWidth

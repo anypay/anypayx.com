@@ -9,6 +9,8 @@ import { PATH_PAGE } from '../../routes/paths';
 import Logo from '../../components/Logo';
 import SocialsButton from '../../components/SocialsButton';
 
+import { DOMAIN } from '../../api/useAPI'
+
 // ----------------------------------------------------------------------
 
 const LINKS = [
@@ -23,8 +25,8 @@ const LINKS = [
   {
     headline: 'Legal',
     children: [
-      { name: 'Terms and Condition', href: '/docs/terms' },
-      { name: 'Privacy Policy', href: '/docs/privacy' },
+      { name: 'Terms and Conditions', href: 'https://docs.anypayx.com/terms' },
+      { name: 'Privacy Policy', href: 'https://docs.anypayx.com/privacy' },
     ],
   },
   {

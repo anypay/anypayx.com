@@ -10,6 +10,8 @@ import { PATH_PAGE } from '../../routes/paths';
 import Image from '../../components/Image';
 import { MotionViewport, varFade } from '../../components/animate';
 
+import { DOMAIN } from '../../api/useAPI'
+
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -132,7 +134,7 @@ export default function HomeHugePackElements() {
 
               <m.div variants={varFade().inUp}>
               <br/>
-                <Link target="_blank" href="https://anypayx.com/faq">
+                <Link target="_blank" href={`https://${DOMAIN}/faq`}>
                   <Typography
                     sx={{
                       mb: 5,

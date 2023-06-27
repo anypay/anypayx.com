@@ -34,7 +34,7 @@ import CollectRefundDialog from '../../../components/payments/CollectRefundDialo
 
 import { useRouter } from "next/router";
 
-import { BASE } from '../../../api/useAPI'
+import { API_BASE, DOMAIN } from '../../../api/useAPI'
 
 import loadable from '@loadable/component';
 const ReactJson = loadable(() => import('react-json-view'));
@@ -53,9 +53,9 @@ export default function ShowInvoice() {
     
   const { themeStretch } = useSettings();
 
-  const { data, error } = useSWR(`${BASE}/invoices/${query.invoice_uid}`, axios)
+  const { data, error } = useSWR(`${API_BASE}/v1/api/invoices/${query.invoice_uid}`, axios)
 
-  const { data: addressesData } = useSWR(`${BASE}/account/addresses`, axios)
+  const { data: addressesData } = useSWR(`${API_BASE}/v1/api/account/addresses`, axios)
 
   const addresses = addressesData?.data?.addresses
 
@@ -73,7 +73,9 @@ export default function ShowInvoice() {
 
   var address;
 
-  if (payment?.currency && addresses) {
+  console.log(payment, '--if payment--')
+
+  if (payment && payment.currency && addresses) {
 
     address = addresses.filter(address => {
 
@@ -85,7 +87,7 @@ export default function ShowInvoice() {
 
   invoice['uid'] = query.invoice_uid
 
-  const shareInvoiceUrl = `https://anypayx.com/i/${invoice.uid}`
+  const shareInvoiceUrl = `https://${DOMAIN}/i/${invoice.uid}`
 
   const heading = `Invoice # ${query.invoice_uid}`
 
@@ -113,7 +115,9 @@ export default function ShowInvoice() {
         />
 
         <InvoiceDetails invoice={invoice} payment={payment} address={address}/>
-        <RefundAddress invoice={invoice}/>
+        {payment && (
+          <RefundAddress invoice={invoice}/>
+        )}
         <KrakenDeposits deposits={kraken_deposits} />
         <InvoiceEvents invoice={invoice} />
 
@@ -155,7 +159,7 @@ const loadModal = ({ uid }: { uid: any }) => {
   window.anypay = sdk;
   */
 
-  window.open(`https://anypayx.com/i/${uid}`, '_blank')
+  window.open(`https://${DOMAIN}/i/${uid}`, '_blank')
 }
 
 const blockchairCurrencies = {
@@ -173,7 +177,7 @@ function viewOnBlockchain() {
 
 function InvoiceDetails({ invoice, payment, address }: {invoice: Invoice, payment: Payment, address: string}) {
 
-  const blockchairCurrency = blockchairCurrencies[payment.currency]
+  const blockchairCurrency = blockchairCurrencies[payment?.currency]
 
   const { themeMode } = useSettings();
 
@@ -181,18 +185,22 @@ function InvoiceDetails({ invoice, payment, address }: {invoice: Invoice, paymen
 
   var blockExplorerURL;
 
-  switch(payment.currency) {
-    case 'XMR':
-      blockExplorerURL = `https://monero.com/payment/${payment.txid}/${address}/${payment.tx_key}/`;
-      break;
-    case 'DASH':
-      blockExplorerURL = `https://insight.dash.org/insight/tx/${payment.txid}`
-      break;
-    case 'BSV':
-      blockExplorerURL = `https://whatsonchain.com/tx/${payment.txid}`
-      break;
-    default:
-      blockExplorerURL = `https://blockchair.com/${blockchairCurrency}/transaction/${payment.txid}`;
+  if (payment) {
+
+    switch(payment?.currency) {
+      case 'XMR':
+        blockExplorerURL = `https://monero.com/payment/${payment.txid}/${address}/${payment.tx_key}/`;
+        break;
+      case 'DASH':
+        blockExplorerURL = `https://insight.dash.org/insight/tx/${payment.txid}`
+        break;
+      case 'BSV':
+        blockExplorerURL = `https://whatsonchain.com/tx/${payment.txid}`
+        break;
+      default:
+        blockExplorerURL = `https://blockchair.com/${blockchairCurrency}/transaction/${payment.txid}`;
+    }
+
   }
   
     return (
@@ -247,7 +255,7 @@ function InvoiceDetails({ invoice, payment, address }: {invoice: Invoice, paymen
               </>
           )}
 
-          {payment.tx_key && (
+          {payment && payment.tx_key && (
                           <>
                           <br/>
 
@@ -363,7 +371,7 @@ function RefundAddress({ invoice }: { invoice: any }) {
 
 function InvoiceEvents({ invoice }: { invoice: Invoice }) {
 
-    const { data, error } = useSWR(`${BASE}/invoices/${invoice.uid}/events`, axios)
+    const { data, error } = useSWR(`${API_BASE}/v1/api/invoices/${invoice.uid}/events`, axios)
 
     if (error) {
         return (

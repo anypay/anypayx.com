@@ -19,7 +19,7 @@ import Layout from '../../../layouts';
 import Page from '../../../components/Page';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 
-import { BASE } from '../../../api/useAPI'
+import { API_BASE } from '../../../api/useAPI'
 
 // sections
 
@@ -39,7 +39,7 @@ export default function WalletAddresses() {
   const { enqueueSnackbar } = useSnackbar();
   const { themeStretch } = useSettings();
 
-  const { data, error, mutate } = useSWR(`${BASE}/account/addresses`, axios)
+  const { data, error, mutate } = useSWR(`${API_BASE}/v1/api/account/addresses`, axios)
 
 
   if (error) {
@@ -53,7 +53,10 @@ export default function WalletAddresses() {
       
   }
 
-  const coins = data?.data.addresses.filter((coin: any) => !!coin.price)
+  const coins = data?.data.addresses
+    .filter((coin: any) => !!coin.price)
+    .filter((coin: any) => !coin.unavailable)
+    .filter((coin: any) => !!coin.enabled)
   
   return (
     <Page title="Wallets: Setup">

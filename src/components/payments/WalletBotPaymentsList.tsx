@@ -19,7 +19,7 @@ import {
 
 import { useSnackbar } from 'notistack';
 
-import PaymentsMoreMenu from '../../sections/@dashboard/payments/list/PaymentsMoreMenu'
+import WalletBotMoreMenu from '../../sections/@dashboard/payments/list/WalletBotMoreMenu'
 
 import Scrollbar from '../Scrollbar';
 
@@ -34,7 +34,7 @@ import { useRouter } from 'next/router';
 const TABLE_HEAD = [
     { id: 'coin', label: 'Coin', alignRight: false },
     { id: 'amount', label: 'Amount', alignRight: false },
-    { id: 'uid', label: 'UID', alignRight: false },
+    { id: 'uid', label: 'Uid', alignRight: false },
     { id: 'date', label: 'Date', alignRight: false },
     { id: '' }
   ];
@@ -201,7 +201,7 @@ export default function PaymentsList({ payments }: { payments?: any[] }) {
                   {payments
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row: any) => {
-                      const { amount, currency, txid, createdAt, invoice } = row;
+                      const { currency, txid, createdAt, invoice } = row;
 
                       const date = moment(createdAt).format('MMM DD, YYYY - hh:mma')
 
@@ -221,14 +221,14 @@ export default function PaymentsList({ payments }: { payments?: any[] }) {
                             </Typography>
                           </TableCell>
                           <TableCell onClick={() => rowClicked(row)} align="left">
-                              {row.invoice.amount} {row.invoice.currency}
+                              {row.amount} {row.currency}
                           </TableCell>
                           <TableCell onClick={() => rowClicked(row)} align="left">
-                              <span style={{color: 'white', textDecoration: 'none' }}>{row.invoice.uid}</span>
+                              <span style={{color: 'white', textDecoration: 'none' }}>{row.uid}</span>
                           </TableCell>
                           <TableCell onClick={() => rowClicked(row)} align="left">{date}</TableCell>
                           <TableCell align="right">
-                            <PaymentsMoreMenu invoice={row} onSendWebhook={() => {
+                            <WalletBotMoreMenu invoice={row} onSendWebhook={() => {
                                 sendWebhook(row.uid)
                             }} />
                           </TableCell>

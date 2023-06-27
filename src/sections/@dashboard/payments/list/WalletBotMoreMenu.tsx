@@ -1,4 +1,6 @@
+
 import { paramCase } from 'change-case';
+
 import { useState } from 'react';
 // next
 import NextLink from 'next/link';
@@ -8,11 +10,14 @@ import { MenuItem, IconButton } from '@mui/material';
 import { PATH_DASHBOARD } from '../../../../routes/paths';
 // components
 import Iconify from '../../../../components/Iconify';
+
 import MenuPopover from '../../../../components/MenuPopover';
 
 import { useRouter } from 'next/router'
 
 import { DOMAIN, axios } from 'src/api/useAPI'
+
+import useWalletBot from 'src/hooks/useWalletBot'
 
 
 // ----------------------------------------------------------------------
@@ -22,7 +27,7 @@ type Props = {
   invoice?: any;
 };
 
-export default function PaymentsMoreMenu({ onSendWebhook, invoice }: Props) {
+export default function WalletBotMoreMenu({ onSendWebhook, invoice }: Props) {
   const [open, setOpen] = useState<HTMLElement | null>(null);
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -40,13 +45,15 @@ export default function PaymentsMoreMenu({ onSendWebhook, invoice }: Props) {
     console.log('share blockchain clicked', invoice)
   }
 
+  const { cancelPayment } = useWalletBot()
+
   async function cancelInvoice() {
 
     try {
 
-      const { data } = await axios.delete(`https://api.anypayx.com/r/${invoice.uid}`)
+      const result = await cancelPayment(invoice.uid)
 
-      console.log('invoice.cancelled', data)
+      console.log('invoice.cancelled', result)
 
     } catch(error) {
 

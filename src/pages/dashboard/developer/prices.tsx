@@ -58,12 +58,10 @@ import { API_BASE } from 'src/api/useAPI'
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'date', label: 'Date', alignRight: false },
-  { id: 'invoice', label: 'Invoice', alignRight: false },
-  { id: 'url', label: 'URL', alignRight: false },
-  //{ id: 'attempts', label: 'Attempts', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
-  { id: '' }
+  { id: 'date', label: 'Coin', alignRight: false },
+  { id: 'invoice', label: 'Price (USD)', alignRight: false },
+  { id: 'url', label: 'Last Updated (Local Time)', alignRight: false },
+  { id: 'status', label: 'Source', alignRight: false },
 ];
 
 // ----------------------------------------------------------------------
@@ -87,7 +85,7 @@ export default function WebhooksList() {
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const { error, data: result, loading }: any = useSWR(`${API_BASE}/v1/api/webhooks`, axios)
+  const { error, data: result, loading }: any = useSWR(`${API_BASE}/api/v1/prices`, axios)
 
   if (result) {
 
@@ -99,7 +97,7 @@ export default function WebhooksList() {
 
   if (error) {
 
-    enqueueSnackbar('Error Loading Webhooks', { variant: 'warning' })
+    enqueueSnackbar('Error Loading Prices', { variant: 'warning' })
 
   }
 
@@ -168,34 +166,14 @@ export default function WebhooksList() {
     return <div>Loading...</div>
   }
 
-  async function onResendWebhook(webhook: any) {
-
-    alert('Resend Webhook: ' + webhook.invoice_uid)
-
-    enqueueSnackbar(`Requesting to Retry Sending Webhook for Invoice ${webhook.invoice_uid}`, { variant: 'warning'});
-
-    const response = await axios.post(`${API_BASE}/v1/api/webhooks/${webhook.invoice_uid}/attempts`)
-
-    if (response.status === 201) {
-      enqueueSnackbar(`Success Requesting Retry of Webhook for Invoice ${webhook.invoice_uid}`, { variant: 'success'});
-
-    } else {
-      
-      console.log('webhook.resend.attempt.response', response)
-      enqueueSnackbar(`Error Requesting to Retry Sending Webhook for Invoice ${webhook.invoice_uid}`, { variant: 'error'});
-
-    }
-
-  }
-  
   return (
-    <Page title="Webhooks: List">
+    <Page title="Prices: List">
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <HeaderBreadcrumbs
-          heading="Webhooks List"
+          heading="Coin Prices List"
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
-            { name: 'Webhooks' }
+            { name: 'Prices' }
           ]}
         />
 
@@ -213,93 +191,35 @@ export default function WebhooksList() {
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  {data && data?.webhooks && (
-                    data.webhooks
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  {data && data?.prices && (
+                    data.prices
                     .map((row) => {
-                      const { id, invoice_uid, name, role, url, status, company, avatarUrl, createdAt, isVerified } = row;
-                      const isItemSelected = selected.indexOf(name) !== -1;
+                      const { currency, base, value, updatedAt, source } = row;
 
                       return (
                         <TableRow
                           hover
-                          key={id}
+                          key={currency}
                           tabIndex={-1}
-                          role="checkbox"
-                          selected={isItemSelected}
-                          aria-checked={isItemSelected}
                         >
 
+                          <TableCell align="left">{currency}</TableCell>
+                          <TableCell align="left">${value}</TableCell>
                           <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
                             <Typography variant="subtitle2" noWrap>
-                              {Moment(new Date(createdAt)).format('MMM Do, YYYY hh:MMa')}
+                              {Moment(new Date(updatedAt)).format('llll')}
                             </Typography>
                           </TableCell>
-                          <TableCell align="left">{invoice_uid}</TableCell>
-                          <TableCell align="left">{url}</TableCell>
-                          {/*<TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell> <----- Number of Attempts */}
-                          <TableCell align="left">
-                            {status === 'pending' && (
-                              <Label
-                              variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
-                              color={'warning'}
-                              >
-                                {sentenceCase(status)}
-                              </Label>
-                            )}
-                            {status === 'success' && (
-                                <Label
-                                  variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
-                                  color={(status === 'banned' && 'error') || 'success'}
-                                >
-                                  {sentenceCase(status)}
-                                </Label>
-                            )}
-                            {status === 'failed' && (
-                                <Label
-                                  variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
-                                  color={'error'}
-                                >
-                                  {sentenceCase(status)}
-                                </Label>
-                            )}
-
-                          </TableCell>
-
-                          <TableCell align="right">
-                            <UserMoreMenu onResendWebhook={() => { onResendWebhook(row) }} />
-                          </TableCell>
+                          <TableCell align="left">{source}.com</TableCell>
                         </TableRow>
                       );
-                    }))}
-                  {emptyRows > 0 && (
-                    <TableRow style={{ height: 53 * emptyRows }}>
-                      <TableCell colSpan={6} />
-                    </TableRow>
+                    })
                   )}
                 </TableBody>
-                {isNotFound && (
-                  <TableBody>
-                    <TableRow>
-                      <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
-                        <SearchNotFound searchQuery={filterName} />
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                )}
               </Table>
             </TableContainer>
           </Scrollbar>
 
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={userList.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={(e, page) => setPage(page)}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
         </Card>
       </Container>
     </Page>

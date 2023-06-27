@@ -9,12 +9,13 @@ import axios from '../utils/axios';
 
 // ----------------------------------------------------------------------
 
-import { BASE } from '../api/useAPI'
+import { API_BASE } from '../api/useAPI'
 
 // ----------------------------------------------------------------------
 
-async function setAddress(currency: string, value: string) {
-  const response = await axios.post(`${BASE}/account/addresses`, {
+async function setAddress({ chain, currency, value }: { chain: string, currency: string, value: string }) {
+  const response = await axios.post(`${API_BASE}/v1/api/account/addresses`, {
+    chain,
     currency,
     value
   })
@@ -26,8 +27,8 @@ async function setAddress(currency: string, value: string) {
   return response
 }
 
-async function removeAddress(currency: string) {
-  return axios.delete(`${BASE}/account/addresses/${currency}`)
+async function removeAddress({ chain, currency }: {currency: string, chain: string}) {
+  return axios.delete(`${API_BASE}/v1/api/account/addresses/${currency}_${chain}`)
 }
 
 export default function SetAddressCard(params: any) {
@@ -102,7 +103,11 @@ export default function SetAddressCard(params: any) {
             
             enqueueSnackbar(`Activating ${coin.code} address ${address}`);
 
-            setAddress(coin.code, address).then((result) => {
+            setAddress({
+              chain: coin.chain,
+              currency: coin.currency,
+              value: address
+            }).then((result) => {
               
               enqueueSnackbar(`Success setting ${coin.name} address to ${address}`, { variant: 'success'});
 
@@ -132,7 +137,7 @@ export default function SetAddressCard(params: any) {
         <Button color="warning" variant="contained" onClick={() => {
             enqueueSnackbar(`Removing ${coin.code} address ${coin.address}`);
 
-            removeAddress(coin.code).then((result) => {
+            removeAddress({ chain: coin.chain, currency: coin.currency }).then((result) => {
 
               console.log('address.remove.result', result)
 

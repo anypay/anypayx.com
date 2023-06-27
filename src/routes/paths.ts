@@ -48,6 +48,7 @@ export const PATH_DASHBOARD = {
     apikeys: path(ROOTS_DASHBOARD, '/developer/api-keys'),
     webhooks: path(ROOTS_DASHBOARD, '/developer/webhooks'),
     logs: path(ROOTS_DASHBOARD, '/developer/logs'),
+    prices: path(ROOTS_DASHBOARD, '/developer/prices'),
   },
   exchanges: {
     kraken: path(ROOTS_DASHBOARD, '/exchanges/kraken')
@@ -104,4 +105,4 @@ export const PATH_DASHBOARD = {
   }
 };
 
-export const PATH_DOCS = 'https://anypay.dev';
+export const PATH_DOCS = 'https://docs.anypayx.com';
