@@ -55,9 +55,8 @@ export default function WalletAddresses() {
 
   const coins = data?.data.addresses
     .filter((coin: any) => !!coin.price)
-    .filter((coin: any) => {
-      return coin.code !== 'USDC' && coin.code !== 'USDT'
-    })
+    .filter((coin: any) => !coin.unavailable)
+    .filter((coin: any) => !!coin.enabled)
   
   return (
     <Page title="Wallets: Setup">
