@@ -18,6 +18,7 @@ import Layout from '../../../layouts';
 // components
 import Page from '../../../components/Page';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
+import { getJwt } from '../../../utils/jwt'
 
 import { API_BASE } from '../../../api/useAPI'
 
@@ -34,12 +35,24 @@ WalletAddresses.getLayout = function getLayout(page: React.ReactElement) {
 };
 
 // ----------------------------------------------------------------------
-
 export default function WalletAddresses() {
   const { enqueueSnackbar } = useSnackbar();
   const { themeStretch } = useSettings();
 
-  const { data, error, mutate } = useSWR(`${API_BASE}/v1/api/account/addresses`, axios)
+  const { uid: token } = getJwt()
+
+  const fetcher = (url) => {
+    
+    return axios.get(url, {
+      auth: {
+        username: token,
+        password: ''
+      }
+    }).then(res => res.data)  
+
+  }
+
+  const { data, error, mutate } = useSWR(`${API_BASE}/api/v1/addresses`, fetcher)
 
 
   if (error) {
@@ -50,10 +63,9 @@ export default function WalletAddresses() {
 
   if (!data) {
       return <LoadingScreen/>
-      
   }
 
-  const coins = data?.data.addresses
+  const coins = data?.addresses
     .filter((coin: any) => !!coin.price)
     .filter((coin: any) => !coin.unavailable)
     .filter((coin: any) => !!coin.enabled)
