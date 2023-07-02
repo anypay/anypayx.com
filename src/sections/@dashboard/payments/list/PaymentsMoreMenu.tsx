@@ -12,7 +12,7 @@ import MenuPopover from '../../../../components/MenuPopover';
 
 import { useRouter } from 'next/router'
 
-import { DOMAIN, axios } from 'src/api/useAPI'
+import { DOMAIN, axios, API_BASE } from 'src/api/useAPI'
 
 
 // ----------------------------------------------------------------------
@@ -20,9 +20,10 @@ import { DOMAIN, axios } from 'src/api/useAPI'
 type Props = {
   onSendWebhook: VoidFunction;
   invoice?: any;
+  payment?: any;
 };
 
-export default function PaymentsMoreMenu({ onSendWebhook, invoice }: Props) {
+export default function PaymentsMoreMenu({ onSendWebhook, invoice, payment }: Props) {
   const [open, setOpen] = useState<HTMLElement | null>(null);
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -37,14 +38,15 @@ export default function PaymentsMoreMenu({ onSendWebhook, invoice }: Props) {
   }
 
   function onViewBlockchain(opts: any) {
-    console.log('share blockchain clicked', invoice)
+    console.log('share blockchain clicked', payment)
+    window.open(payment.block_explorer_url, '_blank')
   }
 
   async function cancelInvoice() {
 
     try {
 
-      const { data } = await axios.delete(`https://api.anypayx.com/r/${invoice.uid}`)
+      const { data } = await axios.delete(`${API_BASE}/r/${invoice.uid}`)
 
       console.log('invoice.cancelled', data)
 

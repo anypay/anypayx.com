@@ -27,6 +27,12 @@ import { useListPayments } from '../../api/payments';
 import { sendWebhook } from '../../api/webhooks';
 import useWebsocket from '../../hooks/useWebsocket';
 
+import useSWR from 'swr';
+
+import { API_BASE } from '../../api/useAPI'
+
+import axios from '../../utils/axios';
+
 import LoadingScreen from '../LoadingScreen';
 
 import { useRouter } from 'next/router';
@@ -111,6 +117,7 @@ export default function PaymentsList({ payments }: { payments?: any[] }) {
   const router = useRouter();
 
 
+
     const [order] = useState<'asc' | 'desc'>('asc');
     const [orderBy] = useState('date');
     const [page, setPage] = useState(0);
@@ -119,6 +126,8 @@ export default function PaymentsList({ payments }: { payments?: any[] }) {
     const { enqueueSnackbar } = useSnackbar();
 
     const { payments: _payments, error, loading, refresh } = useListPayments();
+
+    const { data: addressesData, error: addressesError, mutate } = useSWR(`${API_BASE}/v1/api/account/addresses`, axios)
 
     if (!payments && _payments) { payments = _payments }
 
@@ -147,6 +156,16 @@ export default function PaymentsList({ payments }: { payments?: any[] }) {
     if (!payments && loading) {
         return <LoadingScreen />
     }
+
+    if (!addressesData) {
+        return <LoadingScreen />
+    }
+
+    const icons = addressesData?.data?.addresses?.reduce((map, {currency,chain,logo}) => {
+      map[`${currency}_${chain}`] = logo
+
+      return map
+    }, {})
 
     if (error) {
 
@@ -201,9 +220,12 @@ export default function PaymentsList({ payments }: { payments?: any[] }) {
                   {payments
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row: any) => {
-                      const { amount, currency, txid, createdAt, invoice } = row;
+                      const { amount, currency, chain, txid, createdAt, invoice } = row;
+
 
                       const date = moment(createdAt).format('MMM DD, YYYY - hh:mma')
+
+                      const code = `${currency}_${chain}`
 
                       return (
                         <TableRow
@@ -215,10 +237,16 @@ export default function PaymentsList({ payments }: { payments?: any[] }) {
                             onClick={() => rowClicked(row)}
                             size="small"
                             sx={{ display: 'flex', alignItems: 'center' }}>
-                            <Avatar alt={row.currency} src={`/icons/coins/${row.currency}.png`} sx={{ mr: 2 }} />
-                            <Typography variant="subtitle2" noWrap>
-                                {row.currency}
-                            </Typography>
+                            <Avatar alt={row.currency} src={`${icons[code]}`} sx={{ mr: 2 }} />
+                            {row.currency == row.chain ? (
+                              <Typography variant="subtitle2" noWrap>
+                                  {row.currency}
+                              </Typography>
+                            ) : (
+                              <Typography variant="subtitle2" noWrap>
+                                  {row.currency} on {row.chain}
+                              </Typography>
+                            )}
                           </TableCell>
                           <TableCell onClick={() => rowClicked(row)} align="left">
                               {row.invoice.amount} {row.invoice.currency}
@@ -228,7 +256,7 @@ export default function PaymentsList({ payments }: { payments?: any[] }) {
                           </TableCell>
                           <TableCell onClick={() => rowClicked(row)} align="left">{date}</TableCell>
                           <TableCell align="right">
-                            <PaymentsMoreMenu invoice={row} onSendWebhook={() => {
+                            <PaymentsMoreMenu payment={row} invoice={row} onSendWebhook={() => {
                                 sendWebhook(row.uid)
                             }} />
                           </TableCell>
