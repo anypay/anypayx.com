@@ -1,76 +1,21 @@
+# This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
 version: 2.1
 
-jobs:
-  build:
-    docker:
-      - image: circleci/node:16
-    steps:
-      - checkout
-      - run:
-          name: Install Dependencies
-          command: yarn
+# Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
+# See: https://circleci.com/docs/orb-intro/
+orbs:
+  node: circleci/node@4.7
 
-      - run:
-          name: Build Static App
-          command: yarn run export
-
-      - run:
-          name: Run Tests
-          command:  echo "no tests"
-
-  build_docker:
-    docker:
-      - image: circleci/node:14
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: Build docker image
-          command: docker build -t $DOCKER_REPO:$CIRCLE_BRANCH . 
-      - run:
-          name: Push to Docker Hub
-          command: |
-            docker login --username $DOCKER_USER --password $DOCKER_PASSWORD 
-            docker push $DOCKER_REPO:$CIRCLE_BRANCH
-
-  deploy:
-    machine: true
-    steps:
-      - run:
-          name: Deploy to Web Servers
-          command: ssh root@anypayx.com "sudo chef-client -o recipe[anypayx.com]"
-
-  deploy_develop:
-    machine: true
-    steps:
-      - run:
-          name: Deploy Develop Branch To Staging Web Server
-          command: ssh root@ionia.anypayx.com "/opt/deploy_anypayx.sh"
-
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
-  version: 2
-  build_and_deploy:
+  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
+    # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - build
-      - build_docker:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - master
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - master
-      - deploy_develop:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - develop
-
+      - node/test:
+          # This is the node version to use for the `cimg/node` tag
+          # Relevant tags can be found on the CircleCI Developer Hub
+          # https://circleci.com/developer/images/image/cimg/node
+          version: '16.10'
+          # If you are using yarn, change the line below from "npm" to "yarn"
+          pkg-manager: npm
