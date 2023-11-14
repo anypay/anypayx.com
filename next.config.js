@@ -15,7 +15,7 @@ module.exports = withTM({
   trailingSlash: true,
   env: {
     DOMAIN: process.env.DOMAIN || 'api.anypayx.com',
-    API_BASE: process.env.API_BASE || 'https://api.anypayx.com/v1/api',
+    API_BASE: process.env.API_BASE || 'https://api.anypayx.com',
     NEXT_PUBLIC_API_BASE: process.env.NEXT_PUBLIC_API_BASE || 'https://api.anypayx.com',
     DEV_HOST_API_KEY: 'http://localhost:8000/v1',
     HOST_API_KEY: 'https://anypayx.com/v1',
