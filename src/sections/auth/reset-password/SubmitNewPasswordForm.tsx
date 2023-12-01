@@ -44,7 +44,7 @@ export default function SubmitNewPasswordForm({ onSent, token }: Props) {
 
   const onSubmit = async (data: FormValuesProps) => {
     try {
-      await axios.post(`https://api.anypayx.com/password-resets/${token}`, {
+      await axios.post(`${API_BASE}/password-resets/${token}`, {
         password: data.password
       });
       if (isMountedRef.current) {

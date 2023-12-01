@@ -1,10 +1,10 @@
-import { BASE } from './useAPI';
+import { API_BASE } from './useAPI';
 
 import axios from '../utils/axios'
 
 export async function sendWebhook(invoice_uid: string) {
 
-    return axios.post(`${BASE}/webhooks/${invoice_uid}/attempts`)
+    return axios.post(`${API_BASE}/webhooks/${invoice_uid}/attempts`)
 }
 
 import { useAPI } from './useAPI';

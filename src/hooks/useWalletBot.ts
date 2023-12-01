@@ -162,7 +162,7 @@ export default function(): UseWalletBot {
 
         console.log('cancelInvoice', { uid })
 
-        const result = await axios.delete(`https://api.next.anypayx.com/r/${uid}`, {
+        const result = await axios.delete(`${API_BASE}/r/${uid}`, {
           auth: {
             username: token,
             password: ''

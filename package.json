@@ -73,6 +73,7 @@
     "notistack": "^2.0.3",
     "nprogress": "^0.2.0",
     "numeral": "^2.0.6",
+    "prom-client": "^15.0.0",
     "react": "^17.0.1",
     "react-apexcharts": "^1.3.9",
     "react-beautiful-dnd": "^13.1.0",

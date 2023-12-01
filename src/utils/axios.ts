@@ -2,10 +2,9 @@ import axios from 'axios';
 
 // ----------------------------------------------------------------------
 
-import { BASE } from '../api/useAPI'
+import { API_BASE } from '../api/useAPI'
 
-//const axiosInstance = axios.create({ baseURL: process.env.HOST_API_KEY || '' });
-const axiosInstance = axios.create({ baseURL: BASE });
+const axiosInstance = axios.create({ baseURL: API_BASE });
 
 axiosInstance.interceptors.response.use(
   (response) => response,
