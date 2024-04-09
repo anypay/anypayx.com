@@ -220,8 +220,7 @@ export default function PaymentsList({ payments }: { payments?: any[] }) {
                   {payments
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row: any) => {
-                      const { amount, currency, chain, txid, createdAt, invoice } = row;
-
+                      const { amount, currency, chain, txid, createdAt, uid } = row;
 
                       const date = moment(createdAt).format('MMM DD, YYYY - hh:mma')
 
@@ -238,26 +237,26 @@ export default function PaymentsList({ payments }: { payments?: any[] }) {
                             size="small"
                             sx={{ display: 'flex', alignItems: 'center' }}>
                             <Avatar alt={row.currency} src={`${icons[code]}`} sx={{ mr: 2 }} />
-                            {row.currency == row.chain ? (
+                            {currency == chain ? (
                               <Typography variant="subtitle2" noWrap>
-                                  {row.currency}
+                                  {currency}
                               </Typography>
                             ) : (
                               <Typography variant="subtitle2" noWrap>
-                                  {row.currency} on {row.chain}
+                                  {currency} on {chain}
                               </Typography>
                             )}
                           </TableCell>
                           <TableCell onClick={() => rowClicked(row)} align="left">
-                              {row.invoice.amount} {row.invoice.currency}
+                              {amount} {currency}
                           </TableCell>
                           <TableCell onClick={() => rowClicked(row)} align="left">
-                              <span style={{color: 'white', textDecoration: 'none' }}>{row.invoice.uid}</span>
+                              <span style={{color: 'white', textDecoration: 'none' }}>{uid}</span>
                           </TableCell>
                           <TableCell onClick={() => rowClicked(row)} align="left">{date}</TableCell>
                           <TableCell align="right">
                             <PaymentsMoreMenu payment={row} invoice={row} onSendWebhook={() => {
-                                sendWebhook(row.uid)
+                                sendWebhook(uid)
                             }} />
                           </TableCell>
                         </TableRow>
