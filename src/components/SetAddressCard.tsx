@@ -43,6 +43,17 @@ export default function SetAddressCard(params: any) {
 
   let address: string;
 
+
+
+  const icon_url = coin.currency.match('USD') ? (
+    `https://www.anypayx.com/icons/coins/${coin.code}.png`
+  ) : (
+    `https://www.anypayx.com/icons/coins/${coin.chain}.png`
+  )
+
+  console.log('ICON', icon_url)
+
+
   const ContentStyle = styled(Card)(({ theme }) => ({
     marginTop: -120,
     boxShadow: 'none',
@@ -60,7 +71,7 @@ export default function SetAddressCard(params: any) {
         visibleByDefault
         disabledEffect
         alt="illustration-invite"
-        src={coin.logo}
+        src={icon_url}
         sx={{
           left: 40,
           zIndex: 9,
