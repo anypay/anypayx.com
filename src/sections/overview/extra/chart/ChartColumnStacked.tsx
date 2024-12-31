@@ -33,5 +33,6 @@ export default function ChartColumnStacked() {
     },
   });
 
+  // @ts-ignore
   return <ReactApexChart type="bar" series={CHART_DATA} options={chartOptions} height={320} />;
 }

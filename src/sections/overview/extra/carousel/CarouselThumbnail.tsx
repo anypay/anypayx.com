@@ -82,6 +82,7 @@ export default function CarouselThumbnail() {
           position: 'relative',
         }}
       >
+        {/* @ts-ignore */}
         <Slider {...settings1} asNavFor={nav2} ref={slider1}>
           {_carouselsExample.map((item) => (
             <Image key={item.id} alt={item.title} src={item.image} ratio="16/9" />
@@ -106,6 +107,7 @@ export default function CarouselThumbnail() {
           ...(_carouselsExample.length === 5 && { maxWidth: THUMB_SIZE * 6 }),
         }}
       >
+        {/* @ts-ignore */}
         <Slider {...settings2} asNavFor={nav1} ref={slider2}>
           {_carouselsExample.map((item, index) => (
             <Box key={item.title} sx={{ mx: 1 }}>

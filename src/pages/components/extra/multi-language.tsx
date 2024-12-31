@@ -65,6 +65,7 @@ export default function DemoMultiLanguage() {
             pt: 6,
             pb: 1,
             mb: 10,
+            // @ts-ignore
             bgcolor: (theme) => (theme.palette.mode === 'light' ? 'grey.200' : 'grey.800'),
           }}
         >
@@ -107,7 +108,9 @@ export default function DemoMultiLanguage() {
                   icon={
                     <Image
                       disabledEffect
+                      // @ts-ignore
                       alt={currentLang.label}
+                      // @ts-ignore
                       src={currentLang.icon}
                       sx={{ mr: 1 }}
                     />
@@ -116,6 +119,7 @@ export default function DemoMultiLanguage() {
                   sx={{ typography: 'h2', my: 3 }}
                 />
 
+                {/* @ts-ignore */}
                 <Typography>{translate('demo.introduction')}</Typography>
               </Box>
             </Card>

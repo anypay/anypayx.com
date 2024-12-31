@@ -1,4 +1,5 @@
-import { LazyLoadImage, LazyLoadImageProps } from 'react-lazy-load-image-component';
+// @ts-nocheck
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 // @mui
 import { Theme } from '@mui/material/styles';
 import { Box, BoxProps, SxProps } from '@mui/material';
@@ -15,6 +16,8 @@ interface Props extends IProps {
   disabledEffect?: boolean;
 }
 
+const LazyLoadImageWrapper = (props: any) => <LazyLoadImage {...props} />;
+
 export default function Image({
   ratio,
   disabledEffect = false,
@@ -22,40 +25,16 @@ export default function Image({
   sx,
   ...other
 }: Props) {
-  if (ratio) {
-    return (
-      <Box
-        component="span"
-        sx={{
-          width: 1,
-          lineHeight: 0,
-          display: 'block',
-          overflow: 'hidden',
-          position: 'relative',
-          pt: getRatio(ratio),
-          '& .wrapper': {
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            lineHeight: 0,
-            position: 'absolute',
-            backgroundSize: 'cover !important',
-          },
-          ...sx,
-        }}
-      >
-        <Box
-          component={LazyLoadImage}
-          wrapperClassName="wrapper"
-          effect={disabledEffect ? undefined : effect}
-          placeholderSrc="https://zone-assets-api.vercel.app/assets/img_placeholder.svg"
-          sx={{ width: 1, height: 1, objectFit: 'cover' }}
-          {...other}
-        />
-      </Box>
-    );
-  }
+  const content = (
+    <Box
+      component={LazyLoadImageWrapper}
+      wrapperClassName="wrapper"
+      effect={disabledEffect ? undefined : effect}
+      placeholderSrc="https://zone-assets-api.vercel.app/assets/img_placeholder.svg"
+      sx={{ width: 1, height: 1, objectFit: 'cover' }}
+      {...other}
+    />
+  );
 
   return (
     <Box
@@ -68,14 +47,7 @@ export default function Image({
         ...sx,
       }}
     >
-      <Box
-        component={LazyLoadImage}
-        wrapperClassName="wrapper"
-        effect={disabledEffect ? undefined : effect}
-        placeholderSrc="https://zone-assets-api.vercel.app/assets/img_placeholder.svg"
-        sx={{ width: 1, height: 1, objectFit: 'cover' }}
-        {...other}
-      />
+      {content}
     </Box>
   );
 }

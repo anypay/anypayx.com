@@ -58,7 +58,8 @@ export default function ProductMoreMenu({ onDelete, productName }: Props) {
           Delete
         </MenuItem>
 
-        <NextLink href={`${PATH_DASHBOARD.eCommerce.root}/product/${paramCase(productName)}/edit`}>
+        {/* @ts-ignore */}
+        <NextLink passHref href={`${PATH_DASHBOARD.eCommerce.root}/product/${paramCase(productName)}/edit`}>
           <MenuItem sx={{ borderRadius: 1, typography: 'body2' }}>
             <Iconify icon={'eva:edit-fill'} sx={{ mr: 2, width: 24, height: 24 }} />
             Edit

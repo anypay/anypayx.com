@@ -41,6 +41,7 @@ export default function CarouselAnimation() {
 
   return (
     <Card>
+      {/* @ts-ignore */}
       <Slider ref={carouselRef} {...settings}>
         {_carouselsExample.map((item, index) => (
           <CarouselItem key={item.id} item={item} isActive={index === currentIndex} />

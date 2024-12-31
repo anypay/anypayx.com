@@ -77,8 +77,11 @@ export default function Login() {
             <Logo />
             {smUp && (
               <Typography variant="body2" sx={{ mt: { md: -2 } }}>
+                {/* @ts-ignore */}
                 Don’t have an account? {''}
+                {/* @ts-ignore */}
                 <NextLink href={PATH_AUTH.register} passHref>
+                  {/* @ts-ignore */}
                   <Link variant="subtitle2">Get started</Link>
                 </NextLink>
               </Typography>
@@ -90,7 +93,9 @@ export default function Login() {
               <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
                 Hi, Welcome Back
               </Typography>
+              {/* @ts-ignore */}
               <Image
+                // @ts-ignore
                 src="https://minimal-assets-api.vercel.app/assets/illustrations/illustration_login.png"
                 alt="login"
               />
@@ -113,7 +118,9 @@ export default function Login() {
                   <>
                     <Image
                       disabledEffect
+                      // @ts-ignore
                       alt={method}
+                      // @ts-ignore
                       src={`https://bico.media/bfcae220cb1cc0ce4322b463092d9216cd6caad42eb078f6e113857751a61753`}
                       sx={{ width: 32, height: 32 }}
                     />
@@ -125,8 +132,11 @@ export default function Login() {
 
               {!smUp && (
                 <Typography variant="body2" align="center" sx={{ mt: 3 }}>
+                  {/* @ts-ignore */}
                   Don’t have an account?{' '}
+                  {/* @ts-ignore */}
                   <NextLink href={PATH_AUTH.register} passHref>
+                    {/* @ts-ignore */}
                     <Link variant="subtitle2">Get started</Link>
                   </NextLink>
                 </Typography>

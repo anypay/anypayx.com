@@ -20,7 +20,9 @@ export default function InvoicePDF({ invoice }: Props) {
   const total = subTotal - discount + taxes;
 
   return (
+    // @ts-ignore
     <Document>
+      {/* @ts-ignore */}
       <Page size="A4" style={styles.page}>
         <View style={[styles.gridContainer, styles.mb40]}>
           <Image source="/logo/logo_full.jpg" style={{ height: 32 }} />

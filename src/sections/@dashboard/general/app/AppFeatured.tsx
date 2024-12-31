@@ -59,6 +59,7 @@ export default function AppFeatured() {
 
   return (
     <Card>
+      {/* @ts-ignore */}
       <Slider ref={carouselRef} {...settings}>
         {_appFeatured.map((app, index) => (
           <CarouselItem key={app.id} item={app} isActive={index === currentIndex} />

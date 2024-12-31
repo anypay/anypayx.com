@@ -143,6 +143,7 @@ export default function BankingQuickTransfer() {
                 },
               }}
             >
+              {/* @ts-ignore */}
               <Slider ref={carouselRef} {...sliderSettings}>
                 {_bankingQuickTransfer.map((contact, index) => (
                   <Box key={contact.id} sx={{ py: 5 }}>
@@ -153,7 +154,7 @@ export default function BankingQuickTransfer() {
                           sx={{
                             opacity: 0.48,
                             cursor: 'pointer',
-                            transition: (theme) => theme.transitions.create('all'),
+                            transition: (theme: any) => theme.transitions.create('all'),
                             ...(selectContact === index && {
                               opacity: 1,
                               transform: 'scale(1.25)',

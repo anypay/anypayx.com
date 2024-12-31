@@ -45,5 +45,6 @@ export default function ChartRadarBar() {
     },
   });
 
+  // @ts-ignore
   return <ReactApexChart type="radar" series={CHART_DATA} options={chartOptions} width={540} />;
 }

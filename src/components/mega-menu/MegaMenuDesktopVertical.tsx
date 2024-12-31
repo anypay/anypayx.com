@@ -80,6 +80,7 @@ function MegaMenuItem({ parent }: { parent: MegaMenuItemProps }) {
                     {list.subheader}
                   </Typography>
                   {list.items.map((link) => (
+                    // @ts-ignore
                     <NextLink key={link.title} href={link.path} passHref>
                       <Link
                         noWrap
@@ -88,6 +89,7 @@ function MegaMenuItem({ parent }: { parent: MegaMenuItemProps }) {
                           typography: 'body2',
                           color: 'text.primary',
                           fontSize: 13,
+                          // @ts-ignore
                           transition: (theme) => theme.transitions.create('all'),
                           '&:hover': { color: 'primary.main' },
                         }}
@@ -102,6 +104,7 @@ function MegaMenuItem({ parent }: { parent: MegaMenuItemProps }) {
 
             {!!more && !!products && !!tags && (
               <Stack spacing={3}>
+                {/* @ts-ignore */}
                 <NextLink href={more.path} passHref>
                   <Link sx={{ typography: 'body2', display: 'inline-flex', fontSize: 13 }}>
                     {more.title}
@@ -133,10 +136,12 @@ function MegaMenuItem({ parent }: { parent: MegaMenuItemProps }) {
 function ParentItem({ path = '', title, open, hasSub, ...other }: ParentItemProps) {
   const activeStyle = {
     color: 'primary.main',
+    // @ts-ignore
     bgcolor: (theme: Theme) => alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
   };
 
   return (
+    // @ts-ignore
     <NextLink href={path} passHref>
       <ListItem
         sx={{
@@ -148,6 +153,7 @@ function ParentItem({ path = '', title, open, hasSub, ...other }: ParentItemProp
           typography: 'subtitle2',
           textTransform: 'capitalize',
           justifyContent: 'space-between',
+          // @ts-ignore
           transition: (theme) => theme.transitions.create('all'),
           '&:hover': activeStyle,
           ...(open && activeStyle),

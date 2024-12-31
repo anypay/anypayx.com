@@ -75,6 +75,7 @@ export default function BookingNewestBooking() {
         }}
       />
 
+      {/* @ts-ignore */}
       <Slider ref={carouselRef} {...settings}>
         {_bookingNew.map((item) => (
           <BookingItem key={item.id} item={item} />

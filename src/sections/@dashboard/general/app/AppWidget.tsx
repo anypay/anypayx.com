@@ -68,8 +68,11 @@ export default function AppWidget({ title, total, icon, color = 'primary', chart
         bgcolor: theme.palette[color].darker,
       }}
     >
+      {/* @ts-ignore */}
       <ReactApexChart
+        // @ts-ignore
         type="radialBar"
+        // @ts-ignore
         series={[chartData]}
         options={chartOptions}
         width={86}

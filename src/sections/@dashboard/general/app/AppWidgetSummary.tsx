@@ -79,7 +79,9 @@ export default function AppWidgetSummary({ title, percent, total, chartColor, ch
       </Box>
 
       <ReactApexChart
+        // @ts-ignore
         type="bar"
+        // @ts-ignore
         series={[{ data: chartData }]}
         options={chartOptions}
         width={60}

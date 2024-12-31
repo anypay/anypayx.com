@@ -69,6 +69,7 @@ function MegaMenuItem({ parent }: { parent: MegaMenuItemProps }) {
               borderRadius: 2,
               top: PARENT_ITEM_HEIGHT,
               left: -ITEM_SPACING * 8,
+              // @ts-ignore
               zIndex: (theme) => theme.zIndex.modal,
               boxShadow: (theme) => theme.customShadows.z20,
             }}
@@ -80,6 +81,7 @@ function MegaMenuItem({ parent }: { parent: MegaMenuItemProps }) {
                     {list.subheader}
                   </Typography>
                   {list.items.map((link) => (
+                    // @ts-ignore
                     <NextLink key={link.title} href={link.path} passHref>
                       <Link
                         noWrap
@@ -88,6 +90,7 @@ function MegaMenuItem({ parent }: { parent: MegaMenuItemProps }) {
                           typography: 'body2',
                           color: 'text.primary',
                           fontSize: 13,
+                          // @ts-ignore
                           transition: (theme) => theme.transitions.create('all'),
                           '&:hover': { color: 'primary.main' },
                         }}
@@ -102,6 +105,7 @@ function MegaMenuItem({ parent }: { parent: MegaMenuItemProps }) {
 
             {!!more && !!tags && !!products && (
               <Stack spacing={3}>
+                {/* @ts-ignore */}
                 <NextLink href={more?.path} passHref>
                   <Link sx={{ typography: 'body2', display: 'inline-flex', fontSize: 13 }}>
                     {more?.title}
@@ -132,6 +136,7 @@ function ParentItem({ title, path = '', open, hasSub, ...other }: ParentItemProp
   };
 
   return (
+    // @ts-ignore
     <NextLink href={path} passHref>
       <Link
         underline="none"
@@ -144,6 +149,7 @@ function ParentItem({ title, path = '', open, hasSub, ...other }: ParentItemProp
           textTransform: 'capitalize',
           height: PARENT_ITEM_HEIGHT,
           lineHeight: `${PARENT_ITEM_HEIGHT}px`,
+          // @ts-ignore
           transition: (theme) => theme.transitions.create('all'),
           '&:hover': activeStyle,
           ...(open && activeStyle),

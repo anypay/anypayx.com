@@ -43,10 +43,12 @@ export default function ShopProductCard({ product }: Props) {
             {status}
           </Label>
         )}
+        {/* @ts-ignore */}
         <Image alt={name} src={cover} ratio="1/1" />
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
+        {/* @ts-ignore */}
         <NextLink href={linkTo} passHref>
           <Link color="inherit">
             <Typography variant="subtitle2" noWrap>

@@ -115,6 +115,7 @@ export default function HomeHugePackElements() {
               </m.div>
 
               <m.div variants={varFade().inUp}>
+                {/* @ts-ignore */}
                 <NextLink href={PATH_PAGE.components} passHref>
                   <Button size="large" color="inherit" variant="outlined">
                     View All Components
@@ -124,6 +125,7 @@ export default function HomeHugePackElements() {
             </ContentStyle>
           </Grid>
 
+          {/* @ts-ignore */}
           <Grid item xs={12} md={8} dir="ltr">
             <Box
               sx={{
@@ -161,6 +163,7 @@ export default function HomeHugePackElements() {
                 >
                   <Image
                     disabledEffect
+                    // @ts-ignore
                     alt={`screen ${index + 1}`}
                     src={`https://minimal-assets-api.vercel.app/assets/images/home/screen_${
                       isLight ? 'light' : 'dark'

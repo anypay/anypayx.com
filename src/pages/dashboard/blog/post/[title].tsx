@@ -63,7 +63,7 @@ export default function BlogPost() {
       }
     } catch (error) {
       console.error(error);
-      setError(error.message);
+      setError(error as any);
     }
   }, [isMountedRef, title]);
 
@@ -107,7 +107,9 @@ export default function BlogPost() {
                 {post.description}
               </Typography>
 
-              <Markdown children={post.body} />
+              <Markdown>
+                {post.body}
+              </Markdown>
 
               <Box sx={{ my: 5 }}>
                 <Divider />

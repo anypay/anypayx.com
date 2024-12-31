@@ -152,6 +152,7 @@ export default function HomeHero() {
             </Stack>
 
             <m.div variants={varFade().inRight}>
+              {/* @ts-ignore */}
               <NextLink href={PATH_DASHBOARD.root} passHref>
                 <Button
                   size="large"

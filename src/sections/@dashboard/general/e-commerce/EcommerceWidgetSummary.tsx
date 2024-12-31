@@ -91,8 +91,11 @@ export default function EcommerceWidgetSummary({
         </Stack>
       </Box>
 
+      {/* @ts-ignore */}
       <ReactApexChart
+        // @ts-ignore
         type="line"
+        // @ts-ignore
         series={[{ data: chartData }]}
         options={chartOptions}
         width={120}

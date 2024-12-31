@@ -92,6 +92,7 @@ export default function ProductDetailsCarousel({ product }: Props) {
     <RootStyle>
       <Box sx={{ p: 1 }}>
         <Box sx={{ zIndex: 0, borderRadius: 2, overflow: 'hidden', position: 'relative' }}>
+          {/* @ts-ignore */}
           <Slider {...settings1} asNavFor={nav2} ref={slider1}>
             {product.images.map((img) => (
               <Image
@@ -133,7 +134,9 @@ export default function ProductDetailsCarousel({ product }: Props) {
               position: 'absolute',
               width: (THUMB_SIZE * 2) / 3,
               backgroundImage: (theme) =>
+                // @ts-ignore
                 `linear-gradient(to left, ${alpha(theme.palette.background.paper, 0)} 0%, ${
+                  // @ts-ignore
                   theme.palette.background.paper
                 } 100%)`,
             },
@@ -141,6 +144,7 @@ export default function ProductDetailsCarousel({ product }: Props) {
           }),
         }}
       >
+        {/* @ts-ignore */}
         <Slider {...settings2} asNavFor={nav1} ref={slider2}>
           {product.images.map((img, index) => (
             <Box key={img} sx={{ px: 0.75 }}>
@@ -154,6 +158,7 @@ export default function ProductDetailsCarousel({ product }: Props) {
                   borderRadius: 1.5,
                   cursor: 'pointer',
                   ...(currentIndex === index && {
+                    // @ts-ignore
                     border: (theme) => `solid 3px ${theme.palette.primary.main}`,
                   }),
                 }}

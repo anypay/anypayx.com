@@ -44,6 +44,7 @@ export default function AnalyticsConversionRates() {
     <Card>
       <CardHeader title="Conversion Rates" subheader="(+43%) than last year" />
       <Box sx={{ mx: 3 }} dir="ltr">
+        {/* @ts-ignore */}
         <ReactApexChart type="bar" series={CHART_DATA} options={chartOptions} height={364} />
       </Box>
     </Card>

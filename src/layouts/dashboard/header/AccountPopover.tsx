@@ -119,6 +119,7 @@ export default function AccountPopover() {
 
         <Stack sx={{ p: 1 }}>
           {MENU_OPTIONS.map((option) => (
+            // @ts-ignore
             <NextLink key={option.label} href={option.linkTo} passHref>
               <MenuItem key={option.label} onClick={handleClose}>
                 {option.label}

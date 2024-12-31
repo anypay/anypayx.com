@@ -96,6 +96,7 @@ export default function BlogPosts() {
             { name: 'Posts' },
           ]}
           action={
+            // @ts-ignore
             <NextLink href={PATH_DASHBOARD.blog.newPost} passHref>
               <Button variant="contained" startIcon={<Iconify icon={'eva:plus-fill'} />}>
                 New Post
@@ -112,6 +113,7 @@ export default function BlogPosts() {
         <Grid container spacing={3}>
           {(!posts.length ? [...Array(12)] : sortedPosts).map((post, index) =>
             post ? (
+              // @ts-ignore
               <Grid key={post.id} item xs={12} sm={6} md={(index === 0 && 6) || 3}>
                 <BlogPostCard post={post} index={index} />
               </Grid>

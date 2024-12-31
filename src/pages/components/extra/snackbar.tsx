@@ -70,7 +70,7 @@ export default function DemoSnackbar() {
             pt: 6,
             pb: 1,
             mb: 10,
-            bgcolor: (theme) => (theme.palette.mode === 'light' ? 'grey.200' : 'grey.800'),
+            bgcolor: (theme: any) => (theme.palette.mode === 'light' ? 'grey.200' : 'grey.800'),
           }}
         >
           <Container>
@@ -92,7 +92,10 @@ export default function DemoSnackbar() {
                 variant="contained"
                 color="inherit"
                 onClick={() =>
-                  enqueueSnackbar('This is an default', { variant: 'default', action: () => {} })
+                  enqueueSnackbar('This is an default', {
+                    variant: 'default',
+                    action: () => <></>,
+                  })
                 }
               >
                 Default
@@ -101,7 +104,7 @@ export default function DemoSnackbar() {
                 variant="contained"
                 color="info"
                 onClick={() =>
-                  enqueueSnackbar('This is an info', { variant: 'info', action: () => {} })
+                  enqueueSnackbar('This is an info', { variant: 'info', action: () => <></> })
                 }
               >
                 Info
@@ -109,7 +112,9 @@ export default function DemoSnackbar() {
               <Button
                 variant="contained"
                 color="success"
-                onClick={() => enqueueSnackbar('This is an success', { action: () => {} })}
+                onClick={() =>
+                  enqueueSnackbar('This is an success', { action: () => <></> })
+                }
               >
                 Success
               </Button>
@@ -119,7 +124,7 @@ export default function DemoSnackbar() {
                 onClick={() =>
                   enqueueSnackbar('This is an warning', {
                     variant: 'warning',
-                    action: () => {},
+                    action: () => <></>,
                   })
                 }
               >
@@ -129,7 +134,7 @@ export default function DemoSnackbar() {
                 variant="contained"
                 color="error"
                 onClick={() =>
-                  enqueueSnackbar('This is an error', { variant: 'error', action: () => {} })
+                  enqueueSnackbar('This is an error', { variant: 'error', action: () => <></> })
                 }
               >
                 Error

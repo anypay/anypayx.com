@@ -27,19 +27,27 @@ export const NavItemRoot = forwardRef<HTMLButtonElement & HTMLAnchorElement, Nav
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
         >
-          <NavItemContent icon={icon} title={title} children={children} />
+          <NavItemContent icon={icon} title={title} >
+            {children}
+          </NavItemContent>
         </ListItemStyle>
       );
     }
 
     return isExternalLink(path) ? (
+      // @ts-ignore
       <ListItemStyle component={Link} href={path} target="_blank" rel="noopener">
-        <NavItemContent icon={icon} title={title} children={children} />
+        <NavItemContent icon={icon} title={title}>
+          {children}
+        </NavItemContent>
       </ListItemStyle>
     ) : (
+      // @ts-ignore
       <NextLink href={path} passHref>
         <ListItemStyle activeRoot={active}>
-          <NavItemContent icon={icon} title={title} children={children} />
+          <NavItemContent icon={icon} title={title}>
+            {children}
+          </NavItemContent>
         </ListItemStyle>
       </NextLink>
     );
@@ -63,7 +71,9 @@ export const NavItemSub = forwardRef<HTMLButtonElement & HTMLAnchorElement, NavI
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
         >
-          <NavItemContent icon={icon} title={title} children={children} subItem />
+          <NavItemContent icon={icon} title={title} subItem>
+            {children}
+          </NavItemContent>
         </ListItemStyle>
       );
     }
@@ -75,14 +85,20 @@ export const NavItemSub = forwardRef<HTMLButtonElement & HTMLAnchorElement, NavI
         disableRipple
         rel="noopener"
         target="_blank"
+        // @ts-ignore
         component={Link}
       >
-        <NavItemContent icon={icon} title={title} children={children} subItem />
+        <NavItemContent icon={icon} title={title}>
+          {children}
+        </NavItemContent>
       </ListItemStyle>
     ) : (
+      // @ts-ignore
       <NextLink href={path} passHref>
         <ListItemStyle disableRipple activeSub={active} subItem>
-          <NavItemContent icon={icon} title={title} children={children} subItem />
+          <NavItemContent icon={icon} title={title}>
+            {children}
+          </NavItemContent>
         </ListItemStyle>
       </NextLink>
     );

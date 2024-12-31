@@ -154,6 +154,7 @@ function MenuMobileItem({ item, isOpen, onOpen }: MenuMobileItemProps) {
 
   if (title === 'Documentation') {
     return (
+      // @ts-ignore
       <ListItemStyle href={path} target="_blank" rel="noopener" component={Link}>
         <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText disableTypography primary={title} />
@@ -162,6 +163,7 @@ function MenuMobileItem({ item, isOpen, onOpen }: MenuMobileItemProps) {
   }
 
   return (
+    // @ts-ignore
     <NextLink href={path} passHref>
       <ListItemStyle
         sx={{

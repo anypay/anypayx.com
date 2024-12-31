@@ -37,6 +37,7 @@ export default function MUIBadge() {
             pt: 6,
             pb: 1,
             mb: 10,
+            // @ts-ignore
             bgcolor: (theme) => (theme.palette.mode === 'light' ? 'grey.200' : 'grey.800'),
           }}
         >
@@ -100,20 +101,24 @@ export default function MUIBadge() {
             >
               <Badge
                 badgeContent={99}
-                color="error"
-                children={<Iconify icon="eva:email-fill" width={24} height={24} />}
-              />
+                color="error"                
+              >
+                <Iconify icon="eva:email-fill" width={24} height={24} />
+              </Badge>
               <Badge
                 badgeContent={100}
-                color="error"
-                children={<Iconify icon="eva:email-fill" width={24} height={24} />}
-              />
+                color="error"              
+              >
+                {<Iconify icon="eva:email-fill" width={24} height={24} />}
+              </Badge>
+
               <Badge
                 badgeContent={1000}
                 max={999}
-                color="error"
-                children={<Iconify icon="eva:email-fill" width={24} height={24} />}
-              />
+                color="error"                
+              >
+                {<Iconify icon="eva:email-fill" width={24} height={24} />}
+              </Badge>
             </Block>
 
             <Block

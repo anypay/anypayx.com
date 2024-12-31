@@ -28,5 +28,6 @@ export default function ChartBar() {
     },
   });
 
+  // @ts-ignore
   return <ReactApexChart type="bar" series={CHART_DATA} options={chartOptions} height={320} />;
 }

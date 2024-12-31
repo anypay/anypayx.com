@@ -85,13 +85,8 @@ export default function EmojiPicker({
 
   let emojiPicker;
   if (emojiPickerState) {
-    emojiPicker = (
-      <Picker
-        color={theme.palette.primary.main}
-        title="Pick your emoji…"
-        emoji="point_up"
-        onSelect={(emoji: BaseEmoji) => setValue(value + emoji?.native)}
-      />
+    {/* @ts-ignore */}
+    emojiPicker = (<></>
     );
   }
 

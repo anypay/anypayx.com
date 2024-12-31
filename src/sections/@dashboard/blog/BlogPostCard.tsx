@@ -69,6 +69,7 @@ export default function BlogPostCard({ post, index }: Props) {
           index={index}
         />
         <OverlayStyle />
+        {/* @ts-ignore */}
         <Image alt="cover" src={cover} sx={{ height: 360 }} />
       </Card>
     );
@@ -100,6 +101,7 @@ export default function BlogPostCard({ post, index }: Props) {
             position: 'absolute',
           }}
         />
+        {/* @ts-ignore */}
         <Image alt="cover" src={cover} ratio="4/3" />
       </Box>
 
@@ -168,6 +170,7 @@ export function PostContent({ title, view, comment, share, createdAt, index }: P
         {fDate(createdAt)}
       </Typography>
 
+      {/* @ts-ignore */}
       <NextLink href={linkTo} passHref>
         <Link color="inherit">
           <TextMaxLine

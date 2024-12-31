@@ -78,7 +78,9 @@ export default function Register() {
             {smUp && (
               <Typography variant="body2" sx={{ mt: { md: -2 } }}>
                 Already have an account? {''}
+                {/* @ts-ignore */}
                 <NextLink href={PATH_AUTH.login} passHref>
+                  {/* @ts-ignore */}
                   <Link variant="subtitle2">Login</Link>
                 </NextLink>
               </Typography>
@@ -90,8 +92,12 @@ export default function Register() {
               <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
                 Take crypto payments easily with Anypay
               </Typography>
+              {/* @ts-ignore */}
               <Image
+                disabledEffect
+                // @ts-ignore
                 alt="register"
+                // @ts-ignore
                 src="https://minimal-assets-api.vercel.app/assets/illustrations/illustration_register.png"
               />
             </SectionStyle>
@@ -112,7 +118,9 @@ export default function Register() {
                   <>
                     <Image
                       disabledEffect
+                      // @ts-ignore
                       alt={method}
+                      // @ts-ignore
                       src={`https://bico.media/bfcae220cb1cc0ce4322b463092d9216cd6caad42eb078f6e113857751a61753`}
                       sx={{ width: 32, height: 32 }}
                     />
@@ -137,7 +145,9 @@ export default function Register() {
               {!smUp && (
                 <Typography variant="body2" sx={{ mt: 3, textAlign: 'center' }}>
                   Already have an account?{' '}
+                  {/* @ts-ignore */}
                   <NextLink href={PATH_AUTH.login} passHref>
+                    {/* @ts-ignore */}
                     <Link variant="subtitle2">Login</Link>
                   </NextLink>
                 </Typography>

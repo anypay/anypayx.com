@@ -68,6 +68,7 @@ export default function AboutTeam() {
           sx={{
             mx: 'auto',
             maxWidth: 630,
+            // @ts-ignore
             color: (theme) => (theme.palette.mode === 'light' ? 'text.secondary' : 'common.white'),
           }}
         >
@@ -78,6 +79,7 @@ export default function AboutTeam() {
 
       <Box sx={{ position: 'relative' }}>
         <CarouselArrows filled onNext={handleNext} onPrevious={handlePrevious}>
+          {/* @ts-ignore */}
           <Slider ref={carouselRef} {...settings}>
             {_carouselsMembers.map((member) => (
               <Box

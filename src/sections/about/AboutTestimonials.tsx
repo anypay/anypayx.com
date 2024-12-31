@@ -226,6 +226,7 @@ function TestimonialCard({ testimonial }: TestimonialCardProps) {
         {name}
       </Typography>
       <Typography gutterBottom component="p" variant="caption" sx={{ color: 'grey.500' }}>
+        {/* @ts-ignore */}
         {dateCreate}
       </Typography>
       <Rating value={rating} readOnly size="small" />

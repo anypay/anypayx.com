@@ -36,10 +36,12 @@ export function NavItemRoot({ item, isCollapse, open = false, active, onOpen }: 
   }
 
   return isExternalLink(path) ? (
+    // @ts-ignore
     <ListItemStyle component={Link} href={path} target="_blank" rel="noopener">
       {renderContent}
     </ListItemStyle>
   ) : (
+    // @ts-ignore
     <NextLink href={path} passHref>
       <ListItemStyle activeRoot={active}>{renderContent}</ListItemStyle>
     </NextLink>
@@ -71,10 +73,12 @@ export function NavItemSub({ item, open = false, active = false, onOpen }: NavIt
   }
 
   return isExternalLink(path) ? (
+    // @ts-ignore
     <ListItemStyle component={Link} href={path} target="_blank" rel="noopener" subItem>
       {renderContent}
     </ListItemStyle>
   ) : (
+    // @ts-ignore
     <NextLink href={path} passHref>
       <ListItemStyle activeSub={active} subItem>
         {renderContent}
@@ -100,7 +104,9 @@ export function DotIcon({ active }: DotIconProps) {
           borderRadius: '50%',
           bgcolor: 'text.disabled',
           transition: (theme) =>
+            // @ts-ignore
             theme.transitions.create('transform', {
+              // @ts-ignore
               duration: theme.transitions.duration.shorter,
             }),
           ...(active && {

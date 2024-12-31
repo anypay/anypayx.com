@@ -50,20 +50,24 @@ export default function MenuCarousel({ products, numberShow, sx }: MenuCarouselP
           },
         }}
       >
+        {/* @ts-ignore */}
         <Slider ref={carouselRef} {...settings}>
           {products.map((product) => (
             <Box key={product.name} sx={{ px: 1, textAlign: 'center' }}>
+              {/* @ts-ignore */}
               <NextLink href={product.path} passHref>
                 <Link
                   color="inherit"
                   underline="none"
                   sx={{
                     display: 'block',
+                    // @ts-ignore
                     transition: (theme) => theme.transitions.create('all'),
                     '&:hover': { color: 'primary.main' },
                   }}
                 >
                   <Image
+                    
                     alt={product.image}
                     src={product.image}
                     ratio="1/1"

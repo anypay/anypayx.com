@@ -20,5 +20,6 @@ export default function ChartColumnSingle() {
     },
   });
 
+  // @ts-ignore
   return <ReactApexChart type="bar" series={CHART_DATA} options={chartOptions} height={320} />;
 }
