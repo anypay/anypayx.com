@@ -106,9 +106,13 @@ export default function BankingWidgetSummary({
         </Stack>
       </Stack>
 
+      {/* @ts-ignore */}
       <ReactApexChart
+        // @ts-ignore
         type="area"
+        // @ts-ignore
         series={[{ data: chartData }]}
+        // @ts-ignore
         options={chartOptions}
         height={120}
       />

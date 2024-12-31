@@ -61,23 +61,24 @@ export default function LoginForm() {
       await login(data.email, data.password);
     } catch (error) {
 
-
       reset();
-
 
       if (isMountedRef.current) {
 
+        // @ts-ignore
         if (error.error) {
+          // @ts-ignore
           setError('afterSubmit', { ...error, message: error.error });
           return
         }
-        
+
+        // @ts-ignore
         if (error.statusCode === 401) {
-
+          // @ts-ignore
           setError('afterSubmit', { ...error, message: 'Invalid email address or password' });
-
+          // @ts-ignore
         } else if (error.statusCode === 500) {
-
+          // @ts-ignore
           setError('afterSubmit', { ...error, message: error.message });
         }
       }
@@ -109,6 +110,7 @@ export default function LoginForm() {
 
       <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
         <RHFCheckbox name="remember" label="Remember me" />
+        {/* @ts-ignore */}
         <NextLink href={PATH_AUTH.resetPassword} passHref>
           <Link variant="subtitle2">Forgot password?</Link>
         </NextLink>

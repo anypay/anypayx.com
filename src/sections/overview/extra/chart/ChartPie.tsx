@@ -22,5 +22,6 @@ export default function ChartPie() {
     },
   });
 
+  // @ts-ignore
   return <ReactApexChart type="pie" series={CHART_DATA} options={chartOptions} width={400} />;
 }

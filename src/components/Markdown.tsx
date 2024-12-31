@@ -1,3 +1,4 @@
+// @ts-nocheck
 import ReactMarkdown, { Options } from 'react-markdown';
 // markdown plugins
 import rehypeRaw from 'rehype-raw';

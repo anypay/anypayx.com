@@ -66,8 +66,9 @@ export default function HomeAdvertisement() {
             </Typography>
           </Box>
           <m.div variants={varFade().inDown}>
-          <NextLink href={PATH_AUTH.register} passHref>
-            <Link variant="subtitle2">
+            {/* @ts-ignore */}
+            <NextLink href={PATH_AUTH.register} passHref>
+              <Link variant="subtitle2">
             <Button
               size="large"
               variant="contained"
@@ -76,6 +77,7 @@ export default function HomeAdvertisement() {
               sx={{
                 whiteSpace: 'nowrap',
                 boxShadow: (theme) => theme.customShadows.z8,
+                // @ts-ignore
                 color: (theme) => theme.palette.getContrastText(theme.palette.common.white),
                 bgcolor: 'common.white',
                 '&:hover': { bgcolor: 'grey.300' },

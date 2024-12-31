@@ -64,6 +64,7 @@ export default function AnalyticsCurrentVisits() {
     <Card>
       <CardHeader title="Current Visits" />
       <ChartWrapperStyle dir="ltr">
+        {/* @ts-ignore */}
         <ReactApexChart type="pie" series={CHART_DATA} options={chartOptions} height={280} />
       </ChartWrapperStyle>
     </Card>

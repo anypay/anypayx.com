@@ -75,6 +75,7 @@ export default function Login() {
           {smUp && (
             <Typography variant="body2" sx={{ mt: { md: -2 } }}>
               Don’t have an account? {''}
+              {/* @ts-ignore */}
               <NextLink href={PATH_AUTH.register} passHref>
                 <Link variant="subtitle2">Get started</Link>
               </NextLink>
@@ -87,6 +88,7 @@ export default function Login() {
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
               Hi, Welcome Back
             </Typography>
+            {/* @ts-ignore */}
             <Image
               src="https://minimal-assets-api.vercel.app/assets/illustrations/illustration_login.png"
               alt="login"
@@ -106,6 +108,7 @@ export default function Login() {
 
               <Tooltip title={capitalCase(method)} placement="right">
                 <>
+                  {/* @ts-ignore */}
                   <Image
                     disabledEffect
                     alt={method}
@@ -120,8 +123,11 @@ export default function Login() {
 
             {!smUp && (
               <Typography variant="body2" align="center" sx={{ mt: 3 }}>
+                {/* @ts-ignore */}
                 Don’t have an account?{' '}
+                {/* @ts-ignore */}
                 <NextLink href={PATH_AUTH.register} passHref>
+                  {/* @ts-ignore */}
                   <Link variant="subtitle2">Get started</Link>
                 </NextLink>
               </Typography>

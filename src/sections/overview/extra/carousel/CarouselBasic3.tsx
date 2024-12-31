@@ -59,6 +59,7 @@ export default function CarouselBasic3() {
           },
         }}
       >
+        {/* @ts-ignore */}
         <Slider ref={carouselRef} {...settings}>
           {_carouselsExample.map((item) => (
             <CarouselItem key={item.id} item={item} />

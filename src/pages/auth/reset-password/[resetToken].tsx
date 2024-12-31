@@ -59,6 +59,7 @@ export default function ResetPassword() {
                   token={token}
                 />
 
+                {/* @ts-ignore */}
                 <NextLink href={PATH_AUTH.login} passHref>
                   <Button fullWidth size="large" sx={{ mt: 1 }}>
                     Back
@@ -73,6 +74,7 @@ export default function ResetPassword() {
                   Password reset successfully
                 </Typography>
 
+                {/* @ts-ignore */}
                 <NextLink href={PATH_AUTH.login} passHref>
                   <Button size="large" variant="contained" sx={{ mt: 5 }}>
                     Login

@@ -75,7 +75,9 @@ export default function Register() {
           {smUp && (
             <Typography variant="body2" sx={{ mt: { md: -2 } }}>
               Already have an account? {''}
+              {/* @ts-ignore */}
               <NextLink href={PATH_AUTH.login} passHref>
+                {/* @ts-ignore */}
                 <Link variant="subtitle2">Login</Link>
               </NextLink>
             </Typography>
@@ -88,7 +90,9 @@ export default function Register() {
               Manage the job more effectively with Minimal
             </Typography>
             <Image
+              // @ts-ignore
               alt="register"
+              // @ts-ignore
               src="https://minimal-assets-api.vercel.app/assets/illustrations/illustration_register.png"
             />
           </SectionStyle>
@@ -134,7 +138,9 @@ export default function Register() {
             {!smUp && (
               <Typography variant="body2" sx={{ mt: 3, textAlign: 'center' }}>
                 Already have an account?{' '}
+                {/* @ts-ignore */}
                 <NextLink href={PATH_AUTH.login} passHref>
+                  {/* @ts-ignore */}
                   <Link variant="subtitle2">Login</Link>
                 </NextLink>
               </Typography>

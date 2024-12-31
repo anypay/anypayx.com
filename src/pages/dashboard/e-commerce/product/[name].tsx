@@ -170,7 +170,9 @@ export default function EcommerceProductDetails() {
 
                 <TabPanel value="1">
                   <Box sx={{ p: 3 }}>
-                    <Markdown children={product.description} />
+                    <Markdown>
+                      {product.description}
+                    </Markdown>
                   </Box>
                 </TabPanel>
                 <TabPanel value="2">

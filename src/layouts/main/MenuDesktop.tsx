@@ -199,6 +199,7 @@ function MenuDesktopItem({
                     </ListSubheader>
 
                     {items.map((item) => (
+                      // @ts-ignore
                       <NextLink key={item.title} href={item.path} passHref>
                         <ListItemStyle
                           underline="none"
@@ -266,6 +267,7 @@ function MenuDesktopItem({
   }
 
   return (
+    // @ts-ignore
     <NextLink href={path} passHref>
       <LinkStyle
         sx={{

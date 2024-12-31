@@ -88,9 +88,13 @@ export default function BankingExpensesCategories() {
       <CardHeader title="Expenses Categories" />
 
       <Box sx={{ my: 5 }} dir="ltr">
+        
         <ReactApexChart
+          // @ts-ignore
           type="polarArea"
+          // @ts-ignore
           series={CHART_DATA.data}
+          // @ts-ignore
           options={chartOptions}
           height={isDesktop ? 240 : 360}
         />

@@ -90,6 +90,7 @@ const columns: GridColDef[] = [
       const getEmail = params.getValue(params.id, 'email');
       return (
         <Typography variant="body2" sx={{ textDecoration: 'underline' }} noWrap>
+          {/* @ts-ignore */}
           {getEmail}
         </Typography>
       );
@@ -196,9 +197,11 @@ const columns: GridColDef[] = [
 function RatingInputValue({ item, applyValue }: GridFilterInputValueProps) {
   return (
     <Box sx={{ p: 1, height: 1, alignItems: 'flex-end', display: 'flex' }}>
+      {/* @ts-ignore */}
       <Rating
         size="small"
         precision={0.5}
+        // @ts-ignore
         placeholder="Filter value"
         value={Number(item.value)}
         onChange={(event, newValue) => {

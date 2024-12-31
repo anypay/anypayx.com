@@ -118,7 +118,7 @@ export default function MUITimeline() {
             pt: 6,
             pb: 1,
             mb: 10,
-            bgcolor: (theme) => (theme.palette.mode === 'light' ? 'grey.200' : 'grey.800'),
+            bgcolor: (theme: any) => (theme.palette.mode === 'light' ? 'grey.200' : 'grey.800'),
           }}
         >
           <Container>
@@ -133,6 +133,7 @@ export default function MUITimeline() {
         <Container>
           <Masonry columns={{ xs: 1, md: 3 }} spacing={3}>
             <Block title="Default">
+              {/* @ts-ignore */}
               <Timeline>
                 {reduceTimeLine.map((item) => (
                   <TimelineItem key={item.key}>
@@ -147,6 +148,7 @@ export default function MUITimeline() {
             </Block>
 
             <Block title="Right">
+              {/* @ts-ignore */}
               <Timeline position="right">
                 {reduceTimeLine.map((item) => (
                   <TimelineItem key={item.key}>
@@ -161,6 +163,7 @@ export default function MUITimeline() {
             </Block>
 
             <Block title="Alternating">
+              {/* @ts-ignore */}
               <Timeline position="alternate">
                 {reduceTimeLine.map((item) => (
                   <TimelineItem key={item.key}>
@@ -175,6 +178,7 @@ export default function MUITimeline() {
             </Block>
 
             <Block title="Filled">
+              {/* @ts-ignore */}
               <Timeline position="alternate">
                 {TIMELINES.map((item) => (
                   <TimelineItem key={item.key}>
@@ -189,6 +193,7 @@ export default function MUITimeline() {
             </Block>
 
             <Block title="Outlined">
+              {/* @ts-ignore */}
               <Timeline position="alternate">
                 {TIMELINES.map((item) => (
                   <TimelineItem key={item.key}>
@@ -203,6 +208,7 @@ export default function MUITimeline() {
             </Block>
 
             <Block title="Opposite content">
+              {/* @ts-ignore */}
               <Timeline position="alternate">
                 {TIMELINES.map((item) => (
                   <TimelineItem key={item.key}>
@@ -223,6 +229,7 @@ export default function MUITimeline() {
           </Masonry>
 
           <Block title="Customized">
+            {/* @ts-ignore */}
             <Timeline position="alternate">
               {TIMELINES.map((item) => (
                 <TimelineItem key={item.key}>

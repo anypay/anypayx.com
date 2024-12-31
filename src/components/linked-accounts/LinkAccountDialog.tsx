@@ -83,9 +83,9 @@ export default function LinkAccountDialog({ account }: { account?: Account, refr
 
         console.error(error)
 
-        enqueueSnackbar(error.message, { variant: 'error' })
+        enqueueSnackbar((error as any).message, { variant: 'error' })
 
-        setError(error.message)
+        setError((error as any).message)
 
     }
     // set open false

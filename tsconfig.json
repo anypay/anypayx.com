@@ -3,14 +3,15 @@
     "target": "es5",
     "lib": [
       "es6",
-      "dom"
+      "dom",
+      "dom.iterable"
     ],
     "baseUrl": ".",
     "strict": true,
     "noEmit": true,
     "allowJs": true,
     "jsx": "preserve",
-    "module": "esnext",
+    "module": "NodeNext",
     "incremental": true,
     "skipLibCheck": true,
     "noImplicitAny": false,
@@ -19,18 +20,26 @@
     "isolatedModules": true,
     "strictNullChecks": true,
     "resolveJsonModule": true,
-    "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
-    "useUnknownInCatchVariables": false,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "NodeNext",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "forceConsistentCasingInFileNames": true
   },
   "exclude": [
     "node_modules"
   ],
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
   ]
 }

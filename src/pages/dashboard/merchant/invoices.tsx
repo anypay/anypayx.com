@@ -37,6 +37,7 @@ export default function WebhooksList() {
             { name: 'Send Invoices' }
           ]}
           action={
+            // @ts-ignore
             <NextLink href={PATH_DASHBOARD.user.newUser} passHref>
               <Button variant="contained" startIcon={<Iconify icon={'eva:plus-fill'} />}>
                 Send New Invoice

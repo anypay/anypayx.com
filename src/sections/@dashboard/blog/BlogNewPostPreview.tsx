@@ -65,7 +65,9 @@ export default function BlogNewPostPreview({
               <Typography variant="h6" sx={{ mb: 5 }}>
                 {description}
               </Typography>
-              <Markdown children={content || ''} />
+              <Markdown>
+              {content}
+              </Markdown>
             </Box>
           </Container>
         </Scrollbar>
@@ -110,6 +112,7 @@ function PreviewHero({ title, cover }: PreviewHeroProps) {
           bottom: 0,
           zIndex: 8,
           position: 'absolute',
+          // @ts-ignore
           bgcolor: (theme) => alpha(theme.palette.grey[900], 0.8),
         }}
       />

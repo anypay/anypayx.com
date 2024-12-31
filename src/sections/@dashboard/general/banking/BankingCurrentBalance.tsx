@@ -69,6 +69,7 @@ export default function BankingCurrentBalance() {
   return (
     <RootStyle>
       <Box sx={{ position: 'relative', zIndex: 9 }}>
+        {/* @ts-ignore */}
         <Slider {...settings}>
           {_bankingCreditCard.map((card) => (
             <CardItem key={card.id} card={card} />

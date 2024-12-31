@@ -64,6 +64,7 @@ export default function AnalyticsCurrentSubject() {
     <Card>
       <CardHeader title="Current Subject" />
       <ChartWrapperStyle dir="ltr">
+        {/* @ts-ignore */}
         <ReactApexChart type="radar" series={CHART_DATA} options={chartOptions} height={340} />
       </ChartWrapperStyle>
     </Card>

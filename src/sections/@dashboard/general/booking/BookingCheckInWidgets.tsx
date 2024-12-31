@@ -71,9 +71,13 @@ export default function BookingCheckInWidgets() {
           spacing={3}
           sx={{ width: 1, py: 5 }}
         >
+          {/* @ts-ignore */}
           <ReactApexChart
+            // @ts-ignore
             type="radialBar"
+            // @ts-ignore
             series={CHART_DATA_CHECK_IN}
+            // @ts-ignore
             options={chartOptionsCheckIn}
             {...CHART_SIZE}
           />
@@ -94,9 +98,13 @@ export default function BookingCheckInWidgets() {
           spacing={3}
           sx={{ width: 1, py: 5 }}
         >
+          {/* @ts-ignore */}
           <ReactApexChart
+            // @ts-ignore
             type="radialBar"
+            // @ts-ignore
             series={CHART_DATA_CHECK_OUT}
+            // @ts-ignore
             options={chartOptionsCheckOut}
             {...CHART_SIZE}
           />

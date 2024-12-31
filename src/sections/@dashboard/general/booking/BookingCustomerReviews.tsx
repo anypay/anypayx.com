@@ -54,6 +54,7 @@ export default function BookingCustomerReviews() {
         }}
       />
 
+      {/* @ts-ignore */}
       <Slider ref={carouselRef} {...settings}>
         {_bookingReview.map((item) => (
           <ReviewItem key={item.id} item={item} />

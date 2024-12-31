@@ -81,7 +81,9 @@ export default function DemoEditor() {
                 <Card sx={{ height: 1, boxShadow: 0, bgcolor: 'background.neutral' }}>
                   <CardHeader title="Preview Plain Text" />
                   <Box sx={{ p: 3 }}>
-                    <Markdown children={quillSimple} />
+                    <Markdown>
+                      {quillSimple}
+                    </Markdown>
                   </Box>
                 </Card>
                 <Card sx={{ height: 1, boxShadow: 0, bgcolor: 'background.neutral' }}>

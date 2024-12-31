@@ -36,6 +36,7 @@ export default function VerifyCode() {
       <RootStyle>
         <Container>
           <Box sx={{ maxWidth: 480, mx: 'auto' }}>
+            {/* @ts-ignore */}
             <NextLink href={PATH_AUTH.login} passHref>
               <Button
                 size="small"
@@ -59,6 +60,7 @@ export default function VerifyCode() {
             </Box>
 
             <Typography variant="body2" align="center">
+              {/* @ts-ignore */}
               Don’t have a code? &nbsp;
               <Link variant="subtitle2" underline="none" onClick={() => {}}>
                 Resend code

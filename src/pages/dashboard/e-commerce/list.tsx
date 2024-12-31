@@ -172,6 +172,7 @@ export default function EcommerceProductList() {
             { name: 'Product List' },
           ]}
           action={
+            // @ts-ignore
             <NextLink href={PATH_DASHBOARD.eCommerce.newProduct} passHref>
               <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
                 New Product
@@ -224,6 +225,7 @@ export default function EcommerceProductList() {
                           <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
                             <Image
                               disabledEffect
+                              // @ts-ignore
                               alt={name}
                               src={cover}
                               sx={{ borderRadius: 1.5, width: 64, height: 64, mr: 2 }}

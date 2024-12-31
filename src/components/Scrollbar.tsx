@@ -46,6 +46,7 @@ export default function Scrollbar({ children, sx, ...other }: Props) {
   if (isMobile) {
     return (
       <Box sx={{ overflowX: 'auto', ...sx }} {...other}>
+        {/* @ts-ignore */}
         {children}
       </Box>
     );

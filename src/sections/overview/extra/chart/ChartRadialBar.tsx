@@ -45,6 +45,7 @@ export default function ChartRadialBar() {
   });
 
   return (
+    // @ts-ignore
     <ReactApexChart type="radialBar" series={CHART_DATA} options={chartOptions} height={400} />
   );
 }

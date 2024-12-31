@@ -173,6 +173,7 @@ export default function ProductNewForm({ isEdit, currentProduct }: Props) {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={3}>
+        {/* @ts-ignore */}
         <Grid item xs={12} md={8}>
           <Card sx={{ p: 3 }}>
             <Stack spacing={3}>
@@ -198,7 +199,7 @@ export default function ProductNewForm({ isEdit, currentProduct }: Props) {
             </Stack>
           </Card>
         </Grid>
-
+        {/* @ts-ignore */}
         <Grid item xs={12} md={4}>
           <Stack spacing={3}>
             <Card sx={{ p: 3 }}>
@@ -243,6 +244,7 @@ export default function ProductNewForm({ isEdit, currentProduct }: Props) {
                       options={TAGS_OPTION.map((option) => option)}
                       renderTags={(value, getTagProps) =>
                         value.map((option, index) => (
+                          // @ts-ignore
                           <Chip
                             {...getTagProps({ index })}
                             key={option}

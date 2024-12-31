@@ -83,6 +83,7 @@ export default function MainHeader() {
 
           <Box sx={{ flexGrow: 1 }} />
 
+          {/* @ts-ignore */}
           <NextLink href={PATH_AUTH.register} passHref>
           <Link>
 

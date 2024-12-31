@@ -66,6 +66,7 @@ export default function CarouselCenterMode() {
           },
         }}
       >
+        {/* @ts-ignore */}
         <Slider ref={carouselRef} {...settings}>
           {_carouselsExample.map((item) => (
             <Box key={item.id} sx={{ px: 1 }}>

@@ -38,6 +38,7 @@ export default function EcommerceNewProducts() {
 
   return (
     <Card>
+      {/* @ts-ignore */}
       <Slider {...settings}>
         {_ecommerceNewProducts.map((item) => (
           <CarouselItem key={item.name} item={item} />

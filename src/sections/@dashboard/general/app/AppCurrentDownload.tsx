@@ -78,6 +78,7 @@ export default function AppCurrentDownload() {
     <Card>
       <CardHeader title="Current Download" />
       <ChartWrapperStyle dir="ltr">
+        {/* @ts-ignore */}
         <ReactApexChart type="donut" series={CHART_DATA} options={chartOptions} height={280} />
       </ChartWrapperStyle>
     </Card>

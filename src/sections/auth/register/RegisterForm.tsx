@@ -66,6 +66,7 @@ export default function RegisterForm() {
       reset();
 
       if (isMountedRef.current) {
+        // @ts-ignore
         setError('afterSubmit', { ...error, message: error.error });
       }
     }

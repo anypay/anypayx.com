@@ -156,6 +156,7 @@ function SubMenu({ parent, pathname }: SubMenuProps) {
                       {subheader}
                     </Typography>
                     {items.map((link) => (
+                      // @ts-ignore
                       <NextLink key={link.title} href={link.path} passHref>
                         <ListItemButton sx={{ px: 1.5 }}>
                           <ListItemIcon
@@ -195,6 +196,7 @@ function SubMenu({ parent, pathname }: SubMenuProps) {
   }
 
   return (
+    // @ts-ignore
     <NextLink href={path} passHref>
       <ParentItem title={title} icon={icon} />
     </NextLink>

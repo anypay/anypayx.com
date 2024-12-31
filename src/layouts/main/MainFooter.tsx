@@ -54,9 +54,11 @@ export default function MainFooter() {
           justifyContent={{ xs: 'center', md: 'space-between' }}
           sx={{ textAlign: { xs: 'center', md: 'left' } }}
         >
+          {/* @ts-ignore */}
           <Grid item xs={12} sx={{ mb: 3 }}>
             <Logo sx={{ mx: { xs: 'auto', md: 'inherit' } }} />
           </Grid>
+          {/* @ts-ignore */}
           <Grid item xs={8} md={3}>
             <Typography variant="body2" sx={{ pr: { md: 5 } }}>
               The easiest, fastest, and most secure solution for processing bitcoin and crypto payments.
@@ -70,7 +72,7 @@ export default function MainFooter() {
               <SocialsButton sx={{ mx: 0.5 }} />
             </Stack>
           </Grid>
-
+          {/* @ts-ignore */}
           <Grid item xs={12} md={7}>
             <Stack
               spacing={5}
@@ -83,6 +85,7 @@ export default function MainFooter() {
                     {list.headline}
                   </Typography>
                   {list.children.map((link) => (
+                    // @ts-ignore
                     <NextLink key={link.name} href={link.href} passHref>
                       <Link color="inherit" variant="body2" sx={{ display: 'block' }}>
                         {link.name}

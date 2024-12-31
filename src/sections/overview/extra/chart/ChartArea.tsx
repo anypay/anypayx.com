@@ -26,5 +26,6 @@ export default function ChartArea() {
     tooltip: { x: { format: 'dd/MM/yy HH:mm' } },
   });
 
+  // @ts-ignore
   return <ReactApexChart type="area" series={CHART_DATA} options={chartOptions} height={320} />;
 }

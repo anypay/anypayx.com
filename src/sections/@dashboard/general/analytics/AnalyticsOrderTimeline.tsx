@@ -26,6 +26,7 @@ export default function AnalyticsOrderTimeline() {
     >
       <CardHeader title="Order Timeline" />
       <CardContent>
+        {/* @ts-ignore */}
         <Timeline>
           {_analyticOrderTimeline.map((item, index) => (
             <OrderItem

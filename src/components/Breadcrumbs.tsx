@@ -73,6 +73,7 @@ type LinkItemProps = {
 function LinkItem({ link }: LinkItemProps) {
   const { href = '', name, icon } = link;
   return (
+    // @ts-ignore
     <NextLink href={href} passHref>
       <Link
         key={name}

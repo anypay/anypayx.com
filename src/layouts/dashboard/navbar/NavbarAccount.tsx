@@ -33,6 +33,7 @@ export default function NavbarAccount({ isCollapse }: Props) {
   const { user } = useAuth();
 
   return (
+    // @ts-ignore
     <NextLink href={PATH_DASHBOARD.merchant.payments} passHref>
       <Link underline="none" color="inherit">
         <RootStyle
@@ -48,7 +49,9 @@ export default function NavbarAccount({ isCollapse }: Props) {
             sx={{
               ml: 2,
               transition: (theme) =>
+                // @ts-ignore
                 theme.transitions.create('width', {
+                  // @ts-ignore
                   duration: theme.transitions.duration.shorter,
                 }),
               ...(isCollapse && {

@@ -24,7 +24,7 @@ import Iconify from '../../../components/Iconify';
 import Scrollbar from '../../../components/Scrollbar';
 import MenuPopover from '../../../components/MenuPopover';
 import { IconButtonAnimate } from '../../../components/animate';
-
+import Image from 'next/image';
 // ----------------------------------------------------------------------
 
 export default function NotificationsPopover() {
@@ -203,7 +203,8 @@ function renderContent(notification: NotificationItemProps) {
   if (notification.type === 'order_placed') {
     return {
       avatar: (
-        <img
+
+        <Image
           alt={notification.title}
           src="https://minimal-assets-api.vercel.app/assets/icons/ic_notification_package.svg"
         />
@@ -214,7 +215,7 @@ function renderContent(notification: NotificationItemProps) {
   if (notification.type === 'order_shipped') {
     return {
       avatar: (
-        <img
+        <Image
           alt={notification.title}
           src="https://minimal-assets-api.vercel.app/assets/icons/ic_notification_shipping.svg"
         />
@@ -225,7 +226,7 @@ function renderContent(notification: NotificationItemProps) {
   if (notification.type === 'mail') {
     return {
       avatar: (
-        <img
+        <Image
           alt={notification.title}
           src="https://minimal-assets-api.vercel.app/assets/icons/ic_notification_mail.svg"
         />
@@ -236,7 +237,7 @@ function renderContent(notification: NotificationItemProps) {
   if (notification.type === 'chat_message') {
     return {
       avatar: (
-        <img
+        <Image
           alt={notification.title}
           src="https://minimal-assets-api.vercel.app/assets/icons/ic_notification_chat.svg"
         />
@@ -245,7 +246,7 @@ function renderContent(notification: NotificationItemProps) {
     };
   }
   return {
-    avatar: notification.avatar ? <img alt={notification.title} src={notification.avatar} /> : null,
+    avatar: notification.avatar ? <Image alt={notification.title} src={notification.avatar} /> : null,
     title,
   };
 }

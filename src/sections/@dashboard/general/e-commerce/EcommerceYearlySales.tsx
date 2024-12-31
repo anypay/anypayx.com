@@ -69,6 +69,7 @@ export default function EcommerceYearlySales() {
       {CHART_DATA.map((item) => (
         <Box key={item.year} sx={{ mt: 3, mx: 3 }} dir="ltr">
           {item.year === seriesData && (
+            // @ts-ignore
             <ReactApexChart type="area" series={item.data} options={chartOptions} height={364} />
           )}
         </Box>

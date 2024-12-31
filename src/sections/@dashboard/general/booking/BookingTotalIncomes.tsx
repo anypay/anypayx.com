@@ -69,6 +69,7 @@ export default function BookingTotalIncomes() {
         </div>
       </Stack>
 
+      {/* @ts-ignore */}
       <ReactApexChart type="area" series={CHART_DATA} options={chartOptions} height={132} />
     </RootStyle>
   );

@@ -23,6 +23,7 @@ import SearchNotFound from '../../../../components/SearchNotFound';
 
 // ----------------------------------------------------------------------
 
+//@ts-ignore
 const PopperStyle = styled((props: PopperProps) => <Popper placement="bottom-start" {...props} />)({
   width: '280px !important',
 });

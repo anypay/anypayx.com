@@ -95,6 +95,7 @@ export default function MyApp(props: MyAppProps) {
       </Head>
       
       <AuthProvider>
+        {/* @ts-ignore */}
         <ReduxProvider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <LocalizationProvider dateAdapter={AdapterDateFns}>

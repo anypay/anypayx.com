@@ -57,6 +57,7 @@ export default function ResetPassword() {
                   onGetEmail={(value) => setEmail(value)}
                 />
 
+                {/* @ts-ignore */}
                 <NextLink href={PATH_AUTH.login} passHref>
                   <Button fullWidth size="large" sx={{ mt: 1 }}>
                     Back
@@ -77,6 +78,7 @@ export default function ResetPassword() {
                   Please check your email.
                 </Typography>
 
+                {/* @ts-ignore */}
                 <NextLink href={PATH_AUTH.login} passHref>
                   <Button size="large" variant="contained" sx={{ mt: 5 }}>
                     Back

@@ -15,12 +15,14 @@ export default function MenuHotProducts({ tags, ...other }: MenuHotProductsProps
       </Typography>
       &nbsp;
       {tags.map((tag, index) => (
+        // @ts-ignore
         <NextLink key={tag.name} href={tag.path} passHref>
           <Link
             underline="none"
             variant="caption"
             sx={{
               color: 'text.secondary',
+              // @ts-ignore
               transition: (theme) => theme.transitions.create('all'),
               '&:hover': { color: 'primary.main' },
             }}

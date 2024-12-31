@@ -79,6 +79,7 @@ export default function ShopTagFiltered({
     <RootStyle>
       {gender.length > 0 && (
         <WrapperStyle>
+          {/* @ts-ignore */}
           <LabelStyle>Gender:</LabelStyle>
           <Stack direction="row" flexWrap="wrap" sx={{ p: 0.75 }}>
             {gender.map((_gender) => (
@@ -96,6 +97,7 @@ export default function ShopTagFiltered({
 
       {category !== 'All' && (
         <WrapperStyle>
+          {/* @ts-ignore */}
           <LabelStyle>Category:</LabelStyle>
           <Stack direction="row" flexWrap="wrap" sx={{ p: 0.75 }}>
             <Chip size="small" label={category} onDelete={onRemoveCategory} sx={{ m: 0.5 }} />
@@ -105,6 +107,7 @@ export default function ShopTagFiltered({
 
       {colors.length > 0 && (
         <WrapperStyle>
+          {/* @ts-ignore */}
           <LabelStyle>Colors:</LabelStyle>
           <Stack direction="row" flexWrap="wrap" sx={{ p: 0.75 }}>
             {colors.map((color) => (
@@ -132,6 +135,7 @@ export default function ShopTagFiltered({
 
       {priceRange && (
         <WrapperStyle>
+          {/* @ts-ignore */}
           <LabelStyle>Price:</LabelStyle>
           <Stack direction="row" flexWrap="wrap" sx={{ p: 0.75 }}>
             <Chip
@@ -146,6 +150,7 @@ export default function ShopTagFiltered({
 
       {rating && (
         <WrapperStyle>
+          {/* @ts-ignore */}
           <LabelStyle>Rating:</LabelStyle>
           <Stack direction="row" flexWrap="wrap" sx={{ p: 0.75 }}>
             <Chip
