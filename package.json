@@ -40,6 +40,7 @@
     "@mui/x-data-grid": "^5.5.1",
     "@react-pdf/renderer": "^2.1.1",
     "@reduxjs/toolkit": "^1.7.2",
+    "@supabase/supabase-js": "^2.47.10",
     "@turf/bbox": "^6.5.0",
     "@vercel/analytics": "^1.4.1",
     "amazon-cognito-identity-js": "^5.2.6",
