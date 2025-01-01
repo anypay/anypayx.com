@@ -9,15 +9,16 @@ import Image from './Image';
 
 interface Props extends BoxProps {
   disabledLink?: boolean;
+  isLight?: boolean;
 }
 
 // eslint-disable-next-line react/display-name
-const Logo = forwardRef<any, Props>(({ disabledLink = false, sx }, ref) => {
+const Logo = forwardRef<any, Props>(({ disabledLink = false, sx, isLight = false }, ref) => {
   const theme = useTheme();
   //const PRIMARY_LIGHT = theme.palette.primary.light;
   //const PRIMARY_MAIN = theme.palette.primary.main;
   //const PRIMARY_DARK = theme.palette.primary.dark;
-  const isLight = theme.palette.mode === 'light';
+  //const isLight = theme.palette.mode === 'light';
 
   const logo = (
     <Box ref={ref} sx={{ height: 50, width: 180, cursor: 'pointer', ...sx }}>
