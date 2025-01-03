@@ -87,19 +87,19 @@ export default function EthereumPage() {
               </Link>
               <Link 
                 //@ts-ignore
-                href="/docs" 
+                href="https://api.anypayx.com/api" 
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 Docs
               </Link>
               <Link
-                href="/auth-new/login"
+                href="/auth/login"
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 Sign in
               </Link>
               <Link
-                href="/auth-new/signup"
+                href="/auth/signup"
                 className="bg-white text-black px-4 py-2 rounded-md hover:bg-gray-200 transition-colors"
               >
                 Get Started
@@ -130,7 +130,7 @@ export default function EthereumPage() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
-                href="/auth-new/signup"
+                href="/auth/signup"
                 className="bg-blue-500 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-blue-600 transition-colors"
               >
                 Start Integration
@@ -226,7 +226,7 @@ export default function EthereumPage() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
-              href="/auth-new/signup"
+              href="/auth/signup"
               className="bg-blue-500 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-blue-600 transition-colors"
             >
               Create Account

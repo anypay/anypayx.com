@@ -1,29 +1,5 @@
 import Link from 'next/link'
-
-interface Chain {
-  name: string
-  ticker: string
-  href: string
-  logo: string
-}
-
-const chains: Chain[] = [
-  { name: 'Bitcoin', ticker: 'BTC', href: '/chains/btc', logo: '/chains/btc.svg' },
-  { name: 'Ethereum', ticker: 'ETH', href: '/chains/eth', logo: '/chains/eth.svg' },
-  { name: 'Ripple', ticker: 'XRPL', href: '/chains/xrpl', logo: '/chains/xrp.svg' },
-  { name: 'Solana', ticker: 'SOL', href: '/chains/sol', logo: '/chains/sol.svg' },
-  { name: 'Bitcoin Cash', ticker: 'BCH', href: '/chains/bch', logo: '/chains/bch.svg' },
-  { name: 'Bitcoin SV', ticker: 'BSV', href: '/chains/bsv', logo: '/chains/bsv.svg' },
-  { name: 'Dogecoin', ticker: 'DOGE', href: '/chains/doge', logo: '/chains/doge.svg' },
-  { name: 'Litecoin', ticker: 'LTC', href: '/chains/ltc', logo: '/chains/ltc.svg' },
-  { name: 'Dash', ticker: 'DASH', href: '/chains/dash', logo: '/chains/dash.svg' },
-  { name: 'Stellar', ticker: 'XLM', href: '/chains/xlm', logo: '/chains/xlm.svg' },
-  { name: 'Monero', ticker: 'XMR', href: '/chains/xmr', logo: '/chains/xmr.svg' },
-  { name: 'Zcash', ticker: 'ZEC', href: '/chains/zec', logo: '/chains/zec.svg' },
-  { name: 'Polygon', ticker: 'MATIC', href: '/chains/polygon', logo: '/chains/polygon.svg' },
-  { name: 'BNB Chain', ticker: 'BNB', href: '/chains/bnb', logo: '/chains/bnb.svg' },
-  { name: 'Avalanche', ticker: 'AVAX', href: '/chains/avax', logo: '/chains/avax.svg' },
-]
+import { Chain, chains } from '../constants/chains'
 
 export interface ChainGridProps {
   className?: string

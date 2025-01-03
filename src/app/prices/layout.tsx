@@ -8,37 +8,6 @@ import Logo from '@/components/Logo'
 export default function PricesLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-[#111] text-gray-900">
-      <header className="border-b border-gray-800">
-        <div className="container mx-auto px-4">
-          <nav className="flex items-center justify-between h-16 mb-3 pt-2">
-            <Link href="/" className="flex items-center space-x-2">
-            <Logo />
-
-            </Link>
-            
-            <div className="flex items-center space-x-6 ">
-              <Link 
-                href="/prices" 
-                className="text-gray-100 hover:text-gray-200 transition-colors"
-              >
-                Prices
-              </Link>
-              <Link 
-                href="/dashboard" 
-                className="text-gray-100 hover:text-gray-200 transition-colors"
-              >
-                Dashboard
-              </Link>
-              <Link
-                href="/auth/register"
-                className="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md transition-colors"
-              >
-                Get Started
-              </Link>
-            </div>
-          </nav>
-        </div>
-      </header>
 
       <main>{children}</main>
 
@@ -81,6 +50,7 @@ export default function PricesLayout({ children }: { children: ReactNode }) {
             <div>
               <h3 className="font-semibold mb-4 text-white">Company</h3>
               <ul className="space-y-2">
+                {/* @ts-ignore */}
                 <li><Link href="/about" className="text-gray-100 hover:text-gray-700">About</Link></li>
                 <li><Link href="/contact" className="text-gray-100 hover:text-gray-700">Contact</Link></li>
                 {/* @ts-ignore */}

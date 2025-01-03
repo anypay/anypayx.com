@@ -1,3 +1,5 @@
+'use client'
+
 import { createContext, ReactNode, useEffect, useReducer } from 'react';
 // utils
 import axios from '../utils/axios';

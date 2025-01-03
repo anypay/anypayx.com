@@ -107,7 +107,7 @@ export default function BitcoinSVPage() {
                 Sign in
               </Link>
               <Link
-                href="/auth-new/signup"
+                href="/auth/signup"
                 className="bg-white text-black px-4 py-2 rounded-md hover:bg-gray-200 transition-colors"
               >
                 Get Started
@@ -143,7 +143,7 @@ export default function BitcoinSVPage() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
-                href="/auth-new/signup"
+                href="/auth/signup"
                 className="bg-emerald-500 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-emerald-600 transition-colors"
               >
                 Start Integration
@@ -240,7 +240,7 @@ export default function BitcoinSVPage() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
-              href="/auth-new/signup"
+              href="/auth/signup"
               className="bg-emerald-500 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-emerald-600 transition-colors"
             >
               Create Account

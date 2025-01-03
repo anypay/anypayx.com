@@ -3,9 +3,9 @@ import { useState, ReactNode, useEffect } from 'react';
 import { useRouter } from 'next/router';
 // hooks
 import useAuth from '../hooks/useAuth';
-import Login from '../pages/auth/login';
 // components
 import LoadingScreen from '../components/LoadingScreen';
+import { redirect } from 'next/navigation';
 
 // ----------------------------------------------------------------------
 
@@ -35,7 +35,8 @@ export default function AuthGuard({ children }: Props) {
     if (pathname !== requestedLocation) {
       setRequestedLocation(pathname);
     }
-    return <Login />;
+    // redirect to login
+    return redirect('/auth/login');
   }
 
   return <>{children}</>;

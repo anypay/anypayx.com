@@ -110,13 +110,13 @@ export default function YoursWalletPage() {
                 Docs
               </Link>
               <Link
-                href="/auth-new/login"
+                href="/auth/login"
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 Sign in
               </Link>
               <Link
-                href="/auth-new/signup"
+                href="/auth/signup"
                 className="bg-white text-black px-4 py-2 rounded-md hover:bg-gray-200 transition-colors"
               >
                 Get Started
