@@ -48,22 +48,24 @@ export function Navigation() {
               <Link href="/dashboard">
                 <Button variant="ghost" className="text-white mr-2">Dashboard</Button>
               </Link>
-              <Link href="/auth-new/logout">
+              {/* @ts-ignore */}
+              <Link href="/auth/logout">
                 <Button variant="outline" className="text-white">Logout</Button>
               </Link>
             </>
           ) : (
             <>
-              <Link href="/auth-new/login">
+              <Link href="/auth/login">
                 <Button variant="ghost" className="text-white mr-2">Login</Button>
               </Link>
-              <Link href="/auth-new/signup">
+              <Link href="/auth/signup">
                 <Button variant="outline" className="text-white">Sign Up</Button>
               </Link>
             </>
           )
         ) : (
           <>
+            {/* @ts-ignore */}
             <Link href="/about">
               <Button variant="ghost" className="text-white mr-2">About</Button>
             </Link>

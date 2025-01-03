@@ -6,6 +6,24 @@ import PriceTicker from '@/components/PriceTicker'
 import ChainGrid from '@/components/ChainGrid'
 import ChainList from '@/components/ChainList'
 import WalletList from '@/components/WalletList'
+import { Highlight, themes } from 'prism-react-renderer'
+
+const apiExample = `// Create a new invoice
+const response = await fetch('https://api.anypay.com/v1/invoices', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    amount: 100,
+    currency: 'USD',
+    description: 'Premium Subscription'
+  })
+})
+
+const { invoice } = await response.json()
+console.log(\`Invoice URL: \${invoice.webpage_url}\`)`
 
 export default function LandingPage() {
   return (
@@ -21,27 +39,23 @@ export default function LandingPage() {
             </Link>
             
             <div className="flex items-center space-x-6">
-              <Link 
-                href="/prices" 
-                className="text-gray-300 hover:text-white transition-colors"
-              >
+              <Link href="/prices" className="text-gray-300 hover:text-white transition-colors">
                 Prices
               </Link>
-              <Link 
-                //@ts-ignore
-                href="/docs" 
-                className="text-gray-300 hover:text-white transition-colors"
-              >
+              <Link href="/walletbot" className="text-gray-300 hover:text-white transition-colors">
+                WalletBot
+              </Link>
+              <Link href="https://api.anypayx.com/api"  target="_blank" className="text-gray-300 hover:text-white transition-colors">
                 Docs
               </Link>
               <Link
-                href="/auth-new/login"
+                href="/auth/login"
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 Sign in
               </Link>
               <Link
-                href="/auth-new/signup"
+                href="/auth/signup"
                 className="bg-white text-black px-4 py-2 rounded-md hover:bg-gray-200 transition-colors"
               >
                 Get Started
@@ -60,15 +74,15 @@ export default function LandingPage() {
               <span className="text-gray-400">including Stablecoins</span>
             </h1>
             <p className="text-xl text-gray-400 mb-6 max-w-2xl mx-auto">
-              The easiest way to accept Bitcoin, Ethereum, and stablecoins like USDC, USDT, 
-              and DAI in your application. Start accepting payments today.
+              The easiest way to accept Bitcoin, Ethereum, and stablecoins like USDC and USDT
+              in your application. Start accepting payments today.
             </p>
             <p className="text-lg text-gray-500 mb-12 max-w-2xl mx-auto">
               Eliminate volatility risk with instant stablecoin settlements
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
-                href="/auth-new/signup"
+                href="/auth/signup"
                 className="bg-white text-black px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-200 transition-colors"
               >
                 Start Now
@@ -98,19 +112,32 @@ export default function LandingPage() {
                 Support for Bitcoin, Ethereum, and major stablecoins.
               </p>
               <p className="text-gray-500 mb-6">
-                Accept USDC, USDT, RLUSD, NUSD, DAI with stable USD value.
+                Accept USDC, USDT, RLUSD, NUSD with stable USD value.
               </p>
-              <pre className="bg-gray-900 p-4 rounded-lg text-gray-300 mb-6">
-                <code>
-{`curl -X POST https://api.anypay.com/v1/invoices \\
-  -H "Authorization: Bearer YOUR_API_KEY" \\
-  -d "amount=100" \\
-  -d "currency=USD"`}
-                </code>
-              </pre>
+              <div className="rounded-lg overflow-hidden">
+                <Highlight
+                  theme={themes.nightOwl}
+                  code={apiExample}
+                  language="javascript"
+                >
+                  {({ className, style, tokens, getLineProps, getTokenProps }) => (
+                    <pre className="p-6 bg-gray-900" style={style}>
+                      {tokens.map((line, i) => (
+                        <div key={i} {...getLineProps({ line })}>
+                          {line.map((token, key) => (
+                            <span key={key} {...getTokenProps({ token })} />
+                          ))}
+                        </div>
+                      ))}
+                    </pre>
+                  )}
+                </Highlight>
+              </div>
               <Link 
                 //@ts-ignore
-                href="/docs"
+                href="https://api.anypayx.com/api"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white hover:text-gray-300 flex items-center"
               >
                 View API Documentation
@@ -230,6 +257,65 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* WalletBot Section */}
+      <section className="py-20 px-4 border-t border-gray-800">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-6">
+                Automate Your Payments <br/>
+                <span className="text-emerald-400">with WalletBot</span>
+              </h2>
+              <p className="text-gray-400 mb-6">
+                Self-custody wallet service that runs in your infrastructure. 
+                Securely manage private keys and automate payments across multiple chains.
+              </p>
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-center text-gray-400">
+                  <svg className="w-5 h-5 text-emerald-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  Headless wallet service
+                </li>
+                <li className="flex items-center text-gray-400">
+                  <svg className="w-5 h-5 text-emerald-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  Multi-chain support
+                </li>
+                <li className="flex items-center text-gray-400">
+                  <svg className="w-5 h-5 text-emerald-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  Simple CLI interface
+                </li>
+              </ul>
+              <Link
+                href="/walletbot"
+                className="text-white bg-emerald-500 hover:bg-emerald-600 px-6 py-3 rounded-md inline-flex items-center group"
+              >
+                Learn More About WalletBot
+                <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+            <div className="bg-gray-900 rounded-lg p-6">
+              <pre className="text-sm text-gray-300 overflow-x-auto">
+                <code>{`import { WalletBot } from '@anypay/walletbot'
+
+const walletBot = new WalletBot({
+  seed_phrase: "your twelve word seed phrase",
+  auth_token: "your-anypay-api-token"
+})
+
+walletBot.start()`}</code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-20 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-6xl">
@@ -281,7 +367,7 @@ export default function LandingPage() {
             Join thousands of businesses already using Anypay for their crypto payment needs.
           </p>
           <Link
-            href="/auth-new/signup"
+            href="/auth/signup"
             className="bg-white text-black px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-200 transition-colors inline-block"
           >
             Create Free Account
@@ -309,6 +395,7 @@ export default function LandingPage() {
                 <li><Link href="/prices" className="text-gray-400 hover:text-white">Price Feed</Link></li>
                 {/* @ts-ignore */}
                 <li><Link href="/payments" className="text-gray-400 hover:text-white">Payments</Link></li>
+                <li><Link href="/walletbot" className="text-gray-400 hover:text-white">WalletBot</Link></li>
                 {/* @ts-ignore */}
                 <li><Link href="/wallet" className="text-gray-400 hover:text-white">Wallet</Link></li>
               </ul>

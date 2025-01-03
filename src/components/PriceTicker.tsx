@@ -8,7 +8,7 @@ interface Price {
   currency: string
   name: string
   value: number
-  change_24h: number
+  change_24hr: number
 }
 
 export default function PriceTicker() {
@@ -66,10 +66,10 @@ export default function PriceTicker() {
             <span className="text-gray-400 mx-2">${price.value?.toLocaleString()}</span>
             <span 
               className={`text-sm ${
-                price.change_24h >= 0 ? 'text-green-400' : 'text-red-400'
+                price.change_24hr >= 0 ? 'text-green-400' : 'text-red-400'
               }`}
             >
-              {price.change_24h > 0 ? '+' : ''}{price.change_24h?.toFixed(2)}%
+              {price.change_24hr > 0 ? '+' : ''}{price.change_24hr?.toFixed(2)}%
             </span>
           </div>
         ))}
