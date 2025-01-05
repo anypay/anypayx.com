@@ -6,6 +6,8 @@ import Image from './Image';
 
 import { useSnackbar } from 'notistack'
 import axios from '../utils/axios';
+import { createClient } from '@/utils/supabase/client'
+import { useEffect, useState } from 'react'
 
 // ----------------------------------------------------------------------
 
@@ -31,9 +33,48 @@ async function removeAddress({ chain, currency }: {currency: string, chain: stri
   return axios.delete(`${API_BASE}/v1/api/account/addresses/${currency}_${chain}`)
 }
 
-export default function SetAddressCard(params: any) {
+// Add interface for coin data
+interface CoinData {
+  logo_url: string
+  name: string
+  chain: string
+  currency: string
+  color?: string
+}
 
+export default function SetAddressCard(params: {
+  onUpdate: () => void,
+  coin: {
+    code: string,
+    chain: string,
+    currency: string,
+    address?: string,
+    paymail?: string,
+    price: number
+  }
+}) {
   const { onUpdate, coin } = params
+  const [coinData, setCoinData] = useState<CoinData | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchCoinData() {
+      const supabase = createClient()
+      const { data, error } = await supabase
+        .from('coins')
+        .select('logo_url, name, chain, currency, color')
+        .eq('chain', coin.chain)
+        .eq('currency', coin.currency)
+        .single()
+
+      if (!error && data) {
+        setCoinData(data)
+      }
+      setLoading(false)
+    }
+
+    fetchCoinData()
+  }, [coin.chain, coin.currency])
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -43,17 +84,16 @@ export default function SetAddressCard(params: any) {
 
   let address: string;
 
-
-
+  // Update icon_url to use coinData
   const icon_url = coin.currency.match('USD') ? (
-    `https://www.anypayx.com/icons/coins/${coin.code}.png`
+    coinData?.logo_url
   ) : (
     `https://www.anypayx.com/icons/coins/${coin.chain}.png`
   )
 
   console.log('ICON', icon_url)
 
-
+  // Update ContentStyle to use coinData color
   const ContentStyle = styled(Card)(({ theme }) => ({
     marginTop: -120,
     boxShadow: 'none',
@@ -62,16 +102,21 @@ export default function SetAddressCard(params: any) {
     color: theme.palette.common.white,
     backgroundImage: `linear-gradient(135deg,
       black 0%,
-      ${coin.color} 100%)`,
+      ${coinData?.color || '#666'} 100%)`,
   }));
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div>
       <Image
+        //@ts-ignore
         visibleByDefault
         disabledEffect
         alt="illustration-invite"
-        src={icon_url}
+        src={coinData?.logo_url || icon_url}
         sx={{
           left: 40,
           zIndex: 9,
@@ -83,10 +128,9 @@ export default function SetAddressCard(params: any) {
       <ContentStyle>
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           <Typography variant="h4">
-            {coin.name} Wallet Address
+            {coinData?.name || coin.code} Wallet Address
           </Typography>
           <Typography variant="h2">${coin.price.toFixed(2)}</Typography>
-
         </Stack>
 
         {coin.address == null ?
@@ -119,7 +163,7 @@ export default function SetAddressCard(params: any) {
               currency: coin.currency,
               value: address
             }).then((result) => {
-              
+              //@ts-ignore
               enqueueSnackbar(`Success setting ${coin.name} address to ${address}`, { variant: 'success'});
 
               onUpdate();
@@ -128,7 +172,7 @@ export default function SetAddressCard(params: any) {
 
               console.error('address.set.error', error)
 
-              enqueueSnackbar(`Error setting ${coin.name} address to ${address}`, { variant: 'error'});
+              enqueueSnackbar(`Error setting ${coin.code} address to ${address}`, { variant: 'error'});
 
             })
           }}>
@@ -152,7 +196,7 @@ export default function SetAddressCard(params: any) {
 
               console.log('address.remove.result', result)
 
-              enqueueSnackbar(`${coin.name} address ${coin.address} removed`, { variant: 'success'});
+              enqueueSnackbar(`${coin.code} address ${coin.address} removed`, { variant: 'success'});
 
               onUpdate();
 

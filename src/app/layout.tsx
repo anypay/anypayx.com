@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Analytics } from "@vercel/analytics/react"
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { AuthProvider } from '@/contexts/JWTContext'
+import { SupabaseAuthProvider } from '@/contexts/SupabaseAuthContext'
 
 
 export const metadata: Metadata = {
@@ -27,12 +28,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body>
-        <AuthProvider>
-          {children}
-          <Analytics />
-          <GoogleAnalytics gaId="G-1E4TY6R8D4" />
-        </AuthProvider>
-
+        <SupabaseAuthProvider>
+          <AuthProvider>
+            {children}
+            <Analytics />
+            <GoogleAnalytics gaId="G-1E4TY6R8D4" />
+          </AuthProvider>
+        </SupabaseAuthProvider>
       </body>
     </html>
   )
