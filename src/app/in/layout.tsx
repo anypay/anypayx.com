@@ -6,6 +6,9 @@ import { usePathname } from 'next/navigation'
 import Logo from '@/components/Logo'
 import LogoSquare from '@/components/LogoSquare'
 import * as Icons from '@heroicons/react/24/outline'
+import PriceTicker from '@/components/PriceTicker'
+import { SupabaseAuthProvider } from '@/contexts/SupabaseAuthContext'
+
 
 interface NavItem {
   name: string
@@ -21,14 +24,16 @@ const navigation: { [key: string]: NavItem[] } = {
   ],
   developer: [
     { name: 'API Keys', href: '/in/api-keys', icon: 'KeyIcon' },
-    { name: 'Documentation', href: '/in/docs', icon: 'DocumentTextIcon' },
-    { name: 'Webhooks', href: '/in/webhooks', icon: 'QrCodeIcon' },
+    { name: 'WebSockets', href: '/in/websockets', icon: 'BoltIcon' },
+    { name: 'Documentation', href: '/in', icon: 'DocumentTextIcon' },
+    { name: 'Webhooks', href: '/in', icon: 'QrCodeIcon' },
   ],
   account: [
     { name: 'Settings', href: '/in/account/settings', icon: 'CogIcon' },
     { name: 'Notifications', href: '/in/notifications', icon: 'BellIcon' },
   ]
 }
+
 
 export default function DashboardLayout({
   children,
@@ -74,7 +79,10 @@ export default function DashboardLayout({
   )
 
   return (
+    <>
+          <PriceTicker />
     <div className="min-h-screen bg-[#111] flex">
+
       {/* Sidebar */}
       <div 
         className={`
@@ -83,7 +91,7 @@ export default function DashboardLayout({
         `}
       >
         {/* Logo section */}
-        <div className="flex items-center h-16 flex-shrink-0 px-4 border-b border-gray-800">
+        <div className="flex items-center h-16 flex-shrink-0 px-4 border-b border-gray-800 h-20">
           <div className={collapsed ? 'mx-auto' : ''}>
             {collapsed ? <LogoSquare /> : <Logo />}
           </div>
@@ -114,23 +122,26 @@ export default function DashboardLayout({
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top bar */}
-        <header className="h-16 flex items-center justify-between px-6 border-b border-gray-800">
-          <h1 className="text-xl font-semibold text-white">Dashboard</h1>
-          <div className="flex items-center space-x-4">
-            <button className="text-gray-400 hover:text-white">
-              <Icons.BellIcon className="w-6 h-6" />
+        <header className="h-20 flex items-center justify-between px-8 border-b border-gray-800 bg-gray-900/50">
+          <h1 className="text-2xl font-semibold text-white">Dashboard</h1>
+          <div className="flex items-center space-x-6">
+            <button className="text-gray-400 hover:text-white transition-colors">
+              <Icons.BellIcon className="w-7 h-7" />
             </button>
-            <button className="text-gray-400 hover:text-white">
-              <Icons.CogIcon className="w-6 h-6" />
+            <button className="text-gray-400 hover:text-white transition-colors">
+              <Icons.CogIcon className="w-7 h-7" />
             </button>
           </div>
         </header>
 
         {/* Page content */}
         <main className="flex-1 overflow-y-auto p-6">
-          {children}
+          <SupabaseAuthProvider>
+            {children}
+          </SupabaseAuthProvider>
         </main>
       </div>
     </div>
+    </>
   )
 } 

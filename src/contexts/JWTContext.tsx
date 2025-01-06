@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, ReactNode, useEffect, useReducer } from 'react';
+import { createContext, ReactNode, useEffect, useReducer, useState } from 'react';
 // utils
 import axios from '../utils/axios';
 import { isValidToken, setSession } from '../utils/jwt';
@@ -83,7 +83,7 @@ type AuthProviderProps = {
 
 function AuthProvider({ children }: AuthProviderProps) {
   const [state, dispatch] = useReducer(JWTReducer, initialState);
-
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const initialize = async () => {
       try {
@@ -94,7 +94,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
           const response = await axios.get(`${API_BASE}/v1/api/account/my-account`);
           const { user } = response.data;
-
+          setIsLoading(false);
           dispatch({
             type: Types.Initial,
             payload: {
@@ -173,6 +173,7 @@ function AuthProvider({ children }: AuthProviderProps) {
         login,
         logout,
         register,
+        isLoading,
       }}
     >
       {children}

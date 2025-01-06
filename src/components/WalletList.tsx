@@ -15,6 +15,7 @@ const wallets: Wallet[] = [
   { name: 'Nintondo', href: '/wallets/nintondo' },
   { name: 'TON', href: '/wallets/ton' },
   { name: 'OKX', href: '/wallets/okx' },
+  { name: 'Crossmark', href: '/wallets/crossmark' },
 ]
 
 export default function WalletList() {
