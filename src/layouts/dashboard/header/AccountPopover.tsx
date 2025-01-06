@@ -21,7 +21,7 @@ import { IconButtonAnimate } from '../../../components/animate';
 const MENU_OPTIONS = [
   {
     label: 'Dashboard',
-    linkTo: '/dashboard',
+    linkTo: '/in',
   },
   {
     label: 'Linked Accounts',

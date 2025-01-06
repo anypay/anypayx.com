@@ -136,7 +136,7 @@ export default function EthereumPage() {
                 Start Integration
               </Link>
               <Link
-                href="/docs/eth"
+                href="/in/docs/api"
                 className="border border-gray-700 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-800 transition-colors"
               >
                 View Documentation
@@ -232,7 +232,7 @@ export default function EthereumPage() {
               Create Account
             </Link>
             <Link
-              href="/contact"
+              href="#"
               className="border border-gray-700 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-800 transition-colors"
             >
               Contact Sales

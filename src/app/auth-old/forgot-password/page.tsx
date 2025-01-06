@@ -51,7 +51,7 @@ export default function ForgotPassword() {
             We've sent you a link to reset your password.
           </p>
           <div className="mt-4 text-center">
-            <Link href="/auth-new/login" className="text-gray-500 hover:text-gray-300">
+            <Link href="/auth/login" className="text-gray-500 hover:text-gray-300">
               Back to login
             </Link>
           </div>
@@ -114,7 +114,7 @@ export default function ForgotPassword() {
 
           <div className="mt-6 text-center">
             <Link
-              href="/auth-new/login"
+              href="/auth/login"
               className="text-gray-500 hover:text-gray-300"
             >
               Back to login

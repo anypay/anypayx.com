@@ -338,7 +338,7 @@ const App = () => (
               Install Wallet
             </a>
             <Link
-              href="/docs/examples"
+              href="#"
               className="border border-gray-700 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-800 transition-colors"
             >
               View Examples

@@ -10,6 +10,6 @@ export const config = {
   matcher: [
     // Add paths that need middleware
     '/api/:path*',
-    '/dashboard/:path*',
+    '/in/:path*',
   ],
 } 

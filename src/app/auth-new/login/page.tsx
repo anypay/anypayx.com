@@ -31,7 +31,7 @@ export default function Login() {
       }
 
       if (data?.user) {
-        router.push('/dashboard')
+        router.push('/in')
       }
     } catch (err) {
       setError('An unexpected error occurred')
@@ -113,7 +113,7 @@ export default function Login() {
             <div className="flex items-center justify-between">
               <div className="text-sm">
                 <Link
-                  href="/auth-new/forgot-password"
+                  href="/auth/forgot-password"
                   className="text-gray-500 hover:text-gray-300"
                 >
                   Forgot your password?

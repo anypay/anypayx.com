@@ -32,16 +32,16 @@ export default function AuthCallback() {
           
           // Handle different auth types
           if (type === 'signup') {
-            router.push('/dashboard?welcome=true')
+            router.push('/in?welcome=true')
           } else if (type === 'recovery') {
-            router.push('/auth-new/reset-password')
+            router.push('/auth/forgot-password')
           } else {
-            router.push('/dashboard')
+            router.push('/in')
           }
         }
       } catch (error) {
         console.error('Error during auth callback:', error)
-        router.push('/auth-new/login?error=callback_error')
+        router.push('/auth/login?error=callback_error')
       }
     }
 

@@ -3,58 +3,43 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { createClient } from '@/utils/supabase/client'
 import Logo from '@/components/Logo'
-// hooks
-import useAuth from '@/hooks/useAuth'
-import useIsMountedRef from '@/hooks/useIsMountedRef'
 
-export default function Signup() {
-  const { register } = useAuth()
-  const isMountedRef = useIsMountedRef()
-  const router = useRouter()
+export default function SignUp() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
-  const handleSignup = async (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError(null)
 
     try {
-      await register(email, password, firstName, lastName)
-      
-      if (isMountedRef.current) {
-        router.push('/dashboard')
+      const supabase = createClient()
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+        },
+      })
+
+      if (error) {
+        setError(error.message)
+        return
       }
-    } catch (error: any) {
-      if (isMountedRef.current) {
-        if (error.error) {
-          setError(error.error)
-        } else if (error.statusCode === 400) {
-          setError('Email already in use')
-        } else if (error.statusCode === 500) {
-          setError(error.message)
-        } else {
-          setError('An unexpected error occurred')
-        }
+
+      if (data?.user) {
+        router.push('/auth/verify-email')
       }
+    } catch (err) {
+      setError('An unexpected error occurred')
     } finally {
       setLoading(false)
-    }
-  }
-
-  const handleGitHubSignup = async () => {
-    setError(null)
-    try {
-      // Use the auth service's OAuth method when implemented
-      // await register.signUpWithGithub()
-      router.push('/auth/callback')
-    } catch (error: any) {
-      setError(error.message)
     }
   }
 
@@ -77,7 +62,7 @@ export default function Signup() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-gray-900 py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6" onSubmit={handleSignup}>
+          <form className="space-y-6" onSubmit={handleSignUp}>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-300">
                 Email address
@@ -126,12 +111,35 @@ export default function Signup() {
                 disabled={loading}
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading ? 'Creating account...' : 'Create account'}
+                {loading ? 'Creating account...' : 'Sign up'}
               </button>
             </div>
           </form>
 
+          <div className="mt-6">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-700" />
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-gray-900 text-gray-400">
+                  Or continue with
+                </span>
+              </div>
+            </div>
 
+            <div className="mt-6">
+              <button
+                type="button"
+                className="w-full flex justify-center py-2 px-4 border border-gray-700 rounded-md shadow-sm text-sm font-medium text-gray-300 bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              >
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 0C4.477 0 0 4.477 0 10c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.137 18.163 20 14.418 20 10c0-5.523-4.477-10-10-10z" />
+                </svg>
+                Continue with GitHub
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -192,21 +192,21 @@ export default function Dashboard() {
         <div className="bg-gray-900 rounded-lg p-6">
           <h3 className="text-lg font-medium text-white mb-4">Documentation</h3>
           <div className="space-y-4">
-            <Link href="/docs/getting-started" className="block">
+            <Link href="/in/docs/api" className="block">
               <div className="group flex items-center text-gray-400 hover:text-white">
                 <Icons.BookOpenIcon className="w-5 h-5 mr-2" />
                 <span>Getting Started Guide</span>
                 <Icons.ArrowRightIcon className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
             </Link>
-            <Link href="/docs/api" className="block">
+            <Link href="/in/docs/api" className="block">
               <div className="group flex items-center text-gray-400 hover:text-white">
                 <Icons.CodeBracketIcon className="w-5 h-5 mr-2" />
                 <span>API Reference</span>
                 <Icons.ArrowRightIcon className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
             </Link>
-            <Link href="/docs/sdks" className="block">
+            <Link href="/in/docs/api" className="block">
               <div className="group flex items-center text-gray-400 hover:text-white">
                 <Icons.CubeIcon className="w-5 h-5 mr-2" />
                 <span>SDKs & Libraries</span>
