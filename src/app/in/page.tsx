@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/utils/supabase/client'
 import * as Icons from '@heroicons/react/24/outline'
+import { useWalletCount } from '@/hooks/useWalletCount'
 
 interface Stats {
   totalPayments: number
   totalVolume: number
-  activeWallets: number
   successRate: number
 }
 
@@ -23,7 +23,7 @@ const quickActions = [
   {
     name: 'Connect Wallet',
     description: 'Add a new wallet connection',
-    href: '/in/wallets/connect',
+    href: '/in/wallets',
     icon: 'WalletIcon',
     color: 'bg-purple-500'
   },
@@ -71,9 +71,9 @@ export default function Dashboard() {
   const [stats, setStats] = useState<Stats>({
     totalPayments: 0,
     totalVolume: 0,
-    activeWallets: 0,
     successRate: 0
   })
+  const { count: walletCount, loading: walletsLoading } = useWalletCount()
 
   useEffect(() => {
     fetchStats()
@@ -98,10 +98,20 @@ export default function Dashboard() {
           <div className="text-sm font-medium text-gray-400">Total Volume</div>
           <div className="mt-2 text-3xl font-bold text-white">${stats.totalVolume.toLocaleString()}</div>
         </div>
+        <Link href="/in/wallets">
         <div className="bg-gray-900 rounded-lg p-6">
+          
           <div className="text-sm font-medium text-gray-400">Active Wallets</div>
-          <div className="mt-2 text-3xl font-bold text-white">{stats.activeWallets}</div>
+          
+          <div className="mt-2 text-3xl font-bold text-white">
+            {walletsLoading ? (
+              <span className="inline-block w-12 h-8 bg-gray-800 rounded animate-pulse" />
+            ) : (
+              walletCount
+            )}
+          </div>
         </div>
+        </Link>
         <div className="bg-gray-900 rounded-lg p-6">
           <div className="text-sm font-medium text-gray-400">Success Rate</div>
           <div className="mt-2 text-3xl font-bold text-white">{stats.successRate}%</div>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/utils/supabase/client'
 import { Dialog } from '@headlessui/react'
+import SetAddressCard from '@/components/SetAddressCard'
 
 interface Coin {
   id: string
@@ -272,6 +273,7 @@ export default function CoinsAdmin() {
         onClose={() => setIsAddOpen(false)}
         className="fixed z-10 inset-0 overflow-y-auto"
       >
+
         <div className="flex items-center justify-center min-h-screen">
           <div className="fixed inset-0 bg-black opacity-30" />
           <Dialog.Panel className="relative bg-gray-900 rounded-lg p-8 max-w-md w-full mx-4">
