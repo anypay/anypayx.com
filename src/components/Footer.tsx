@@ -26,6 +26,7 @@ export default function Footer() {
               <li><Link href="/walletbot" className="text-gray-400 hover:text-white">WalletBot</Link></li>
               {/* @ts-ignore */}
               <li><Link href="/wallet" className="text-gray-400 hover:text-white">Wallet</Link></li>
+              <li><Link href="/woocommerce" className="text-gray-400 hover:text-white">WooCommerce</Link></li>
             </ul>
           </div>
           
@@ -38,6 +39,7 @@ export default function Footer() {
               <li><Link href="/api" className="text-gray-400 hover:text-white">API Reference</Link></li>
               {/* @ts-ignore */}
               <li><Link href="/status" className="text-gray-400 hover:text-white">Status</Link></li>
+              {/* @ts-ignore */}
               <li><Link href="/contact" className="text-gray-400 hover:text-white">Contact</Link></li>
               {/* @ts-ignore */}
               <li><Link href="/blog" className="text-gray-400 hover:text-white">Blog</Link></li>

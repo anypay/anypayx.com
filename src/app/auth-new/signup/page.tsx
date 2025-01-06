@@ -34,7 +34,7 @@ export default function SignUp() {
       }
 
       if (data?.user) {
-        router.push('/auth-new/verify-email')
+        router.push('/auth/verify-email')
       }
     } catch (err) {
       setError('An unexpected error occurred')
@@ -54,7 +54,7 @@ export default function SignUp() {
         </h2>
         <p className="mt-2 text-center text-sm text-gray-400">
           Already have an account?{' '}
-          <Link href="/auth-new/login" className="text-gray-500 hover:text-gray-300">
+          <Link href="/auth/login" className="text-gray-500 hover:text-gray-300">
             Sign in
           </Link>
         </p>

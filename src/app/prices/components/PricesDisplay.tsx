@@ -151,7 +151,7 @@ export default function PricesDisplay() {
               Get price updates within milliseconds using our WebSocket API.
             </p>
             <Link
-              href="/docs/websocket"
+              href="/websockets"
               className="text-emerald-400 hover:text-emerald-300 inline-flex items-center"
             >
               Learn More
@@ -167,7 +167,8 @@ export default function PricesDisplay() {
               Access historical price data with granular timeframe options.
             </p>
             <Link
-              href="/docs/historical"
+
+              href="#"
               className="text-emerald-400 hover:text-emerald-300 inline-flex items-center"
             >
               View Documentation
@@ -183,7 +184,7 @@ export default function PricesDisplay() {
               Set up custom price alerts and notifications via webhooks.
             </p>
             <Link
-              href="/docs/alerts"
+              href="#"
               className="text-emerald-400 hover:text-emerald-300 inline-flex items-center"
             >
               Set Up Alerts

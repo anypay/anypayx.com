@@ -36,9 +36,8 @@ export default function InvoicesPage() {
           </Link>
           <nav>
             <ul className="flex space-x-6">
-              <li><Link href="/dashboard" className="text-gray-300 hover:text-[#45AAF2] transition-colors">Dashboard</Link></li>
-              {/* @ts-ignore */}
-              <li><Link href="/invoices" className="text-gray-300 hover:text-[#45AAF2] transition-colors">Invoices</Link></li>
+              <li><Link href="/in" className="text-gray-300 hover:text-[#45AAF2] transition-colors">Dashboard</Link></li>
+              <li><Link href="/in/invoices" className="text-gray-300 hover:text-[#45AAF2] transition-colors">Invoices</Link></li>
             </ul>
           </nav>
         </div>

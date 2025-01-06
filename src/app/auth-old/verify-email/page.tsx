@@ -25,7 +25,7 @@ export default function VerifyEmail() {
               Click the link in your email to verify your account.
             </p>
             <Link
-              href="/auth-new/login"
+              href="/auth/login"
               className="text-primary hover:text-primary-dark"
             >
               Return to login

@@ -52,6 +52,7 @@ export default function PricesLayout({ children }: { children: ReactNode }) {
               <ul className="space-y-2">
                 {/* @ts-ignore */}
                 <li><Link href="/about" className="text-gray-100 hover:text-gray-700">About</Link></li>
+                {/* @ts-ignore */}
                 <li><Link href="/contact" className="text-gray-100 hover:text-gray-700">Contact</Link></li>
                 {/* @ts-ignore */}
                 <li><Link href="/blog" className="text-gray-100 hover:text-gray-700">Blog</Link></li>

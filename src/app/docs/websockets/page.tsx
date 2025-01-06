@@ -150,9 +150,9 @@ ws.onclose = () => {
               <Link href="/websockets" className="text-gray-300 hover:text-white transition-colors">
                 Demo
               </Link>
-              <Link href="/pricing" className="text-gray-300 hover:text-white transition-colors">
+              {/* <Link href="/pricing" className="text-gray-300 hover:text-white transition-colors">
                 Pricing
-              </Link>
+              </Link> */}
               <Link href="/auth/login" className="text-gray-300 hover:text-white transition-colors">
                 Sign in
               </Link>

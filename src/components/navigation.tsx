@@ -45,7 +45,7 @@ export function Navigation() {
         {authEnabled ? (
           user ? (
             <>
-              <Link href="/dashboard">
+              <Link href="/in">
                 <Button variant="ghost" className="text-white mr-2">Dashboard</Button>
               </Link>
               {/* @ts-ignore */}
@@ -69,6 +69,7 @@ export function Navigation() {
             <Link href="/about">
               <Button variant="ghost" className="text-white mr-2">About</Button>
             </Link>
+            {/* @ts-ignore */}
             <Link href="/contact">
               <Button variant="outline" className="text-white">Contact</Button>
             </Link>

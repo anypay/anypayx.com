@@ -19,7 +19,7 @@ export default function AdminLayout({
       const { data: { user }, error } = await supabase.auth.getUser()
       
       if (error || !user) {
-        router.push('/auth-new/login')
+        router.push('/auth/login')
         return
       }
 
@@ -35,7 +35,7 @@ export default function AdminLayout({
       console.log({roles, rolesError})
 
       if (rolesError || !roles || roles.role !== 'anypay_admin') {
-        //router.push('/dashboard')
+        //router.push('/in')
       }
     }
 

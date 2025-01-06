@@ -119,7 +119,7 @@ export default function DeveloperSection() {
                 Comprehensive API documentation with examples in multiple languages.
               </p>
               <Link
-                href="/docs/api"
+                href="/in/docs/api"
                 className="text-emerald-400 hover:text-emerald-300 inline-flex items-center"
               >
                 View Documentation
