@@ -21,11 +21,12 @@ const navigation: { [key: string]: NavItem[] } = {
     { name: 'Dashboard', href: '/in', icon: 'ChartBarIcon' },
     { name: 'Payments', href: '/in/payments', icon: 'CreditCardIcon' },
     { name: 'Wallets', href: '/in/wallets', icon: 'WalletIcon' },
+    { name: 'WalletBot', href: '/in/walletbot', icon: 'WalletIcon' },
   ],
   developer: [
     { name: 'API Keys', href: '/in/api-keys', icon: 'KeyIcon' },
     { name: 'WebSockets', href: '/in/websockets', icon: 'BoltIcon' },
-    { name: 'Documentation', href: '/in', icon: 'DocumentTextIcon' },
+    { name: 'API Docs', href: '/in/docs/api', icon: 'DocumentTextIcon' },
     { name: 'Webhooks', href: '/in', icon: 'QrCodeIcon' },
   ],
   account: [
@@ -33,7 +34,6 @@ const navigation: { [key: string]: NavItem[] } = {
     { name: 'Notifications', href: '/in/notifications', icon: 'BellIcon' },
   ]
 }
-
 
 export default function DashboardLayout({
   children,
@@ -86,7 +86,7 @@ export default function DashboardLayout({
       {/* Sidebar */}
       <div 
         className={`
-          flex flex-col border-r border-gray-800 bg-gray-900 transition-all duration-300
+          flex flex-col border-r border-gray-800 bg-[#111] transition-all duration-300
           ${collapsed ? 'w-16' : 'w-64'}
         `}
       >
@@ -122,7 +122,7 @@ export default function DashboardLayout({
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top bar */}
-        <header className="h-20 flex items-center justify-between px-8 border-b border-gray-800 bg-gray-900/50">
+        <header className="h-20 flex items-center justify-between px-8 border-b border-gray-800 bg-[#111]">
           <h1 className="text-2xl font-semibold text-white">Dashboard</h1>
           <div className="flex items-center space-x-6">
             <button className="text-gray-400 hover:text-white transition-colors">
@@ -135,7 +135,7 @@ export default function DashboardLayout({
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto p-6">
+        <main className="flex-1 overflow-y-auto p-6 bg-[#111]">
           <SupabaseAuthProvider>
             {children}
           </SupabaseAuthProvider>
