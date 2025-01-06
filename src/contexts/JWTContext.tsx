@@ -133,6 +133,8 @@ function AuthProvider({ children }: AuthProviderProps) {
     });
     const { accessToken, user } = response.data;
 
+    console.log('LOGIN', response.data)
+
     setSession(accessToken);
     dispatch({
       type: Types.Login,

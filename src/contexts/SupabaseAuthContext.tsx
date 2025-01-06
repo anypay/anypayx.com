@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { createClient } from '@/utils/supabase/client'
 import uuidv4 from '@/utils/uuidv4'
 import { User } from '@supabase/supabase-js'
+import { setSession } from '@/utils/jwt'
 
 interface Account {
   id: string
@@ -145,6 +146,7 @@ export function SupabaseAuthProvider({ children }: { children: React.ReactNode }
         throw new Error('Error fetching tokens')
       }
 
+      setSession(tokens[0].uid)
       setApiKey(tokens[0].uid)
     } catch (err) {
       console.log("ERROR", err)
