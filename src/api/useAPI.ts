@@ -7,7 +7,6 @@ export const BASE = process.env.API_BASE || `https://api.anypayx.com`;
 
 //export const BASE = `http://localhost:5200`;
 
-
 const API_BASE = BASE
 
 export { API_BASE }
