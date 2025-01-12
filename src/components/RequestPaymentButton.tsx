@@ -73,7 +73,7 @@ export default function RequestPaymentButton() {
       const data = await response.json()
 
       // Redirect to the new payment page
-      window.location.href = `/in/apps/${formData.app_id}/payments/${data.uid}`
+      window.open(`https://checkout.anypayx.com/i/${data.uid}`, '_blank')
     } catch (err: any) {
       console.error('Error creating payment:', err)
       setError(err.message || 'Failed to create payment')
