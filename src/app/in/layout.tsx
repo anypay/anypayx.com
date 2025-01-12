@@ -8,6 +8,7 @@ import LogoSquare from '@/components/LogoSquare'
 import * as Icons from '@heroicons/react/24/outline'
 import PriceTicker from '@/components/PriceTicker'
 import { SupabaseAuthProvider } from '@/contexts/SupabaseAuthContext'
+import RequestPaymentButton from '@/components/RequestPaymentButton'
 
 
 interface NavItem {
@@ -20,12 +21,15 @@ const navigation: { [key: string]: NavItem[] } = {
   main: [
     { name: 'Dashboard', href: '/in', icon: 'ChartBarIcon' },
     { name: 'Payments', href: '/in/payments', icon: 'CreditCardIcon' },
+    { name: 'Invoices', href: '/in/invoices', icon: 'CreditCardIcon' },
     { name: 'Wallets', href: '/in/wallets', icon: 'WalletIcon' },
-    { name: 'WalletBot', href: '/in/walletbot', icon: 'WalletIcon' },
+    { name: 'WooCommerce', href: '/in/woocommerce', icon: 'ShoppingCartIcon' },
   ],
   developer: [
     { name: 'API Keys', href: '/in/api-keys', icon: 'KeyIcon' },
     { name: 'WebSockets', href: '/in/websockets', icon: 'BoltIcon' },
+    { name: 'Apps', href: '/in/apps', icon: 'DocumentTextIcon' },
+    { name: 'WalletBot', href: '/in/walletbot', icon: 'WalletIcon' },
     { name: 'API Docs', href: '/in/docs/api', icon: 'DocumentTextIcon' },
     { name: 'Webhooks', href: '/in', icon: 'QrCodeIcon' },
   ],
