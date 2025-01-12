@@ -11,12 +11,12 @@ import RequestPaymentButton from '@/components/RequestPaymentButton'
 
 interface Invoice {
   uid: string
-  quote_amount: number
+  amount: number
   currency: string
   chain: string
   coin: string
   status: 'paid' | 'confirmed'
-  created_at: string
+  createdAt: string
   app: {
     id: number
     name: string
@@ -117,14 +117,14 @@ export default function AllPaymentsPage() {
               {invoices.map((invoice) => (
                 <Link
                   key={invoice.uid}
-                  href={`/in/apps/${invoice.app.id}/payments/${invoice.uid}`}
+                  href={`/in/invoices/${invoice.uid}`}
                   className="block bg-[#222] rounded-lg p-4 hover:bg-[#333] transition-colors border border-gray-800"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
                       {/* App Icon */}
                       <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 bg-[#111] border border-gray-800">
-                        {invoice.app.icon_url ? (
+                        {invoice.app?.icon_url ? (
                           <Image
                             src={invoice.app.icon_url}
                             alt={invoice.app.name}
@@ -153,11 +153,11 @@ export default function AllPaymentsPage() {
                         )}
                         <div>
                           <p className="font-semibold">
-                            {invoice.quote_amount} {invoice.currency}
+                            {invoice.amount} {invoice.currency}
                           </p>
-                          <p className="text-sm text-gray-400">
+                          {/* <p className="text-sm text-gray-400">
                             {invoice.coin} on {invoice.chain}
-                          </p>
+                          </p> */}
                         </div>
                       </div>
                     </div>
@@ -165,7 +165,7 @@ export default function AllPaymentsPage() {
                     <div className="flex items-center space-x-6">
                       {/* App Name */}
                       <span className="text-gray-400">
-                        {invoice.app.name}
+                        {invoice.app?.name}
                       </span>
 
                       {/* Status and Date */}
@@ -178,7 +178,7 @@ export default function AllPaymentsPage() {
                           {invoice.status}
                         </span>
                         <span className="text-gray-400 text-sm">
-                          {new Date(invoice.created_at).toLocaleDateString()}
+                          {new Date(invoice.createdAt).toLocaleDateString()}
                         </span>
                       </div>
                     </div>
