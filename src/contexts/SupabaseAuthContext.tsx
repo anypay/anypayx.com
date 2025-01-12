@@ -25,6 +25,7 @@ interface AccessToken {
 interface SupabaseAuthContextType {
   user: User | null
   account: Account | null
+  accessToken: AccessToken | null
   apiKey: string | null
   loading: boolean
   error: Error | null
@@ -38,6 +39,7 @@ export function SupabaseAuthProvider({ children }: { children: React.ReactNode }
   const [user, setUser] = useState<User | null>(null)
   const [account, setAccount] = useState<Account | null>(null)
   const [apiKey, setApiKey] = useState<string | null>(null)
+  const [accessToken, setAccessToken] = useState<AccessToken | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
 
@@ -75,19 +77,11 @@ export function SupabaseAuthProvider({ children }: { children: React.ReactNode }
       //setLoading(true)
       setError(null)
 
-      // Get or create account
-
-      console.log("ABOUT TO GET ACCOUNT", {user_id: user.id})
-
-
       var { data: account, error: accountError } = await supabase
         .from('accounts')
         .select('id')
         .eq('user_id', user.id)
         .single()
-
-      console.log("ACCOUNT", account)
-
 
       if (!account) {
         // Create an account
@@ -148,6 +142,7 @@ export function SupabaseAuthProvider({ children }: { children: React.ReactNode }
 
       setSession(tokens[0].uid)
       setApiKey(tokens[0].uid)
+      setAccessToken(tokens[0])
     } catch (err) {
       console.log("ERROR", err)
       setError(err as Error)
@@ -169,6 +164,7 @@ export function SupabaseAuthProvider({ children }: { children: React.ReactNode }
       value={{
         user,
         account,
+        accessToken,
         apiKey,
         loading,
         error,
