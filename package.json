@@ -88,7 +88,7 @@
     "lucide-react": "^0.469.0",
     "mapbox-gl": "^2.7.0",
     "moment": "^2.29.1",
-    "next": "^15.0.0",
+    "next": "15.0.7",
     "next-transpile-modules": "^9.0.0",
     "nintondo-sdk": "^0.1.15",
     "notistack": "^2.0.3",
